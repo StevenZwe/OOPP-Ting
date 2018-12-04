@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+    <link rel='stylesheet' href="{{ url_for('static', filename='css/Login.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/cerulean/bootstrap.min.css" rel="stylesheet">
-        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/cerulean/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Locker Rental System</title>
+
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">EduCite</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,11 +40,30 @@
         <li class="nav-item">
         <a class="nav-link" href="#"> Locker Rental</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> Contact us</a>
-      </li>
     </ul>
   </div>
 </nav>
+
+    <form action="" style="margin-bottom: 10%" style="margin-top: 20%">
+        <h3>Daily Locker Rental</h3>
+        Booked For:<br>
+        <input type="text" name="name" value="Admin Number"><br>
+        Booked Date:<br>
+        <input type="text" name="date" value=""><br>
+        Locker Location:<br>
+        <input type="text" name="location" value=""><br>
+        Locker Size:<br>
+        <input type="text" name="date" value=""><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+    <form action="" style="margin-top: 10%">
+        <h3>Check Availability</h3>
+        Date:<input type="text" name="avdate" value="">
+        Locker Location:<input type="text" name="avlocation" value="">
+    </form>
+
 </body>
 </html>
