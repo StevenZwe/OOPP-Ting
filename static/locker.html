@@ -12,6 +12,7 @@
 
     <meta charset="UTF-8">
 
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">EduCite</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,23 +43,40 @@
 
 
 
-{% from "includes/formhelper.html" import render_field %}
-
-    {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
 
 
-<form method="post">
-    {{ render_field(form.adminno, class_='form-control') }}
-    {{ render_field(form.date, class_='form-control') }}
-    {{ render_field(form.location, class_='form-control') }}
-    {{ render_field(form.size, class_='form-control') }}
-    {{ form.submit }}
-</form>
 
-<form method="post">
-    {{ render_field(form.dateav, class_='form-control') }}
-    {{ render_field(form.locationav, class_='form-control') }}
-    {{ form.submit }}
-</form>
+
+
+
+
+
+
+
+    <div>
+    <form method="post" action="/locker" style="margin-bottom: 10%" style="margin-top: 20%">
+        <h3>Daily Locker Rental</h3>
+        Booked For:<br>
+        <input type="text" name="name" value=""><br>
+        Booked Date:<br>
+        <input type="text" name="date" value=""><br>
+        Locker Location:<br>
+        <input type="text" name="location" value=""><br>
+        Locker Size:<br>
+        <input type="text" name="date" value=""><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+
+    <div>
+    <form method="post" action="/locker" style="margin-top: 10%">
+        <h3>Check Availability</h3>
+        Date:<br><input type="text" name="avdate" value=""><br>
+        Locker Location:<br><input type="text" name="avlocation" value=""><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <img src="static/images/lockerblka.jpeg">
+    </div>
+
+</body>
+</html>
