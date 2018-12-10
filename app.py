@@ -187,6 +187,11 @@ def viewbookings():
 
     return render_template('view_all_bookings.html', bookings=list)
 
+@app.route('/Room_Booking')
+def Room_Bookinng():
+    return render_template('Room_Booking.html')
+
+
 
 if __name__ == '__main__':
     app.run()
