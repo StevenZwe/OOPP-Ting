@@ -69,9 +69,13 @@ def new():
 @app.route('/viewbookings')
 def viewbookings():
 
-    db_read = shelve.open("booking.db", "r")
 
-    booking = db_read["bookings"]
+    db_read = shelve.open("booking.db")
+    try:
+        booking = db_read["bookings"]
+    except:
+        booking = {}
+
 
     print(booking)
 

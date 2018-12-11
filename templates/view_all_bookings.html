@@ -13,18 +13,30 @@
         </tr>
         </thead>
         <tbody>
+        {% if bookings != '' %}
+            {% for booking in bookings %}
+                <tr>
 
-        {% for booking in bookings %}
-            <tr>
-
-                <td>{{ booking.get_name() }}</td>
+                    <td>{{ booking.get_name() }}</td>
 
 {#            "#}
-                <td>{{ booking.get_date() }}</td>
-                <td>{{ booking.get_time()}}</td>
+                    <td>{{ booking.get_date() }}</td>
+                    <td>{{ booking.get_time()}}</td>
 
             </tr>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+
+
+
+
         {#        <tr>#}
         {#            <th scope="row">1</th>#}
         {#            <td>Harry Potter and the Deathly Hallows</td>#}
