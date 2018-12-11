@@ -35,7 +35,7 @@ class PublicationForm(Form):
                                         ('12/12/18', '12/12/18')], default=' ')
 
 
-@app.route('/help', methods=['GET', 'POST'])
+@app.route('/createbooking', methods=['GET', 'POST'])
 def new():
     form = PublicationForm(request.form)
     db_read = shelve.open("booking.db")
@@ -60,7 +60,7 @@ def new():
 
         db_read.close()
 
-        flash('Magazine Inserted Sucessfully.', 'success')
+        flash('Booking successfully requested.', 'success')
 
         return redirect(url_for('viewbookings'))
 
