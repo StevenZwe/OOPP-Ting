@@ -55,7 +55,6 @@ def init():
 
 @app.route('/login',  methods=('GET', 'POST'))
 def login():
-    print("hello")
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -67,16 +66,13 @@ def login():
         else:
             user = get_user(username, password)
             if user is None:
-                print("wrong")
                 error = 'Wrong username or password'
             else:
-                print("correct")
                 session['id'] = user.get_id()
                 session['user_name'] = user.get_username()
                 return redirect(url_for('home'))
         flash(error, 'danger')
     return render_template('Login2.html')
-
 
 @app.route('/logout')
 def logout():
