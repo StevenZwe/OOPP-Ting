@@ -1,0 +1,15 @@
+{%  extends 'layout.html' %}
+
+{%  block body %}
+
+    {%  from "includes/_formhelper.html" import render_field %}
+
+<h1 id="title">Submissions</h1>
+<div>
+    <P>Assignments in descending order based on due dates</P>
+    <div id="assignments">
+        <p>IP Technology and Networking Due:13/12/18</p>
+    </div>
+</div>
+<div id="assignments"></div>
+{% blockend %}

@@ -1,0 +1,25 @@
+{%  extends 'layout.html' %}
+
+{%  block body %}
+
+    {%  from "includes/_formhelper.html" import render_field %}
+<h1>Add an assignment</h1>
+<p>Course/Module</p>
+<div>
+    <form id="cdropdown" method="post">
+        {{ render_field(form.Category, class="form-control") }}
+    </form>
+</div>
+<div id="date">
+    <p>Due date (Double click for only one day):</p>
+    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+    <script>
+    $('input[name="dates"]').daterangepicker();
+    </script>
+    <button>Confirm</button>
+    <button>Cancel</button>
+</div>
+
+
+{%  endblock %}
+
