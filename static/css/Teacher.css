@@ -1,7 +1,13 @@
 #date{
+    visibility: hidden;
     float: right;
 }
 
 #cdropdown{
     size: 40px;
+}
+
+#ccheckbox{
+    visibility: hidden;
+    margin: auto;
 }

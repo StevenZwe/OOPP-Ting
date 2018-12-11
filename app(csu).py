@@ -29,10 +29,24 @@ def assignt():
 
 
 class CourseOrModule(Form):
-    Category = SelectField('Category', [validators.DataRequired()],
+    Selection = SelectField('Category', [validators.DataRequired()],
                            choices=[('', 'Select'), ('CM1', 'Course/Module1'), ('CM2', 'Course/Module2'),
                                     ('CM3', 'Course/Module3'), ('CM4', 'Course/Module4'), ('CM5', 'Course/Module5')],
                            default='')
+
+
+class Group(Form):
+    Choice = SelectField('Category', [validators.DataRequired()],
+                           choices=[('', 'Select'), ('CM1', 'Course/Module1'), ('CM2', 'Course/Module2'),
+                                    ('CM3', 'Course/Module3'), ('CM4', 'Course/Module4'), ('CM5', 'Course/Module5')],
+                           default='')
+
+
+#class wtforms.fields.BooleanField(default field arguments):
+#    Choice = SelectField('Category', [validators.DataRequired()],
+#                         choices=[('', 'Select'), ('CM1', 'Course/Module1'), ('CM2', 'Course/Module2'),
+#                                  ('CM3', 'Course/Module3'), ('CM4', 'Course/Module4'), ('CM5', 'Course/Module5')],
+#                         default='')
 
 
 #@app.route('/assignments(student)')

@@ -11,10 +11,19 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <h1>Add an assignment</h1>
 <p>Course/Module</p>
-<div>
-    <form id="cdropdown" method="post">
-        {{ render_field(form.Category, class="form-control") }}
+
+<div id="cmdropdown">
+    <form method="post">
+        {{ render_field(form.Selection, class="form-control") }}
     </form>
+<button onclick="choosedate()">Next</button>
+</div>
+
+<div id="ccheckbox">
+    <form method="get">
+        {{ render_field(form.Choice, class="form-control") }}
+    </form>
+<button onclick="chooseclass()">Next</button>
 </div>
 
 <div id="date">
@@ -33,6 +42,15 @@
     <button>Cancel</button>
 </div>
 
+<script>
+function choosedate() {
+    document.getElementById('date').style.display = "block";
+}
+
+function chooseclass() {
+    document.getElementById('ccheckbox').style.display = "block";
+}
+</script>
 
 {%  endblock %}
 
