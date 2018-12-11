@@ -115,10 +115,6 @@ def register():
         flash(error)
     return render_template('register.html')
 
-if __name__ == '__main__':
-
-    app.run()
-
 
 @app.route('/home')
 def home():
@@ -126,7 +122,7 @@ def home():
 
 @app.route('/planner')
 def planner():
-    return render_template('planner.html')
+    return render_template('Planner.html')
 
 @app.route('/createbooking', methods=['GET', 'POST'])
 def new():
