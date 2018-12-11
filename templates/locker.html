@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<title>Locker Rental System</title>
 
-    <link rel='stylesheet' href="{{ url_for('static', filename='css/Login.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+
+{% block body %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/cerulean/bootstrap.min.css" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/cerulean/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <meta charset="UTF-8">
-
+</head>
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">EduCite</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,30 +40,77 @@
         <li class="nav-item">
         <a class="nav-link" href="#"> Locker Rental</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Contact us</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="lockeradmin"> Locker For Admins</a>
+      </li>
     </ul>
   </div>
 </nav>
+</body>
+</html>
 
 
 
 
-{% from "includes/formhelper.html" import render_field %}
-
-    {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
 
 
-<form method="post">
-    {{ render_field(form.adminno, class_='form-control') }}
-    {{ render_field(form.date, class_='form-control') }}
-    {{ render_field(form.location, class_='form-control') }}
-    {{ render_field(form.size, class_='form-control') }}
-    {{ form.submit }}
-</form>
+    {% from "includes/_formhelper.html" import render_field %}
+    <h3>Locker Rental</h3>
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                        <li>{{ form[field_name].label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <form method="POST" action="">
 
-<form method="post">
-    {{ render_field(form.dateav, class_='form-control') }}
-    {{ render_field(form.locationav, class_='form-control') }}
-    {{ form.submit }}
-</form>
+        <div class="form-group">
+            {{ render_field(form.adminno, class_="form-control") }}
+            {{ render_field(form.date, class_="form-control") }}
+            {{ render_field(form.location, class_="form-control") }}
+            {{ render_field(form.size, class_="form-control") }}
+        </div>
+
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="form-group col-md-11">
+
+
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="submit" value="Submit" class="btn btn-info"/>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
