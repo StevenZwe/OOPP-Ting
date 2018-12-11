@@ -53,7 +53,7 @@ def init():
     init_db()
     return 'db initialised'
 
-@app.route('/login',  methods=('GET', 'POST'))
+@app.route('/',  methods=('GET', 'POST'))
 def login():
     print("hello")
     if request.method == 'POST':
@@ -194,6 +194,11 @@ def viewbookings():
         list.append(booking.get(pubid))
 
     return render_template('view_all_bookings.html', bookings=list)
+
+
+@app.route('/testview')
+def testview():
+    return render_template('testview.html')
 
 
 if __name__ == '__main__':
