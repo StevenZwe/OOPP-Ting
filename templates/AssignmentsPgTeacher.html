@@ -1,8 +1,8 @@
-{%  extends 'layout.html' %}
+{% extends 'layout.html' %}
 
-{%  block body %}
+{% block body %}
 
-    {%  from "includes/_formhelper.html" import render_field %}
+    {% from "includes/_formhelper.html" import render_field %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/Teacher.css') }}">
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="date">
     <p>Due date (Double click for only one day):</p>
-    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+    <input id="dates" type="text" method="get" name="daterange" value="01/01/2018 - 01/15/2018" />
     <script>
     $(function() {
       $('input[name="daterange"]').daterangepicker({
@@ -38,9 +38,11 @@
       });
     });
     </script>
-    <button>Confirm</button
+    <button onclick="store()">Confirm</button>
     <button>Cancel</button>
 </div>
+
+assignmentList=[]
 
 <script>
 function choosedate() {
@@ -50,7 +52,10 @@ function choosedate() {
 function chooseclass() {
     document.getElementById('ccheckbox').style.display = "block";
 }
+
+function store(){
+    assignmentList.push('dates')
+}
 </script>
 
-{%  endblock %}
-
+{% endblock %}
