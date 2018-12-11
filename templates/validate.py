@@ -1,7 +1,7 @@
-from wtforms import Field
+from wtforms import Form,StringField,TextAreaField, RadioField, SelectField,validators
 
-class Booking:
-    def __init__(self,blcok, room_no, date, time):
+class User:
+    def __init__(self, block, room_no, date, time):
         self.__block = block
         self.__room_no = room_no
         self.__date = date
@@ -16,6 +16,17 @@ class Booking:
     def get_time(self):
         return self.__time
 
+    def set_block(self,block):
+        self.__block = block
+
+    def set_room_no(self,room_no):
+        self.__room_no = room_no
+
+    def set_date(self,date):
+        self.__date = date
+
+    def set_time(self,time):
+        self.__time = time
 
 class MyForm(Form):
     name = StringField('Name', [InputRequired()])
