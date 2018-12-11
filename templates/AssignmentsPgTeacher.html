@@ -3,6 +3,12 @@
 {%  block body %}
 
     {%  from "includes/_formhelper.html" import render_field %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/Teacher.css') }}">
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <h1>Add an assignment</h1>
 <p>Course/Module</p>
 <div>
@@ -10,13 +16,20 @@
         {{ render_field(form.Category, class="form-control") }}
     </form>
 </div>
+
 <div id="date">
     <p>Due date (Double click for only one day):</p>
     <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
     <script>
-    $('input[name="dates"]').daterangepicker();
+    $(function() {
+      $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+      }, function(start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      });
+    });
     </script>
-    <button>Confirm</button>
+    <button>Confirm</button
     <button>Cancel</button>
 </div>
 

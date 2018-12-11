@@ -1,4 +1,7 @@
 #date{
-    visibility: hidden;
     float: right;
+}
+
+#cdropdown{
+    size: 40px;
 }
