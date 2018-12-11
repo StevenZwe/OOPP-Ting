@@ -41,7 +41,7 @@ def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if session['id'] is None:
-            return redirect(url_for('/'))
+            return redirect(url_for('login'))
         return view(**kwargs)
     return wrapped_view
 
@@ -53,8 +53,9 @@ def init():
     init_db()
     return 'db initialised'
 
-@app.route('/',  methods=('GET', 'POST'))
+@app.route('/login',  methods=('GET', 'POST'))
 def login():
+    print("hello")
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -66,19 +67,22 @@ def login():
         else:
             user = get_user(username, password)
             if user is None:
+                print("wrong")
                 error = 'Wrong username or password'
             else:
+                print("correct")
                 session['id'] = user.get_id()
                 session['user_name'] = user.get_username()
                 return redirect(url_for('home'))
         flash(error, 'danger')
     return render_template('Login2.html')
 
+
 @app.route('/logout')
 def logout():
     session.clear()
     flash('You are now logged out', 'success')
-    return redirect(url_for('/'))
+    return redirect(url_for('login'))
 
 
 class LoginForm(Form):
@@ -107,7 +111,7 @@ def register():
             error = 'Name is required.'
         else:
             create_user(username,password,email,name)
-            return redirect(url_for('/'))
+            return redirect(url_for('login'))
         flash(error)
     return render_template('register.html')
 
