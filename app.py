@@ -41,7 +41,7 @@ def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if session['id'] is None:
-            return redirect(url_for('login'))
+            return redirect(url_for('/'))
         return view(**kwargs)
     return wrapped_view
 
@@ -78,7 +78,7 @@ def login():
 def logout():
     session.clear()
     flash('You are now logged out', 'success')
-    return redirect(url_for('login'))
+    return redirect(url_for('/'))
 
 
 class LoginForm(Form):
@@ -107,7 +107,7 @@ def register():
             error = 'Name is required.'
         else:
             create_user(username,password,email,name)
-            return redirect(url_for('login'))
+            return redirect(url_for('/'))
         flash(error)
     return render_template('register.html')
 
