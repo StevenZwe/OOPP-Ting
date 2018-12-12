@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>View All Bookings</h1>
+    <br/>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if confirms != '' %}
+            {% for confirm in confirms %}
+                <tr>
+
+                    <td>{{ confirm.get_name() }}</td>
+
+{#            "#}
+                    <td>{{ confirm.get_date() }}</td>
+                    <td>{{ confirm.get_time()}}</td>
+
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+
+
+
+
+        {#        <tr>#}
+        {#            <th scope="row">1</th>#}
+        {#            <td>Harry Potter and the Deathly Hallows</td>#}
+        {#            <td>Book</td>#}
+        {#            <td>For Borrowing</td>#}
+        {#            <td>Fantasy</td>#}
+        {#            <td><a href="#">View</a></td>#}
+        {#            <td><a href="/update">Update</a></td>#}
+        {#            <td><a href="#">Delete</a></td>#}
+        {#        </tr>#}
+        {#        <tr>#}
+        {#            <th scope="row">2</th>#}
+        {#            <td>Harry Potter and the Half-Blood Prince</td>#}
+        {#            <td>Book</td>#}
+        {#            <td>For Borrowing</td>#}
+        {#            <td>Fantasy</td>#}
+        {#            <td><a href="#">View</a></td>#}
+        {#            <td><a href="/update">Update</a></td>#}
+        {#            <td><a href="#">Delete</a></td>#}
+        {#        </tr>#}
+        </tbody>
+    </table>
+
+{% endblock %}
