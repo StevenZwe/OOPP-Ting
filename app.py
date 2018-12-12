@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField
 from register import *
 from test4 import Booking
+from validate import Roombooking
 import functools
 
 
@@ -116,6 +117,12 @@ def register():
 def home():
     return render_template('home.html')
 
+@app.route('/timetable')
+def timetable():
+    return render_template('Timetable.html')
+
+
+
 @app.route('/planner')
 def planner():
     return render_template('Planner.html')
@@ -187,9 +194,73 @@ def viewbookings():
 
     return render_template('view_all_bookings.html', bookings=list)
 
-@app.route('/Room_Booking')
-def Room_Bookinng():
-    return render_template('Room_Booking.html')
+@app.route('/Room_Booking',  methods=('GET', 'POST'))
+
+def roombooking():
+    form = room_booking(request.form)
+    db_read = shelve.open("room.db")
+
+    try:
+        roomlist = db_read["rooms"]
+    except:
+        roomlist = {}
+
+    if request.method == 'POST':
+        block = form.block.data
+        date = form.date.data
+        time = form.time.data
+        room_no = form.room_no.data
+        room = Roombooking(block, room_no, date, time)
+        id = len(roomlist) + 1
+
+        room.set_room_id(id)
+
+        roomlist[id] = room
+
+        db_read["rooms"] = roomlist
+
+        db_read.close()
+
+
+        flash('Magazine Inserted Sucessfully.', 'success')
+
+        return redirect(url_for('viewroom'))
+
+    return render_template('Room_Booking.html', form=form)
+
+class room_booking(Form):
+    time = SelectField('Time slot:  ', [validators.DataRequired()],
+                           choices=[('', 'Select'), ('9am', '9am'), ('10am', '10am'),
+                                    ('11am', '11am'), ('12pm', '12pm'), ('1pm', '1pm')],)
+    block = SelectField('Block', choices=[('', 'Select'),('SBM', 'Blk B'),("SIDM","Blk M"),
+                                           ('SIT', 'Blk L')], default=' ')
+    room_no = SelectField('Room:  ', [validators.DataRequired()],
+                           choices=[('', 'Select'), ('Level 6', '604'), ('Level 5', '532'),
+                                    ('Level 5', '503'), ('Level 4', '432'), ('Level 4', '407')],
+                           default='')
+    date = SelectField('Date', choices=[(' ','Select'),('11/12/18','11/12/18'),
+                                        ('12/12/18', '12/12/18')], default=' ')
+
+@app.route('/viewroom')
+def viewroom():
+
+
+    db_read = shelve.open("room.db")
+    try:
+        room = db_read["rooms"]
+    except:
+        room = {}
+
+
+    print(room)
+
+    list = []
+
+    for room_id in room:
+        list.append(room.get(room_id))
+
+    return render_template('view_room.html', rooms=list)
+
 
 
 

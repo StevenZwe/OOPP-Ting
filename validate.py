@@ -1,11 +1,12 @@
 from wtforms import Form,StringField,TextAreaField, RadioField, SelectField,validators
 
-class User:
+class Roombooking:
     def __init__(self, block, room_no, date, time):
         self.__block = block
         self.__room_no = room_no
         self.__date = date
         self.__time = time
+        self.__roomid = ''
 
     def get_block(self):
         return self.__block
@@ -15,6 +16,8 @@ class User:
         return self.__date
     def get_time(self):
         return self.__time
+    def get_roomid(self):
+        return self.__roomid
 
     def set_block(self,block):
         self.__block = block
@@ -28,9 +31,6 @@ class User:
     def set_time(self,time):
         self.__time = time
 
-class MyForm(Form):
-    name = StringField('Name', [InputRequired()])
+    def set_room_id(self,roomid):
+        self.__roomid = roomid
 
-    def validate_name(form, field):
-        if len(field.data) > 50:
-            raise ValidationError('Name must be less than 50 characters')
