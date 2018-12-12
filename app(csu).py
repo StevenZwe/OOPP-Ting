@@ -25,7 +25,8 @@ def planner():
 @app.route('/assignments(teacher)', methods=['GET', 'POST'])
 def assignt():
     form = CourseOrModule(request.form)
-    return render_template('AssignmentsPgTeacher.html', form=form)
+    form2=Group(request.form)
+    return render_template('AssignmentsPgTeacher.html', form=form, form2=form)
 
 
 class CourseOrModule(Form):
