@@ -131,7 +131,6 @@ def planner():
 @app.route('/createbooking', methods=['GET', 'POST'])
 def new():
     form = Booking_teachers_form(request.form)
-
     db_read = shelve.open("booking.db")
 
     try:
@@ -142,21 +141,22 @@ def new():
         name = form.name.data
         date = form.date.data
         time = form.time.data
-        book = Booking(name, date, time)
+        book=Booking(name,date,time)
 
-        db_read2 = shelve.open("booking.db", "r")
-        booking = db_read2["bookings"]
+        if bookinglist != {}:
+            db_read2 = shelve.open("booking.db", "r")
+            booking = db_read2["bookings"]
 
-        for checking in booking:
-            book_storage = (booking.get(checking))
-            book_storage_name = book_storage.get_name()
-            book_storage_date = book_storage.get_date()
-            book_storage_time = book_storage.get_time()
-            if name == book_storage_name and date == book_storage_date and time == book_storage_time:
-                flash('Time slot has been book, please try another time slot', 'danger')
-                return redirect(url_for('new'))
-            else:
-                pass
+            for checking in booking:
+                book_storage = (booking.get(checking))
+                book_storage_name =  book_storage.get_name()
+                book_storage_date = book_storage.get_date()
+                book_storage_time = book_storage.get_time()
+                if name == book_storage_name and date == book_storage_date and time == book_storage_time:
+                    flash('Time slot has been book, please try another time slot', 'danger')
+                    return redirect(url_for('new'))
+                else:
+                    pass
 
         id = len(bookinglist) + 1
 
@@ -196,9 +196,116 @@ def viewbookings():
     return render_template('view_all_bookings.html', bookings=list)
 
 
+@app.route('/viewconfirm')
+def viewconfirm():
+
+
+    db_read = shelve.open("confirm.db")
+    try:
+        confirm = db_read["confirms"]
+    except:
+        confirm = {}
+
+
+    print(confirm)
+
+    list = []
+
+    for newid in confirm:
+        list.append(confirm.get(newid))
+
+    return render_template('view_confirm_bookings.html', confirms=list)
+
+
+@app.route('/teacherbooking')
+def teacherbooking():
+
+    db_read = shelve.open("booking.db", "r")
+
+    booking = db_read["bookings"]
+
+    print(booking)
+
+    list = []
+
+    for pubid in booking:
+        list.append(booking.get(pubid))
+
+    db_read.close()
+
+    return render_template('view_all_bookings_teacher.html', bookings=list)
+
+
+
+@app.route('/reject_booking/<int:id>', methods=['POST'])
+def reject_booking(id):
+    db_read = shelve.open("booking.db")
+
+    try:
+        bList = db_read["bookings"]
+        print("id, ", id)
+        print("bList before: ", bList)
+
+        ##del pList[id]
+        bList.pop(id)
+
+        print(bList)
+        db_read["bookings"] = bList
+        db_read.close()
+
+        flash('Booking Rejected', 'success')
+
+        return redirect(url_for('teacherbooking'))
+
+    except:
+        flash('Booking Not Rejected', 'danger')
+        return redirect(url_for('teacherbooking'))
+
+
+@app.route('/accept_booking/<int:id>', methods=['POST'])
+def accept_booking(id):
+    db_read = shelve.open("booking.db")
+    db_newread=shelve.open('confirm.db')
+
+    try:
+        newList = db_newread['confirms']
+    except:
+        newList = {}
+
+    try:
+
+        bList = db_read["bookings"]
+        print("id, ", id)
+        book_storage = (bList.get(id))
+        newid = len(newList) + 1
+
+        book_storage.set_pubid(newid)
+
+        newList[newid] = book_storage
+
+        db_newread["confirms"] = newList
+
+        db_newread.close()
+
+        bList.pop(id)
+
+        print(bList)
+        db_read["bookings"] = bList
+        db_read.close()
+
+        flash('Booking Accepted', 'success')
+
+        return redirect(url_for('teacherbooking'))
+
+    except:
+        flash('Booking Not Accepted', 'danger')
+        return redirect(url_for('teacherbooking'))
+
+
 @app.route('/testview')
 def testview():
     return render_template('testview.html')
+
 
 
 if __name__ == '__main__':
