@@ -117,6 +117,10 @@ def register():
 def home():
     return render_template('home.html')
 
+@app.route('/avaliable_room')
+def avaliable_room():
+    return render_template('view_avaliable_room.html')
+
 @app.route('/timetable')
 def timetable():
     return render_template('Timetable.html')
