@@ -49,8 +49,10 @@ class Group(Form):
 #                         default='')
 
 
-#@app.route('/assignments(student)')
-#def assigns():
+@app.route('/assignments(student)')
+def assigns():
+    return render_template('AssignmentsPgStudents.html')
+
 
 if __name__ == '__main__':
     app.run()
