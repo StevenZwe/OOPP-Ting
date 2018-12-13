@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
-from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField
+from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField, DateField, DateTimeField
 from register import *
 from test4 import Booking
 from validate import Roombooking
@@ -429,5 +429,3 @@ def delete_locker(id):
 
 if __name__ == '__main__':
     app.run()
-
-#roger taylor
