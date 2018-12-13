@@ -1,0 +1,28 @@
+{%  extends 'layout.html' %}
+
+{%  block body %}
+
+    {%  from "includes/_formhelper.html" import render_field %}
+
+<h1 id="title">Submissions</h1>
+<div>
+    <P>Assignments in descending order based on due dates</P>
+    <div id="assignments">
+        <p onclick="choosefile()">IP Technology and Networking Due:13/12/18</p>
+        <div id="assignments"></div>
+    </div>
+</div>
+
+<div id="attachment">
+    <p>Select files to submit.</p>
+</div>
+
+<div>
+    <script>
+        function choosefile(){
+            document.getElementById('attachment')
+        }
+    </script>
+</div>
+
+{% blockend %}
