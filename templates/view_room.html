@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>View All Bookings</h1>
+    <br/>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Block</th>
+            <th>Room</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if rooms != '' %}
+            {% for room in rooms %}
+                <tr>
+
+                    <td>{{ room.get_block() }}</td>
+
+{#            "#}
+                    <td>{{ room.get_room_no () }}</td>
+                    <td>{{ room.get_time()}}</td>
+
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+        </tbody>
+
+{% endblock %}

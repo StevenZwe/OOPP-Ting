@@ -1,0 +1,126 @@
+*{
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+    height:100vh;
+    overflow:hidden;
+}
+#inspiration{
+    text-align: left;
+    font-size: medium;
+    margin-left: 10px;
+    color: black;
+}
+#plannerform{
+    margin-top:50px;
+    background-color:#9eefbc;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#selectable .ui-selecting {
+  background: #9eefbc;
+  transition:.3s ease-in-out;
+  -webkit-transition: -webkit-transform 0.8s, background-color 0.8s;
+    transition: transform 0.8s, background-color 0.8s;
+}
+#selectable .ui-selected {
+  background: #6dce91;
+  transition:all 0.3s;
+}
+#selectable {
+  list-style-type: none;
+  position:absolute;
+  width: 80%;
+  margin-left:10%;
+  display:flex;
+  transition:.3s ease-in-out;
+  z-index:1;
+  margin-top:3px;
+}
+#selectable li {
+  background:#ddffea;
+  padding: 0.6em;
+  font-size: 1.4em;
+  flex-grow:1;
+  transition:.3s ease-in-out;
+  border:none;
+  text-align:center;
+  line-height:0.8em;
+}
+
+.ui-selectable-helper {
+  visibility: hidden;
+}
+
+#content{
+  min-height:200px;
+  box-sizing:border-box;
+  width:80%;
+  background-color:#9eefbc;
+  margin-left:10%;
+  padding-top:70px;
+  margin-top:3px;
+  padding-bottom:30px;
+  display:none;
+}
+
+.tabcontent{
+    top:44px;
+    background-color:transparent;
+    z-index:0;
+    transition:.3s ease-in-out;
+    font-size:2em;
+    display:none;
+    text-align:center;
+}
+
+#plannername{
+    width:50%;
+    background-color:#9eefbc;
+    border:0;
+    font-size:2em;
+    margin-left:3.2px;
+    padding:20px;
+}
+#plannername:focus{
+    outline:0;
+}
+#plannertime{
+    width: 25%;
+    background-color:#9eefbc;
+    border:0;
+    font-size:2em;
+    padding:19px;
+}
+#plannersubmit{
+  width:24%;
+  background-color:#6dce91;
+  border:0;
+  font-size:2em;
+  padding:20px;
+  transition:.2s ease-in-out;
+}
+#plannersubmit:hover{
+  transition:.2s ease-in-out;
+  padding-left:40px;
+  cursor:pointer;
+}
+#plannersubmit:focus{
+  outline:0;
+}
+#plannersubmit:active{
+  color:white;
+}
+.plannerlist{
+    list-style-type:none;
+}
+.hidden {
+    display: none;
+}
+
+body{
+  background:linear-gradient(to top, #ffffff 0%, #2fa4e7 100%)
+}

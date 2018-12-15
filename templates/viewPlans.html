@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>View Your Plans</h1>
+    <br/>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name of Task</th>
+            <th>Duration of Task</th>
+            <th>Date of Task</th>
+            <th>Desc of Task</th>
+            <th>Priority of Task</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if plan != '' %}
+            {% for p in plan %}
+                <tr>
+
+                    <td>{{ p.get_task() }}</td>
+                    <td>{{ p.get_time() }}</td>
+                    <td>{{ p.get_date()}}</td>
+                    <td>{{ p.get_desc()}}</td>
+                    <td>{{ p.get_priority()}}</td>
+
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+{% endblock %}
