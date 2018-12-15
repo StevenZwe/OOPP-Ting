@@ -137,6 +137,13 @@ def new():
         bookinglist = db_read["bookings"]
     except:
         bookinglist = {}
+
+    db_read = shelve.open("confirm.db")
+    try:
+        confirmlist = db_read["confirms"]
+    except:
+        confirmlist = {}
+
     if request.method == 'POST':
         name = form.name.data
         date = form.date.data
@@ -157,6 +164,22 @@ def new():
                     return redirect(url_for('new'))
                 else:
                     pass
+
+        if confirmlist != {}:
+            db_readconfirm = shelve.open("confirm.db", "r")
+            confirm = db_readconfirm["bookings"]
+
+            for checking in confirm:
+                confirm_storage = (confirm.get(checking))
+                confirm_storage_name =  confirm_storage.get_name()
+                confirm_storage_date = confirm_storage.get_date()
+                confirm_storage_time = confirm_storage.get_time()
+                if name == confirm_storage_name and date == confirm_storage_date and time == confirm_storage_time:
+                    flash('Time slot has been book, please try another time slot', 'danger')
+                    return redirect(url_for('new'))
+                else:
+                    pass
+
 
         id = len(bookinglist) + 1
 
@@ -220,9 +243,11 @@ def viewconfirm():
 @app.route('/teacherbooking')
 def teacherbooking():
 
-    db_read = shelve.open("booking.db", "r")
-
-    booking = db_read["bookings"]
+    db_read = shelve.open("booking.db")
+    try:
+        booking = db_read["bookings"]
+    except:
+        booking = {}
 
     print(booking)
 
