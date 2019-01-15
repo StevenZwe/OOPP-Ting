@@ -3,7 +3,7 @@
 {% block body %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link href="../static/planner.css" rel="stylesheet">
+    <link href="../static/css/planner.css" rel="stylesheet">
     <form id="plannerform">
         <input id="plannername" placeholder="Enter Task" type="text" autocomplete="off"/>
         <input id="plannertime" type="time"/>
@@ -92,7 +92,7 @@
 
                 // reset form style on select
                 $('#plannername').prop('disabled', false);
-                $('#plannername').attr("placeholder", "Enter Task");
+                $('#plannername').attr("placeholder", "Click Here to Enter Task..");
                 $('#plannertime').attr("value", "");
                 $('#plannersubmit').attr("value", "Add Task");
                 $('#plannersubmit').css("background-color", "#6dce91");

@@ -5,6 +5,7 @@ class Locker:
         self.__date = date
         self.__location = location
         self.__size = size
+        self.__dateav = ''
 
     def get_id(self):
         return self.__id
@@ -36,12 +37,37 @@ class Locker:
     def set_size(self, size):
         self.__size = size
 
+    def get_dateav(self):
+        return self.__dateav
+
+    def set_dateav(self, dateav):
+        self.__dateav = dateav
+
+#    def get_dateav(self):
+#        return self.__dateav
+#
+#    def set_dateav(self, dateav):
+#        self.__dateav = dateav
+#
+#    def get_locationav(self):
+#        return self.__locationav
+#
+#    def set_locationav(self, locationav):
+#        self.__locationav = locationav
+
 
 #class Check:
 #    def __init__(self, locationav, sizeav, lockerno):
+#        self.__idav = ''
 #        self.__locationav = locationav
 #        self.__sizeav = sizeav
 #        self.__lockerno = lockerno
+#
+#    def get_idav(self):
+#        return self.__idav
+#
+#    def set_idav(self, idav):
+#        self.__idav = idav
 #
 #    def get_locationav(self):
 #        return self.__locationav
@@ -60,7 +86,7 @@ class Locker:
 #
 #    def set_lockerno(self, lockerno):
 #        self.__lockerno = lockerno
-#
+
 #def availability():
 #    lockers = ['A01', 'A02', 'A03', 'L01', 'L02', 'L03', 'S01', 'S02', 'S03']
 #    locker1 = ['A01']
@@ -84,6 +110,7 @@ class Locker:
 #
 #
 #
+
 #class LockerRental:
 #    locker = []
-#    date = []
+#    date] = [
