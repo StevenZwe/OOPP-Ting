@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
-from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField
+from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField, DateField, DateTimeField
 from register import *
 from test4 import Booking
 from validate import Roombooking
+from Planner import Planner
+from Locker import Locker
 import functools
 
 
@@ -37,6 +39,20 @@ class Booking_teachers_form(Form):
     date = SelectField('Date', choices=[(' ','Select'),('11/12/18','11/12/18'),
                                         ('12/12/18', '12/12/18')], default=' ')
 
+class editPlanner(Form):
+    task = StringField('Name of Task', [validators.DataRequired()])
+    time = SelectField("Time", [validators.DataRequired()],
+                       choices=[('', 'Select'), ('9am-10am', '9am-10am'), ('10am-11am', '10am-11am'),
+                                ('11am-12pm', '11am-12pm'), ('12pm-1pm', '12pm-1pm'), ('1pm-2pm', '1pm-2pm'),
+                                ('2pm-3pm', '2pm-3pm'), ('3pm-4pm', '3pm-4pm'), ('4pm-5pm', '4pm-5pm')], default=' ')
+    date = SelectField("Date", choices=[(' ', 'Select'), ('11/12/18', '11/12/18'),
+                                        ('12/12/18', '12/12/18')], default=' ')
+
+
+    desc = StringField("Description")
+    priority = SelectField("Importance", choices=[(' ', 'Select'), ('1 Star', '1 Star'),
+                                        ('2 Star', '2 Star'),('3 Star', '3 Star'),
+                                        ('4 Star', '4 Star'),('5 Star', '5 Star')], default='1 Star')
 
 def login_required(view):
     @functools.wraps(view)
@@ -130,6 +146,62 @@ def timetable():
 @app.route('/planner')
 def planner():
     return render_template('Planner.html')
+
+
+@app.route('/planneredit', methods=['GET','POST'])
+def Editplanner():
+    form = editPlanner(request.form)
+
+    db_read = shelve.open("plans.db")
+    try:
+        planList = db_read["plan"]
+    except:
+        planList = {}
+
+    if request.method == 'POST':
+        task = form.task.data
+        time = form.time.data
+        date = form.date.data
+        desc = form.desc.data
+        priority = form.priority.data
+        plan = Planner(task, date, time, desc ,priority)
+
+        id = len(planList) + 1
+
+        plan.set_pubid(id)
+
+        planList[id] = plan
+
+        db_read["plan"] = planList
+
+        db_read.close()
+
+        flash('Sucess!', 'success')
+
+        return redirect(url_for('viewplans'))
+
+    return render_template('planneredit.html', form=form)
+
+@app.route('/viewplans')
+def viewplans():
+
+
+    db_read = shelve.open("plans.db")
+    try:
+        plan = db_read["plan"]
+    except:
+        plan = {}
+
+
+    print(plan)
+
+    list = []
+
+    for id in plan:
+        list.append(plan.get(id))
+
+    return render_template('viewPlans.html', plan=list)
+
 
 @app.route('/createbooking', methods=['GET', 'POST'])
 def new():
@@ -267,7 +339,5 @@ def viewroom():
 
 
 
-
 if __name__ == '__main__':
     app.run()
-

@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {% from "includes/_formhelper.html" import render_field %}
+    <h3>Check Availability</h3>
+    <div id="checkAvail">
+        <form action="/CheckAvail" method="post">
+            {{ render_field(LockerForm.dateav, class_="form-control") }}
+            {{ render_field(LockerForm.locationav, class_="form-control") }}
+            <input type="submit" value="Submit" class="btn btn-info">
+        </form>
+    </div>
+{% endblock %}

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="">
+    <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change beforePath="$PROJECT_DIR$/.idea/untitled1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/untitled1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dates.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app(csu).py" beforeDir="false" afterPath="$PROJECT_DIR$/app(csu).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/Teacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/Teacher.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/AsssignmentsPgStudents.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/AsssignmentsPgStudents.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Planner.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Planner.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,42 +17,53 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Organizer_Ting$untitled1.coverage" NAME="untitled1 Coverage Results" MODIFIED="1544528335921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1545874279644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__planner_py_.coverage" NAME="Flask (planner.py) Coverage Results" MODIFIED="1544271905133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__flask_test4_py_.coverage" NAME="Flask (flask_test4.py) Coverage Results" MODIFIED="1544494181021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Organizer_Ting$untitled1.coverage" NAME="untitled1 Coverage Results" MODIFIED="1544528335921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__1_.coverage" NAME="Flask (1) Coverage Results" MODIFIED="1544576045660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1544581201443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="26383024">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="20" />
-          <entry key="py" value="22" />
+          <entry key="html" value="79" />
+          <entry key="js" value="1" />
+          <entry key="py" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="20" />
-          <entry key="Python" value="22" />
+          <entry key="HTML" value="79" />
+          <entry key="JavaScript" value="1" />
+          <entry key="Python" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="1" />
-          <entry key="js" value="1" />
+          <entry key="css" value="2" />
+          <entry key="html" value="14" />
+          <entry key="js" value="3" />
+          <entry key="py" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="1" />
+          <entry key="CSS" value="2" />
+          <entry key="HTML" value="14" />
+          <entry key="JavaScript" value="3" />
+          <entry key="Python" value="8" />
         </counts>
       </usages-collector>
     </session>
@@ -85,126 +96,64 @@
         </counts>
       </usages-collector>
     </session>
-    <session id="1388617959">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="2" />
-          <entry key="HTML" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="2" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-504533258">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="2" />
-          <entry key="HTML" value="1" />
-          <entry key="Python" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/AssignmentsPgTeacher.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="65" column="14" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-              <folding>
-                <element signature="e#1568#1586#0#HTML" expanded="true" />
-                <element signature="e#1697#1714#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/AsssignmentsPgStudents.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1" selection-start-column="1" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/CSS.css">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/css/Teacher.css">
+        <entry file="file://$PROJECT_DIR$/templates/Layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app(csu).py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-860">
-              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
-              <folding>
-                <element signature="e#0#84#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Planner.py">
+        <entry file="file://$PROJECT_DIR$/templates/planneredit.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/room.db.dir">
+        <entry file="file://$PROJECT_DIR$/apphelloworld.py">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/view_all_bookings.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/templates/Timetable.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/view_room.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="23" selection-start-column="19" selection-end-column="23" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/templates/Login2.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/includes/_formhelper.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/planner.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/validate.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Planner.py">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -254,17 +203,14 @@
         <option value="$PROJECT_DIR$/templates/booking.html" />
         <option value="$PROJECT_DIR$/templates/view_all_bookings.html" />
         <option value="$PROJECT_DIR$/flask_test4.py" />
-        <option value="$PROJECT_DIR$/templates/Layout.html" />
         <option value="$PROJECT_DIR$/templates/Login2.html" />
         <option value="$PROJECT_DIR$/templates/includes/_navbar.html" />
+        <option value="$PROJECT_DIR$/validate.py" />
+        <option value="$PROJECT_DIR$/templates/roombooking.js" />
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/templates/Planner.html" />
-        <option value="$PROJECT_DIR$/validate.py" />
-        <option value="$PROJECT_DIR$/templates/AsssignmentsPgStudents.html" />
         <option value="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" />
-        <option value="$PROJECT_DIR$/static/css/Teacher.css" />
-        <option value="$PROJECT_DIR$/app(csu).py" />
-        <option value="$PROJECT_DIR$/Dates.py" />
+        <option value="$PROJECT_DIR$/templates/Layout.html" />
       </list>
     </option>
   </component>
@@ -274,19 +220,18 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="960" />
-    <option name="width" value="960" />
-    <option name="height" value="1089" />
-  </component>
-  <component name="ProjectReloadState">
-    <option name="STATE" value="1" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1385" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,22 +261,16 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProjectTest" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -585,31 +524,52 @@
       <option name="project" value="LOCAL" />
       <updated>1544499301196</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1544586051747</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1544586051747</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1544709124424</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1544709124424</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1544711092169</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1544711092169</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="13860000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="768" y="0" width="768" height="871" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49425286" visible="true" weight="0.3079096" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49425286" visible="true" weight="0.22885907" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3285528" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3285528" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49932885" weight="0.3285968" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49932885" weight="0.3285528" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.32985657" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3306233" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32724902" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3285968" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -686,13 +646,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Planner.html" />
-    <entry file="file://$PROJECT_DIR$/templates/Layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Login.html" />
     <entry file="file://$PROJECT_DIR$/LoginFlask.py" />
     <entry file="file://$PROJECT_DIR$/flask_test4.py" />
@@ -732,32 +685,7 @@
     <entry file="file://$PROJECT_DIR$/test4.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Login2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/planner.js" />
-    <entry file="file://$PROJECT_DIR$/templates/Planner.html" />
     <entry file="file://$PROJECT_DIR$/static/css/Login.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="43" column="33" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#84#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/calender.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/validate.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/room.db.dir">
@@ -777,50 +705,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/includes/_formhelper.html">
+    <entry file="file://$PROJECT_DIR$/templates/planner.js" />
+    <entry file="file://$PROJECT_DIR$/templates/viewPlans.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/CSS.css">
+    <entry file="file://$PROJECT_DIR$/static/locker.html" />
+    <entry file="file://$PROJECT_DIR$/templates/includes/formhelper.html" />
+    <entry file="file://$PROJECT_DIR$/static/css/CSS.css" />
+    <entry file="file://$PROJECT_DIR$/app(ERIN).py" />
+    <entry file="file://$PROJECT_DIR$/templates/locker.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dates.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="1229" column="24" lean-forward="true" selection-start-line="1229" selection-start-column="24" selection-end-line="1229" selection-end-column="24" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app(csu).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-860">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+        <state>
           <folding>
             <element signature="e#0#84#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Planner.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/AsssignmentsPgStudents.html">
+    <entry file="file://$PROJECT_DIR$/templates/roombooking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        <state relative-caret-position="68">
+          <caret line="4" column="77" selection-start-line="4" selection-start-column="77" selection-end-line="4" selection-end-column="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/AssignmentsPgTeacher.html">
+    <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="65" column="14" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
+        <state relative-caret-position="328">
+          <caret line="321" lean-forward="true" selection-start-line="321" selection-end-line="321" />
           <folding>
-            <element signature="e#1568#1586#0#HTML" expanded="true" />
-            <element signature="e#1697#1714#0#HTML" expanded="true" />
+            <element signature="e#0#84#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/Teacher.css">
+    <entry file="file://$PROJECT_DIR$/templates/Planner.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        <state relative-caret-position="1700">
+          <caret line="100" column="29" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/planneredit.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apphelloworld.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Timetable.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Login2.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/includes/_formhelper.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/planner.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validate.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Planner.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/AssignmentsPgTeacher.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

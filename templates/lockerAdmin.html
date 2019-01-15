@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <style>
+        th{padding-left: 20px; padding-right: 20px}
+        td{padding-left: 20px; padding-right: 20px}
+
+    </style>
+
+    <h2 style="margin-top: 3%; margin-left: 20px">Locker Reservations</h2>
+    <br/>
+
+    <table style="margin-top: 1%; margin-left:auto; margin-right:auto">
+        <thead>
+        <tr>
+            <th>Admin Number:</th>
+            <th>Date:</th>
+            <th>Location:</th>
+            <th>Size:</th>
+            <th>Locker Number:</th>
+            <th></th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+
+        {% for locker in lockers %}
+            <tr>
+
+                <td>{{ locker.get_adminno() }}</td>
+                <td>{{ locker.get_date() }}</td>
+                <td>{{ locker.get_location() }}</td>
+                <td>{{ locker.get_size() }}</td>
+                <td>{{ locker.get_lockerno() }}</td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
