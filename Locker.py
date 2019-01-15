@@ -1,11 +1,11 @@
 class Locker:
-    def __init__(self, adminno, date, location, size):
+    def __init__(self, adminno, date, location, size, lockerno):
         self.__id = ''
         self.__adminno = adminno
         self.__date = date
         self.__location = location
         self.__size = size
-        self.__dateav = ''
+        self.__lockerno = lockerno
 
     def get_id(self):
         return self.__id
@@ -37,11 +37,33 @@ class Locker:
     def set_size(self, size):
         self.__size = size
 
-    def get_dateav(self):
-        return self.__dateav
+    def get_lockerno(self):
+        return self.__lockerno
 
-    def set_dateav(self, dateav):
-        self.__dateav = dateav
+    def set_lockerno(self, lockerno):
+        self.__lockerno = lockerno
+
+
+# def lockerLists():
+#     availableLockerList = ['L01', 'L02', 'L03', 'L04', 'L05', 'L06',
+#                            'B01', 'B02', 'B03', 'B04', 'B05', 'B06',
+#                            'N01', 'N02', 'N03', 'N04', 'N05', 'N06']
+#     SITList = ['L01', 'L02', 'L03', 'L04', 'L05', 'L06']
+#     SBMList = ['B01', 'B02', 'B03', 'B04', 'B05', 'B06']
+#     SCLList = ['N01', 'N02', 'N03', 'N04', 'N05', 'N06']
+
+    #put inside dictionary (key:value) (date:locker number booked)
+    lockersBookedDict = {
+
+    }
+
+    #put inside dictionary (key:value) (date:locker number booked)
+    availableLockerDict = {
+
+    }
+
+
+
 
 #    def get_dateav(self):
 #        return self.__dateav

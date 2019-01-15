@@ -12,23 +12,16 @@ app.secret_key = 'secretkey'
 
 @app.route('/CheckAvail')
 def checkAvail():
-    form = LockerForm(request.form)
     cform = CheckAvailForm(request.form)
 
     dateav = cform.dateav.data
     locationav = cform.locationav.data
 
-    availableLockersObject = {
-        'sSIT': ['L01'],
-        'mSIT': ['L02'],
-        'bSIT': ['L03'],
-        'sSBM': ['B01'],
-        'mSBM': ['B02'],
-        'bSBM': ['B03'],
-        'sSCL': ['N01'],
-        'mSCL': ['N02'],
-        'bSCL': ['N03']
-    }
+    ##############
+        #if
+
+    ###############
+
 
     db_read = shelve.open("storage.db")
 
@@ -38,15 +31,7 @@ def checkAvail():
         lockerList = {}
 
     if request.method == 'POST' and form.validate():
-        for date in lockerList:
-            for location in lockerList:
-                if dateav == date:
-                    if locationav == location:
-                        checkalert()
-                    else:
-                        pass
-                else:
-                    pass
+        pass
 
     return render_template("Locker_Public.html", form=form)
 
@@ -62,20 +47,61 @@ def func_locker():
     except:
         lockerList = {}
 
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' or form.validate():
         adminno = form.adminno.data
         date = form.date.data
-        location = form.location.data
-        size = form.size.data
-        lockers = Locker(adminno, date, location, size)
+        location = request.form['locationhtml']
+        size = request.form['sizehtml']
+        lockerno = request.form['lockernohtml']
+        lockers = Locker(adminno, date, location, size, lockerno)
         id = len(lockerList) + 1
         lockers.set_id(id)
         lockerList[id] = lockers
         db_read["locker"] = lockerList
         db_read.close()
         flash('Locker form submitted successfully!', 'success')
-        return redirect(url_for('func_locker'))
+        # return redirect(url_for('func_locker'))
     return render_template('locker.html', form=form)
+
+        # #####
+        # lockerNosList = []
+        #
+        # if location == 'SIT':
+        #     if size == 'small':
+        #         lnlist = ['L01', 'L02']
+        #         lockerNosList = lnlist
+        #     elif size == 'medium':
+        #         lnlist = ['L03']
+        #         lockerNosList = lnlist
+        #     elif size == 'big':
+        #         lnlist = ['L04']
+        #         lockerNosList = lnlist
+        # elif location == 'SBM':
+        #     if size == 'small':
+        #         lnlist = ['B01', 'B02']
+        #         lockerNosList = lnlist
+        #     elif size == 'medium':
+        #         lnlist = ['B03']
+        #         lockerNosList = lnlist
+        #     elif size == 'big':
+        #         lnlist = ['B04']
+        #         lockerNosList = lnlist
+        # elif location == 'SCL':
+        #     if size == 'small':
+        #         lnlist = ['N01', 'N02']
+        #         lockerNosList = lnlist
+        #     elif size == 'medium':
+        #         lnlist = ['N03']
+        #         lockerNosList = lnlist
+        #     elif size == 'big':
+        #         lnlist = ['N04']
+        #         lockerNosList = lnlist
+        # else:
+        #     pass
+        #     # pls fill in alert
+
+        #####
+
 
 
 def checkalert():
@@ -83,6 +109,7 @@ def checkalert():
     #print('''<script>
     #alert('Already Booked!');
     #</script>''')
+
 
 class RequiredIf(object):
 
@@ -98,8 +125,6 @@ class RequiredIf(object):
                     validators.DataRequired().__call__(form, field)
                 else:
                     validators.Optional().__call__(form, field)
-
-
 
 @app.route('/payment')
 def payment():
@@ -168,14 +193,13 @@ def default():
 def lockeradmin():
     db_read = shelve.open("storage.db", "r")
     lockers = db_read['locker']
-    print(lockers)
     list = []
     for id in lockers:
         list.append(lockers.get(id))
     db_read.close()
     return render_template('lockerAdmin.html', lockers=list)
 #PUT CHECK ON TOP
-#
+
 
 
 if __name__ == '__main__':
