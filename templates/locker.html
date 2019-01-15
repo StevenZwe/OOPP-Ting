@@ -58,7 +58,7 @@
 
 
     {% from "includes/_formhelper.html" import render_field %}
-    <h3 style = "margin-top: 3%; margin-left: 20px">Locker Rental</h3>
+    <h3>Locker Rental</h3>
     {% if form.errors %}
         <div class="alert alert-danger">
             <ul>
@@ -70,7 +70,7 @@
             </ul>
         </div>
     {% endif %}
-    <form method="POST" action="" style="margin-top: 2%; margin-left:20px; margin-right:50%">
+    <form method="POST" action="">
 
         <div class="form-group">
             {{ render_field(form.adminno, class_="form-control") }}
