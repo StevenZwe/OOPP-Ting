@@ -2,178 +2,299 @@
 
 {% block body %}
     {% from "includes/_formhelper.html" import render_field %}
-    <h3 style = "margin-top: 3%; margin-left: 20px">Locker Form</h3>
+    <link rel="stylesheet" href="static/css/locker.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+
+        var SITlockers = ['L01', 'L02', 'L03', 'L04'],
+            SBMlockers = ['B01', 'B02', 'B03', 'B04'],
+            SCLlockers = ['N01', 'N02', 'N03', 'N04'],
+            sit = "SIT",
+            sbm = "SBM",
+            scl = "SCL";
+        $(document).ready(function(){
+            $('#locationChange').change(function(){
+                var locationValue = $(this).val();
+                if (locationValue === sit){
+                    var addOptions = document.getElementById('addOptions');
+                    var optionsLength = addOptions.options.length;
+                    var j;
+                    for (j = optionsLength - 1; j >= 0; j--) {
+                        addOptions.remove(j);
+                    }
+                    var i;
+                    for (i = 0; i < SITlockers.length; i++){
+                        var opt = document.createElement('option');
+                        opt.value = SITlockers[i];
+                        opt.innerHTML = SITlockers[i];
+                        addOptions.appendChild(opt);
+                    }
+                }
+
+                else if (locationValue === sbm) {
+                    var addOptions = document.getElementById('addOptions');
+                    var optionsLength = addOptions.options.length;
+                    var j;
+                    for (j = optionsLength - 1; j >= 0; j--) {
+                        addOptions.remove(j);
+                    }
+                    var i;
+                    for (i = 0; i < SBMlockers.length; i++){
+                        var opt = document.createElement('option');
+                        opt.value = SBMlockers[i];
+                        opt.innerHTML = SBMlockers[i];
+                        addOptions.appendChild(opt);
+                    }
+                }
+
+                else if (locationValue === scl) {
+                    var addOptions = document.getElementById('addOptions');
+                    var optionsLength = addOptions.options.length;
+                    var j;
+                    for (j = optionsLength - 1; j >= 0; j--) {
+                        addOptions.remove(j);
+                    }
+                    var i;
+                    for (i = 0; i < SCLlockers.length; i++){
+                        var opt = document.createElement('option');
+                        opt.value = SCLlockers[i];
+                        opt.innerHTML = SCLlockers[i];
+                        addOptions.appendChild(opt);
+                    }
+                    {#var sclimg = document.createElement("img");#}
+                    {#elem.src = "static/images/lockerblkl.jpg";#}
+                    {#document.getElementById("lockerpicture").appendChild(sclimg);#}
+                };
+
+                {#locationValue = lockerblkl.jpg;#}
+                {#$('#lockerPicture').html(locationValue);#}
+
+            });
+        });
+
+
+
+
+        var smallsit = ['L01', 'L02'],
+            mediumsit = ['L03'],
+            bigsit = ['L04'],
+            smallsbm = ['B01', 'B02'],
+            mediumsbm = ['B03'],
+            bigsbm = ['B04'],
+            smallscl = ['N01', 'N02'],
+            mediumscl = ['N03'],
+            bigscl = ['N04'],
+            small = "small",
+            medium = "medium",
+            big = "big";
+
+        $(document).ready(function(){
+            $('#sizeChange').change(function(){
+                var locationValueId = document.getElementById("locationChange"),
+                locationValue = locationValueId.options[locationValueId.selectedIndex].value,
+                sizeValue = $(this).val();
+                if (sizeValue === small){
+                    var addOptions = document.getElementById('addOptions');
+                    var optionsLength = addOptions.options.length;
+                    var j;
+                    for (j = optionsLength - 1; j >= 0; j--) {
+                        addOptions.remove(j);
+                    }
+                    if (locationValue === sit){
+                        var i;
+                        for (i = 0; i < smallsit.length; i++){
+                        var opt = document.createElement('option');
+                        opt.value = smallsit[i];
+                        opt.innerHTML = smallsit[i];
+                        addOptions.appendChild(opt);
+                        }
+                    } else if (locationValue === sbm) {
+                        var i;
+                        for (i = 0; i < smallsbm.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = smallsbm[i];
+                            opt.innerHTML = smallsbm[i];
+                            addOptions.appendChild(opt);
+                        }
+                    } else if (locationValue === scl){
+                        var i;
+                        for (i = 0; i < smallscl.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = smallscl[i];
+                            opt.innerHTML = smallscl[i];
+                            addOptions.appendChild(opt);
+                        }
+                    }
+                }
+
+                else if (sizeValue === medium) {
+                    var addOptions = document.getElementById('addOptions');
+                    var optionsLength = addOptions.options.length;
+                    var j;
+                    for (j = optionsLength - 1; j >= 0; j--) {
+                        addOptions.remove(j);
+                    }
+                    if (locationValue === sit){
+                        var i;
+                        for (i = 0; i < mediumsit.length; i++){
+                        var opt = document.createElement('option');
+                        opt.value = mediumsit[i];
+                        opt.innerHTML = mediumsit[i];
+                        addOptions.appendChild(opt);
+                        }
+                    } else if (locationValue === sbm) {
+                        var i;
+                        for (i = 0; i < mediumsbm.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = mediumsbm[i];
+                            opt.innerHTML = mediumsbm[i];
+                            addOptions.appendChild(opt);
+                        }
+                    } else if (locationValue === scl){
+                        var i;
+                        for (i = 0; i < mediumscl.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = mediumscl[i];
+                            opt.innerHTML = mediumscl[i];
+                            addOptions.appendChild(opt);
+                        }
+                    }
+                    }
+
+
+                else if (sizeValue === big) {
+                    var addOptions = document.getElementById('addOptions');
+                    var optionsLength = addOptions.options.length;
+                    var j;
+                    for (j = optionsLength - 1; j >= 0; j--) {
+                        addOptions.remove(j);
+                    }
+                    if (locationValue === sit){
+                        var i;
+                        for (i = 0; i < bigsit.length; i++){
+                        var opt = document.createElement('option');
+                        opt.value = bigsit[i];
+                        opt.innerHTML = bigsit[i];
+                        addOptions.appendChild(opt);
+                        }
+                    } else if (locationValue === sbm) {
+                        var i;
+                        for (i = 0; i < bigsbm.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = bigsbm[i];
+                            opt.innerHTML = bigsbm[i];
+                            addOptions.appendChild(opt);
+                        }
+                    } else if (locationValue === scl){
+                        var i;
+                        for (i = 0; i < bigscl.length; i++) {
+                            var opt = document.createElement('option');
+                            opt.value = bigscl[i];
+                            opt.innerHTML = bigscl[i];
+                            addOptions.appendChild(opt);
+                        }
+                    }
+                    }
+
+                {#locationValue = lockerblkl.jpg;#}
+                {#$('#lockerPicture').html(locationValue);#}
+
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 style = "margin-top: 3%; margin-left: 20px">Daily Locker Booking</h2>
     <form method="POST" action="" style="margin-top: 2%; margin-left:20px; margin-right:50%">
      <div class="form-group">
-            {{ render_field(form.adminno, class_="form-control") }}
-            {{ render_field(form.date, class_="form-control") }}
-            {{ render_field(form.location, class_="form-control") }}
-            {{ render_field(form.size, class_="form-control") }}
+         <table>
+             <tr>
+                 <th class="darkerTh">{{ form.adminno.label }}</th>
+                 <td>{{ form.adminno }} <span class="ast">*</span></td>
+             </tr>
+             <tr>
+                 <th>{{ form.date.label }}</th>
+                 <td>{{ form.date }} <span class="ast">*</span> </td>
+             </tr>
+             <tr>
+                 <th class="darkerTh">{{ form.location.label }}</th>
+{#                 change this to javascript#}
+                 <td class="targetlocker">
+{#                     {{ form.location }} #}
+                     <select id="locationChange" name="locationhtml">
+                         <option></option>
+                         <option value="SIT">School of Information Technology</option>
+                         <option value="SBM">School of Business Management</option>
+                         <option value="SCL">School of Chemical and Life Sciences</option>
+                     </select>
+                 </td>
+             </tr>
+             <tr>
+                 <th>{{ form.size.label }}</th>
+                 <td class="targetlocker">
+{#                     {{ form.size }}#}
+                     <select id="sizeChange" name="sizehtml">
+                         <option></option>
+                         <option value="small">Small</option>
+                         <option value="medium">Medium</option>
+                         <option value="big">Big</option>
+                     </select>
+                 </td>
+             </tr>
+             <tr>
+                 <th class="darkerTh">{{ form.lockerno.label }}</th>
+                 <td>
+{#                     {{ form.lockerno }} #}
+                     <select id="addOptions" name="lockernohtml">
 
-     </div>
-    <div class="form-group col-md-1">
-            <input type="submit" value="Submit" class="btn btn-info">
+                     </select>
+                     <span class="ast">*</span>
+                 </td>
+             </tr>
+             <tr style="font-size: small">
+                 <th colspan="2">Fields with <span class="ast">*</span> are mandatory before submitting</th>
+             </tr>
 
-    </div>
-    </form>
-{% endblock %}
-
-
-
-{##}
-{##}
-{##}
-{#{% block body %}#}
-{##}
-{##}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Title</title>#}
-{#    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/cerulean/bootstrap.min.css" rel="stylesheet">#}
-{#    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>#}
-{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>#}
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
-{##}
-{#</head>#}
-{#<body>#}
-{#<nav class="navbar navbar-expand-lg navbar-dark bg-primary">#}
-{#  <a class="navbar-brand" href="#">EduCite</a>#}
-{#  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">#}
-{#    <span class="navbar-toggler-icon"></span>#}
-{#  </button>#}
-{##}
-{#  <div class="collapse navbar-collapse" id="navbarColor01">#}
-{#    <ul class="navbar-nav mr-sm-2 my-lg-0" style="float:right">#}
-{#      <li class="nav-item active">#}
-{#        <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>#}
-{#      </li>#}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link" href="#"> Planner </a>#}
-{#      </li>#}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link" href="#"> Teachers </a>#}
-{#      </li>#}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link" href="#"> Room Booking </a>#}
-{#      </li>#}
-{#        <li class="nav-item">#}
-{#        <a class="nav-link" href="#"> Locker Rental</a>#}
-{#      </li>#}
-{#      <li class="nav-item">#}
-{#        <a class="nav-link" href="#"> Contact us</a>#}
-{#      </li>#}
-{#        <li class="nav-item">#}
-{#        <a class="nav-link" href="lockeradmin"> Locker For Admins</a>#}
-{#      </li>#}
-{#    </ul>#}
-{#  </div>#}
-{#</nav>#}
-{#</body>#}
-{#</html>#}
-{##}
-{##}
-{##}
-{##}
-{#    {% from "includes/_formhelper.html" import render_field %}#}
-{#    <h3>Check Availability</h3>#}
-{#    {% if form.errors %}#}
-{#        <div class="alert alert-danger">#}
-{#            <ul>#}
-{#                {% for field_name, field_errors in form.errors|dictsort if field_errors %}#}
-{#                    {% for error in field_errors %}#}
-{#                        <li>{{ form[field_name].label }}: {{ error }}</li>#}
-{#                    {% endfor %}#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        </div>#}
-{#    {% endif %}#}
-{#    <form method="POST" action="">#}
-{##}
-{#        <div class="form-group">#}
-{#            {{ render_field(form.dateav, class_="form-control") }}#}
-{#        </div>#}
-{##}
-{##}
-{#        <div class="form-group">#}
-{#            <div class="form-row">#}
-{#                <div class="form-group col-md-11">#}
-{##}
-{##}
-{#                </div>#}
-{#                <div class="form-group col-md-1">#}
-{#                    <form action="{{ url_for('locker') }}" method="post">#}
-{#                    <input type="submit" value="Check Availability" class="btn btn-info"></form>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#    </form>#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#    {% from "includes/_formhelper.html" import render_field %}#}
-{#    <h3>Locker Rental</h3>#}
-{#    {% if form.errors %}#}
-{#        <div class="alert alert-danger">#}
-{#            <ul>#}
-{#                {% for field_name, field_errors in form.errors|dictsort if field_errors %}#}
-{#                    {% for error in field_errors %}#}
-{#                        <li>{{ form[field_name].label }}: {{ error }}</li>#}
-{#                    {% endfor %}#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        </div>#}
-{#    {% endif %}#}
-{#    <form method="POST" action="">#}
-{##}
-{#        <div class="form-group">#}
+         </table>
 {#            {{ render_field(form.adminno, class_="form-control") }}#}
 {#            {{ render_field(form.date, class_="form-control") }}#}
 {#            {{ render_field(form.location, class_="form-control") }}#}
 {#            {{ render_field(form.size, class_="form-control") }}#}
-{#        </div>#}
-{##}
-{##}
-{#        <div class="form-group">#}
-{#            <div class="form-row">#}
-{#                <div class="form-group col-md-11">#}
-{##}
-{##}
-{#                </div>#}
-{#                <div class="form-group col-md-1">#}
-{#                    <form action="{{ url_for('locker') }}" method="post">#}
-{#                    <input type="submit" value="Submit" class="btn btn-info"></form>#}
-{##}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#    </form>#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#{% endblock %}#}
+            {# {{ render_field(form., class_="form-control") }} #}
+
+     </div>
+    <div class="form-group col-md-1">
+        <input type="submit" value="Submit" class="btn btn-info">
+    </div>
+    </form>
+
+{#    <h4>Pick a locker</h4>#}
+{#    <div id="lockerPicture"></div>#}
+{% endblock %}
+
