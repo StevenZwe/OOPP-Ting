@@ -52,7 +52,8 @@ def func_locker():
     except:
         checkList = {}
 
-
+    print(checkList)
+    print(lockerList)
 
     if request.method == 'POST' or form.validate():
         date = form.date.data
@@ -70,19 +71,24 @@ def func_locker():
             db_read["locker"] = lockerList
             db_read.close()
             #
-            checkList[date] = lockerno
+            checkList[date] = []
+            checkList[date].append(lockerno)
             db_readcheck["checklist"] = checkList
             db_readcheck.close()
             flash('Locker form submitted successfully!', 'success')
             # return redirect(url_for('func_locker'))
+            print(1)
         else:
-            for key, value in checkList.items():
-                if key == date:
-                    if value == lockerno:
+            #if this date has been booked
+            if date in checkList:
+                ##for every lockerno in the list
+                #if locker number is in list in that date then confirm booked
+                if lockerno in checkList[date]:
                         flash('Locker %s is already booked! Please enter another locker number.' % (lockerno),
                               'warning')
-                        break
-
+                        return redirect(url_for('func_locker'))
+                #if locker no is not in date then not booked but has list already
+                else:
                     adminno = form.adminno.data
                     date = form.date.data
                     location = request.form['locationhtml']
@@ -95,13 +101,83 @@ def func_locker():
                     db_read["locker"] = lockerList
                     db_read.close()
                     #
-                    checkList[date] = lockerno
+                    checkList[date] = []
+                    checkList[date].append(lockerno)
                     db_readcheck["checklist"] = checkList
                     db_readcheck.close()
                     flash('Locker form submitted successfully!', 'success')
-                    #return redirect(url_for('func_locker'))
+                    # return redirect(url_for('func_locker'))
+                    print(2)
+            else:
+                adminno = form.adminno.data
+                date = form.date.data
+                location = request.form['locationhtml']
+                size = request.form['sizehtml']
+                lockerno = request.form['lockernohtml']
+                lockers = Locker(adminno, date, location, size, lockerno)
+                id = len(lockerList) + 1
+                lockers.set_id(id)
+                lockerList[id] = lockers
+                db_read["locker"] = lockerList
+                db_read.close()
+                #
+                checkList[date] = []
+                checkList[date].append(lockerno)
+                db_readcheck["checklist"] = checkList
+                db_readcheck.close()
+                flash('Locker form submitted successfully!', 'success')
+                # return redirect(url_for('func_locker'))
+                print(3)
+
+            # for key, value in checkList.items():
+            #     keyid = len(checkList)
+            #     keyidcount = 0
+            #     while keyid != keyidcount:
+            #         if key == date:
+            #             for ivalue in value:
+            #                 if ivalue == lockerno:
+            #                     # keyid = keyidcount
+            #                     lockerRedirect(lockerno)
+            #                     return redirect(url_for('func_locker'))
+            #                 else:
+            #                     keyidcount += 1
+            #                     pass
+            #         else:
+            #             keyidcount += 1
+            #             pass
+            #     adminno = form.adminno.data
+            #     date = form.date.data
+            #     location = request.form['locationhtml']
+            #     size = request.form['sizehtml']
+            #     lockerno = request.form['lockernohtml']
+            #     lockers = Locker(adminno, date, location, size, lockerno)
+            #     id = len(lockerList) + 1
+            #     lockers.set_id(id)
+            #     lockerList[id] = lockers
+            #     db_read["locker"] = lockerList
+            #     db_read.close()
+            #     #
+            #     if date in checkList:
+            #         checkList[date].append(lockerno)
+            #         db_readcheck["checklist"] = checkList
+            #         db_readcheck.close()
+            #         flash('Locker form submitted successfully!', 'success')
+            #         # return redirect(url_for('func_locker'))
+            #     else:
+            #         checkList[date] = []
+            #         checkList[date].append(lockerno)
+            #         db_readcheck["checklist"] = checkList
+            #         db_readcheck.close()
+            #         flash('Locker form submitted successfully!', 'success')
+            #         # return redirect(url_for('func_locker'))
 
     return render_template('locker.html', form=form)
+
+def lockerRedirect(lockerno):
+    flash('Locker %s is already booked! Please enter another locker number.' % (lockerno),
+          'warning')
+    return redirect(url_for('func_locker'))
+
 
         # #####
         # lockerNosList = []
