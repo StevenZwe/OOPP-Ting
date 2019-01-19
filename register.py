@@ -1,20 +1,27 @@
 import shelve
 import uuid
 from datetime import date
-#name,admin_no,school,course_name
+#name,admin_no,password,email,school,course_name,pem_class
 class User:
-    def __init__(self, id):
-        self.__id = id
-        self.__username = ''
-        self.__password = ''
-        self.__email=''
-        self.__name=''
+    def __init__(self,admin_no,password,email,name,school,course_name,pem_class,identity):
+        self.__userid =''
+        self.__admin_no = admin_no
+        self.__password = password
+        self.__email=email
+        self.__name=name
+        self.__school=school
+        self.__course_name=course_name
+        self.__pem_class=pem_class
+        self.__identity=identity
 
-    def get_id(self):
-        return self.__id
+    def get_userid(self):
+        return self.__userid
 
-    def set_username(self, username):
-        self.__username = username
+    def set_userid(self, userid):
+        self.__userid=userid
+
+    def set_admin_no(self, admin_no):
+        self.__admin_no = admin_no
 
     def set_password(self, password):
         self.__password = password
@@ -25,8 +32,18 @@ class User:
     def set_name(self, name):
         self.__name = name
 
-    def get_username(self):
-        return self.__username
+    def set_school(self,school):
+        self.__school=school
+
+    def set_course_name(self,course_name):
+        self.__course_name=course_name
+
+    def set_pem_class(self,pem_class):
+        self.__pem_class=pem_class
+
+
+    def get_admin_no(self):
+        return self.__admin_no
 
     def get_password(self):
         return self.__password
@@ -37,39 +54,19 @@ class User:
     def get_name(self):
         return self.__name
 
-users = shelve.open('user')
+    def get_school(self):
+        return self.__school
 
-def create_user(username, password, email, name):
-    id = str(uuid.uuid4())
-    user = User(id)
-    user.set_username(username)
-    user.set_password(password)
-    user.set_email(email)
-    user.set_name(name)
-    users[id] = user
+    def get_course_name(self):
+        return self.__course_name
 
-def get_user(username, password):
-    klist = list(users.keys())
-    for key in klist:
-        user = users[key]
-        print(user.get_username(), username, user.get_password(), password)
-        if user.get_username() == username and user.get_password() == password:
-            return user
-    return None
+    def get_pem_class(self):
+        return self.__pem_class
 
-def update_user(id, user):
-    users[id] = user
-    return users[id]
 
-def clear_user():
-    klist = list(users.keys())
-    for key in klist:
-        del users[key]
+    def get_identity(self):
+        return self.__identity
 
-def add_user(user):
-    users[user.get_id()] = user
+    def set_identity(self,identity):
+        self.__identity=identity
 
-def init_db():
-    clear_user()
-    for i in range(5):
-        create_user('user'+str(i), 'pass'+str(i))
