@@ -12,30 +12,35 @@ import time
 app = Flask(__name__)
 app.secret_key = 'secretkey'
 
-@app.route('/CheckAvail')
+@app.route('/checkAvailability', methods=['GET', 'POST'])
 def checkAvail():
-    cform = CheckAvailForm(request.form)
-
-    dateav = cform.dateav.data
-    locationav = cform.locationav.data
-
-    ##############
-        #if
-
-    ###############
-
-
-    db_read = shelve.open("storage.db")
+    form = CheckAvailForm(request.form)
+    db_readcheck = shelve.open("check.db")
+    lockertuple = ("L01", "L02", "L03", "L04", "N01", "N02", "N03", "N04", "B01", "B02", "B03", "B04")
 
     try:
-        lockerList = db_read["locker"]
+        checkList = db_readcheck["checklist"]
     except:
-        lockerList = {}
+        checkList = {}
 
-    if request.method == 'POST' and form.validate():
-        pass
+    if request.method == 'POST' or form.validate():
+        date = form.dateav.data
+        if date in checkList:
+            #convert tuple to list
+            lockerlist = list(lockertuple)
 
-    return render_template("Locker_Public.html", form=form)
+            #list of dates from database
+            checkListList = checkList[date]
+            finallist = [x for x in lockerlist if x not in checkListList]
+            print(finallist)
+            return render_template("checkAvailability.html", form=form, finallist=finallist)
+        else:
+            finallist = lockertuple
+            print(finallist)
+            return render_template("checkAvailability.html", form=form, finallist=finallist)
+
+
+    return render_template("checkAvailability.html", form=form)
 
 
 @app.route('/lockers', methods=['GET', 'POST'])
@@ -43,7 +48,6 @@ def func_locker():
     form = LockerForm(request.form)
     db_read = shelve.open("storage.db")
     db_readcheck = shelve.open("check.db")
-    db_readordered = shelve.open("ordered.db")
 
     try:
         lockerList = db_read["locker"]
@@ -91,16 +95,28 @@ def func_locker():
             if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
                                                "to payment?" % (lockerno, date), icon = 'info') == True:
                 if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
+                    window.deiconify()
+                    window.destroy()
+                    window.quit()
                     return redirect(url_for('paymentmedium'))
                 elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                    window.deiconify()
+                    window.destroy()
+                    window.quit()
                     return redirect(url_for('paymentbig'))
                 else:
+                    window.deiconify()
+                    window.destroy()
+                    window.quit()
                     return redirect(url_for('paymentsmall'))
             else:
                 flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
+                window.decoinify()
+                window.destroy()
+                window.quit()
                 return redirect(url_for('func_locker'))
 
-            window.decoinify()
+            window.deiconify()
             window.destroy()
             window.quit()
             # return redirect(url_for('func_locker'))
@@ -129,7 +145,6 @@ def func_locker():
                     db_read["locker"] = lockerList
                     db_read.close()
                     #
-                    checkList[date] = []
                     checkList[date].append(lockerno)
                     db_readcheck["checklist"] = checkList
                     db_readcheck.close()
@@ -145,16 +160,28 @@ def func_locker():
                                            "You've made a reservation for %s on %s. Would you like to proceed "
                                            "to payment?" % (lockerno, date), icon='info') == True:
                         if lockerno == 'L03' or lockerno == 'N03' or lockerno == 'B03':
+                            window.deiconify()
+                            window.destroy()
+                            window.quit()
                             return redirect(url_for('paymentmedium'))
                         elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                            window.deiconify()
+                            window.destroy()
+                            window.quit()
                             return redirect(url_for('paymentbig'))
                         else:
+                            window.deiconify()
+                            window.destroy()
+                            window.quit()
                             return redirect(url_for('paymentsmall'))
                     else:
                         flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
+                        window.deiconify()
+                        window.destroy()
+                        window.quit()
                         return redirect(url_for('func_locker'))
 
-                    window.decoinify()
+                    window.deiconify()
                     window.destroy()
                     window.quit()
                     # return redirect(url_for('func_locker'))
@@ -188,16 +215,28 @@ def func_locker():
                 if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
                                                    "to payment?" % (lockerno, date), icon='info') == True:
                     if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
+                        window.deiconify()
+                        window.destroy()
+                        window.quit()
                         return redirect(url_for('paymentmedium'))
                     elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                        window.deiconify()
+                        window.destroy()
+                        window.quit()
                         return redirect(url_for('paymentbig'))
                     else:
+                        window.deiconify()
+                        window.destroy()
+                        window.quit()
                         return redirect(url_for('paymentsmall'))
                 else:
                     flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
+                    window.deiconify()
+                    window.destroy()
+                    window.quit()
                     return redirect(url_for('func_locker'))
 
-                window.decoinify()
+                window.deiconify()
                 window.destroy()
                 window.quit()
                 # return redirect(url_for('func_locker'))
@@ -275,7 +314,6 @@ def lockeradmin():
 def default():
     form = LockerForm(request.form)
     return render_template('locker.html', form=form)
-
 
 
 
