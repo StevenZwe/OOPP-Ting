@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1 style="text-align: center; margin-top:20px;">Payment Checkout</h1>
+<link rel="stylesheet" href="static/css/locker.css">
+{#details of payment and locker info#}
+<table style="margin-left:auto; margin-right:auto;">
+<tr>
+    <th>Admin Number:</th>
+    <td>{{ adminno }}</td>
+</tr>
+<tr>
+    <th class="darkerTh">Date:</th>
+    <td>{{ date }}</td>
+</tr>
+<tr>
+    <th>Locker Number:</th>
+    <td>{{ lockerno }}</td>
+</tr>
+</table>
+
+
+<div style="margin-left: 45%; margin-top: 50px;" id="paypal-button"></div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+  paypal.Button.render({
+    // Configure environment
+    env: 'sandbox',
+    client: {
+      sandbox: 'demo_sandbox_client_id',
+      production: 'demo_production_client_id'
+    },
+    // Customize button (optional)
+    locale: 'en_US',
+    style: {
+      size: 'small',
+      color: 'gold',
+      shape: 'pill',
+    },
+
+    // Enable Pay Now checkout flow (optional)
+    commit: true,
+
+    // Set up a payment
+    payment: function(data, actions) {
+      return actions.payment.create({
+        transactions: [{
+          amount: {
+            total: '5.00',
+            currency: 'SGD',
+          }
+        }],
+          redirect_urls: {
+             return_url: 'http://127.0.0.1:5000/lockers',
+             cancel_url: 'http://127.0.0.1:5000/lockers'
+         }
+      });
+    },
+    // Execute the payment
+    onAuthorize: function(data, actions) {
+      return actions.payment.execute().then(function() {
+        // Show a confirmation message to the buyer
+        window.alert('Thank you for your purchase!');
+        actions.redirect()
+      });
+    }
+  }, '#paypal-button');
+
+</script>
+{% endblock %}
