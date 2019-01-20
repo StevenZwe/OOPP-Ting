@@ -19,6 +19,11 @@ def checkAvail():
     dateav = cform.dateav.data
     locationav = cform.locationav.data
 
+    ##############
+        #if
+
+    ###############
+
 
     db_read = shelve.open("storage.db")
 
@@ -85,7 +90,12 @@ def func_locker():
             window.withdraw()
             if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
                                                "to payment?" % (lockerno, date), icon = 'info') == True:
-                return redirect(url_for('payment'))
+                if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
+                    return redirect(url_for('paymentmedium'))
+                elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                    return redirect(url_for('paymentbig'))
+                else:
+                    return redirect(url_for('paymentsmall'))
             else:
                 flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
                 return redirect(url_for('func_locker'))
@@ -134,7 +144,12 @@ def func_locker():
                     if messagebox.askyesno('Question',
                                            "You've made a reservation for %s on %s. Would you like to proceed "
                                            "to payment?" % (lockerno, date), icon='info') == True:
-                        return redirect(url_for('payment'))
+                        if lockerno == 'L03' or lockerno == 'N03' or lockerno == 'B03':
+                            return redirect(url_for('paymentmedium'))
+                        elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                            return redirect(url_for('paymentbig'))
+                        else:
+                            return redirect(url_for('paymentsmall'))
                     else:
                         flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
                         return redirect(url_for('func_locker'))
@@ -172,7 +187,12 @@ def func_locker():
                 window.withdraw()
                 if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
                                                    "to payment?" % (lockerno, date), icon='info') == True:
-                    return redirect(url_for('payment'))
+                    if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
+                        return redirect(url_for('paymentmedium'))
+                    elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                        return redirect(url_for('paymentbig'))
+                    else:
+                        return redirect(url_for('paymentsmall'))
                 else:
                     flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
                     return redirect(url_for('func_locker'))
@@ -195,6 +215,9 @@ def lockerRedirect(lockerno):
 
 def checkalert():
     messagebox.showerror("Error", "This slot is already booked!")
+    #print('''<script>
+    #alert('Already Booked!');
+    #</script>''')
 
 
 class RequiredIf(object):
@@ -212,12 +235,26 @@ class RequiredIf(object):
                 else:
                     validators.Optional().__call__(form, field)
 
-@app.route('/payment')
-def payment():
+@app.route('/locker/payment/small')
+def paymentsmall():
     adminno = session.get('adminno', None)
     date = session.get('date', None)
     lockerno = session.get('lockerno', None)
-    return render_template('paypal.html', adminno=adminno, date=date, lockerno=lockerno)
+    return render_template('paypalsmall.html', adminno=adminno, date=date, lockerno=lockerno)
+
+@app.route('/locker/payment/medium')
+def paymentmedium():
+    adminno = session.get('adminno', None)
+    date = session.get('date', None)
+    lockerno = session.get('lockerno', None)
+    return render_template('paypalmedium.html', adminno=adminno, date=date, lockerno=lockerno)
+
+@app.route('/locker/payment/big')
+def paymentbig():
+    adminno = session.get('adminno', None)
+    date = session.get('date', None)
+    lockerno = session.get('lockerno', None)
+    return render_template('paypalbig.html', adminno=adminno, date=date, lockerno=lockerno)
 
 
 
@@ -238,6 +275,7 @@ def lockeradmin():
 def default():
     form = LockerForm(request.form)
     return render_template('locker.html', form=form)
+
 
 
 
