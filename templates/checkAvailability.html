@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {% from "includes/_formhelper.html" import render_field %}
+    <link rel="stylesheet" href="static/css/locker.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        function myFunction() {
+            var table = document.getElementById("table");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(-1);
+            var i;
+            for (i = 0; i < finallist.length; i++) {
+                cell1.innerHTML = i;
+            }
+        }
+    </script>
+
+    <h1 style = "margin-top: 3%; margin-left: 70px">Check Locker Availability</h1>
+    <form method="POST" action="" style="margin-top: 2%; margin-left:70px">
+     <div class="form-group">
+         <table>
+            <tr>
+                <th>{{ form.dateav.label }}</th>
+                <div>
+                 <td id="hoverdatecheck">{{ form.dateav }} <span class="ast">*</span>
+                     <span class="tooltiptext">Date format is YYYY-MM-DD</span>
+                 </div>
+            </tr>
+         </table>
+     </div>
+    <div class="form-group col-md-1" style="margin-left: 170px">
+        <input type="submit" value="Submit" class="btn btn-success">
+    </div>
+    <div>
+        <table id="table" style="margin-top: 40px">
+            <thead>
+                <tr>
+                    <th>Lockers Available:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </form>
+{% endblock %}

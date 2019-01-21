@@ -3,55 +3,50 @@
 {% block body %}
 
     {% from "includes/_formhelper.html" import render_field %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/Teacher.css') }}">
-    <h1>Add an assignment</h1>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<style>
+.selection{
+    size: 40px;
+}
+</style>
+    <script>
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        })
+    </script>
+    <h1>Add an Assignment</h1>
 
     <p>Course/Module</p>
-
-    <div id="cmdropdown">
-        <form method="post">
-            {{ render_field(form.Selection, class="form-control") }}
-        </form>
-        <button onclick="choosedate()">Next</button>
+<form method="POST" action="">
+    <div class="selection" style="width:25%;">
+            {{ render_field(form.selection, class="form-control") }}
     </div>
 
-    <div id="ccheckbox">
-        <form method="get">
-            {{ render_field(form2.Choice, class="form-control") }}
-        </form>
-        <button onclick="chooseclass()">Next</button>
+    <div class="selection" style="width:25%">
+            {{ render_field(form.choice, class="form-control") }}
     </div>
 
-    <div id="date">
+    <div class="selection">
         <p>Due date (Double click for only one day):</p>
-        <input id="dates" type="text" method="get" name="daterange" value="01/01/2018 - 01/15/2018" />
-        <script>
-            $(function() {
-                $('input[name="daterange"]').daterangepicker({
-                    opens: 'left'
-                }, function(start, end, label) {
-                    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-                });
-            });
-        </script>
-        <button onclick="store()">Confirm</button>
-        <button>Cancel</button>
+        <input id="dates" type="text" method="get" name="daterange" value={{ request.form.daterange }}/>
     </div>
+<br>
+<div id="description" style="float:none;" class="selection">
+            {{ render_field(form.des, class="form-control", rows="4", cols="50") }}
+</div>
 
-    <script>
-        function choosedate() {
-            document.getElementById('date').style.display = "block";
-        }
+<div>
+    <input type="submit" value="Submit" class="btn btn-info"/>
+    <a href="/home" id="cancel" class="btn btn-primary">Cancel</a>
+</div>
 
-        function chooseclass() {
-            document.getElementById('ccheckbox').style.display = "block";
-        }
-
-        function store(){
-            var assignmentList=[];
-            assignmentList.push('dates');
-            alert('You have uploaded the assignment.');
-        }
-    </script>
+</form>
 
 {% endblock %}
