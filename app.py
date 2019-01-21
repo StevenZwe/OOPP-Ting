@@ -9,9 +9,9 @@ import functools
 import shelve
 
 
-
 app = Flask(__name__)
 app.secret_key = 'secret123'
+
 
 class RequiredIf(object):
 
@@ -40,6 +40,7 @@ class Booking_teachers_form(Form):
     date = SelectField('Date', choices=[(' ','Select'),('11/12/18','11/12/18'),
                                         ('12/12/18', '12/12/18')], default=' ')
 
+
 class editPlanner(Form):
     task = StringField('Name of Task', [validators.DataRequired()])
     time = SelectField("Time", [validators.DataRequired()],
@@ -49,11 +50,11 @@ class editPlanner(Form):
     date = SelectField("Date", choices=[(' ', 'Select'), ('11/12/18', '11/12/18'),
                                         ('12/12/18', '12/12/18')], default=' ')
 
-
     desc = StringField("Description")
     priority = SelectField("Importance", choices=[(' ', 'Select'), ('1 Star', '1 Star'),
                                         ('2 Star', '2 Star'),('3 Star', '3 Star'),
                                         ('4 Star', '4 Star'),('5 Star', '5 Star')], default='1 Star')
+
 
 def login_required(view):
     @functools.wraps(view)
@@ -68,18 +69,20 @@ def login_required(view):
 def get_cookie():
     id = request.cookies.get('admin_no')
 
+
 @app.route('/home')
 def home():
     return render_template('home.html')
+
 
 @app.route('/avaliable_room')
 def avaliable_room():
     return render_template('view_avaliable_room.html')
 
+
 @app.route('/timetable')
 def timetable():
     return render_template('Timetable.html')
-
 
 
 @app.route('/planner')
@@ -120,6 +123,7 @@ def Editplanner():
         return redirect(url_for('viewplans'))
 
     return render_template('planneredit.html', form=form)
+
 
 @app.route('/viewplans')
 def viewplans():
@@ -194,7 +198,6 @@ def new():
                 else:
                     pass
 
-
         id = len(bookinglist) + 1
 
         book.set_pubid(id)
@@ -215,7 +218,6 @@ def new():
 @app.route('/viewbookings')
 def viewbookings():
 
-
     db_read = shelve.open("booking.db")
     try:
         booking = db_read["bookings"]
@@ -232,8 +234,8 @@ def viewbookings():
 
     return render_template('view_all_bookings.html', bookings=list)
 
-@app.route('/Room_Booking',  methods=('GET', 'POST'))
 
+@app.route('/Room_Booking',  methods=('GET', 'POST'))
 def roombooking():
     form = room_booking(request.form)
     db_read = shelve.open("room.db")
@@ -259,12 +261,12 @@ def roombooking():
 
         db_read.close()
 
-
         flash('Magazine Inserted Sucessfully.', 'success')
 
         return redirect(url_for('viewroom'))
 
     return render_template('Room_Booking.html', form=form)
+
 
 class room_booking(Form):
     time = SelectField('Time slot:  ', [validators.DataRequired()],
@@ -278,6 +280,7 @@ class room_booking(Form):
                            default='')
     date = SelectField('Date', choices=[(' ','Select'),('11/12/18','11/12/18'),
                                         ('12/12/18', '12/12/18')], default=' ')
+
 
 @app.route('/viewroom')
 def viewroom():
@@ -298,7 +301,6 @@ def viewroom():
         list.append(room.get(room_id))
 
     return render_template('view_room.html', rooms=list)
-
 
 
 @app.route('/viewconfirm')
@@ -341,7 +343,6 @@ def teacherbooking():
     db_read.close()
 
     return render_template('view_all_bookings_teacher.html', bookings=list)
-
 
 
 @app.route('/reject_booking/<int:id>', methods=['POST'])
@@ -414,7 +415,6 @@ def testview():
     return render_template('testview.html')
 
 
-
 @app.route('/',  methods=('GET', 'POST'))
 def login():
     db_read = shelve.open("user.db")
@@ -465,6 +465,7 @@ def login():
             flash('Wrong admin number or password', 'danger')
     return render_template('Login2.html')
 
+
 @app.route('/logout')
 def logout():
     global check_for_id
@@ -473,6 +474,7 @@ def logout():
     session.clear()
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -535,6 +537,7 @@ def register():
         flash(error)
     return render_template('Register.html',form=form)
 
+
 @app.route('/register_teacher', methods=['GET', 'POST'])
 def register_teacher():
     form = Login_teacherForm(request.form)
@@ -547,9 +550,9 @@ def register_teacher():
     if request.method == 'POST' and form.validate():
 
         password = request.form['password']
-        email=request.form['email']
-        name=request.form['name']
-        school=request.form['school']
+        email = request.form['email']
+        name = request.form['name']
+        school = request.form['school']
         error = None
         if not password:
             error = 'Password is required.'
@@ -589,6 +592,8 @@ def register_teacher():
         flash(error)
     return render_template('Register_teacher.html',form=form)
   #WTForms for Register
+
+
 class LoginForm(Form):
     admin_no = StringField('Admin Number', [validators.DataRequired()])
     password = PasswordField('Password', [validators.DataRequired()])
@@ -604,6 +609,7 @@ class LoginForm(Form):
                                   ('DIT', 'Information Technology'), ('BI', 'Business Informatics'),
                                   ('FI', 'Financial Informatics')], default=' ' )
 
+
 class Login_teacherForm(Form):
     password = PasswordField('Password', [validators.DataRequired()])
     email=StringField('Email',[validators.DataRequired()])
@@ -612,6 +618,8 @@ class Login_teacherForm(Form):
                          choices=[('', 'Select'),('SIT', 'SIT'),('SCL', 'SCL'),('SBM', 'SBM'),
                                  ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
                                 ], default=' ' )
+
+
 if __name__ == '__main__':
     app.run()
 
