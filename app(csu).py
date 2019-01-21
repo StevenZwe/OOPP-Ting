@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session,send_from_directory
+from flask import Flask, render_template, request, flash, redirect, url_for, session, send_from_directory
 from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField, FileField,\
     SelectMultipleField
 from werkzeug.utils import secure_filename
@@ -18,6 +18,7 @@ app.config['UPLOAD_PATH'] = join(dirname(realpath(__file__)), 'static\\documents
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOADS_PATH'], filename)
+
 
 def allowed_files():
     return '.' in filename and \
@@ -178,26 +179,20 @@ def add_file():
         except:
             student = {}
             print(student)
-            if request.method == 'POST':
-                print('')
-                scourse = request.form['course']
-                file = request.form['file']
-                overall = FileUp(file)
-                print(overall)
-                db_read["users"] = student
-                db_read.close()
-                print(overall)
+        if request.method == 'POST':
+            print('')
+            scourse = request.form['course']
+            file = request.form['file']
+            overall = FileUp(file)
+            print(overall)
+            db_read["users"] = student
+            db_read.close()
+            print(overall)
     return render_template('AsssignmentsPgStudents.html')
 
 
 class AddItems(Form):
     file = FileField('Describe the Task', [validators.DataRequired()])
-
-
-
-#@app.route('/assignments_student', methods=['GET', 'POST'])
-#def assigns():
-#    return render_template('AssignmentsPgStudents.html')
 
 
 #course/module, due date
@@ -229,7 +224,7 @@ def viewassignments():
     for i in dateslist:
         list.append(dateslist.get(i))
     print(list)
-    return render_template("ViewAssignments.html",dateslist=list)
+    return render_template("ViewAssignments.html", dateslist=list)
 
 
 if __name__ == '__main__':

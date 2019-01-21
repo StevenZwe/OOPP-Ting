@@ -7,6 +7,7 @@ class Booking:
         self.__time=time
         self.__approval='free'
         self.__pubid = ''
+        self.__newid=''
 
     def get_name(self):
         return self.__name
@@ -37,3 +38,9 @@ class Booking:
 
     def set_pubid(self, pubid):
         self.__pubid = pubid
+
+    def get_newid(self):
+        return self.__newid
+
+    def set_newid(self, newid):
+        self.__newid = newid
