@@ -12,6 +12,9 @@
             sit = "SIT",
             sbm = "SBM",
             scl = "SCL";
+
+
+
         $(document).ready(function(){
             $('#locationChange').change(function(){
                 var locationValue = $(this).val();
@@ -230,17 +233,21 @@
 
 
 
-    <h2 style = "margin-top: 3%; margin-left: 20px">Daily Locker Booking</h2>
-    <form method="POST" action="" style="margin-top: 2%; margin-left:20px; margin-right:50%">
+    <h1 style = "margin-top: 3%; margin-left: 70px">Daily Locker Booking</h1>
+    <form method="POST" action="" style="margin-top: 2%; margin-left:70px">
      <div class="form-group">
-         <table>
+         <table wdith="500" height="280">
              <tr>
                  <th class="darkerTh">{{ form.adminno.label }}</th>
                  <td>{{ form.adminno }} <span class="ast">*</span></td>
              </tr>
              <tr>
                  <th>{{ form.date.label }}</th>
-                 <td>{{ form.date }} <span class="ast">*</span> </td>
+                 <td>{{ form.date }} <span class="ast">*</span>
+                    <script>
+
+        </script>
+                 </td>
              </tr>
              <tr>
                  <th class="darkerTh">{{ form.location.label }}</th>
@@ -282,19 +289,32 @@
              </tr>
 
          </table>
-{#            {{ render_field(form.adminno, class_="form-control") }}#}
-{#            {{ render_field(form.date, class_="form-control") }}#}
-{#            {{ render_field(form.location, class_="form-control") }}#}
-{#            {{ render_field(form.size, class_="form-control") }}#}
-            {# {{ render_field(form., class_="form-control") }} #}
 
      </div>
-    <div class="form-group col-md-1">
+    <div class="form-group col-md-1" style="margin-left: 30px">
         <input type="submit" value="Submit" class="btn btn-info">
     </div>
     </form>
 
+
+    <h3 style = "margin-top: 50px; margin-left: 70px">Locker Cost:</h3>
+    <table style = "margin-left: 100px">
+    <tr>
+        <th>Small</th>
+        <td>$2 per day</td>
+    </tr>
+    <tr>
+        <th class="darkerTh">Medium</th>
+        <td>$5 per day</td>
+    </tr>
+    <tr>
+        <th>Big</th>
+        <td>$10 per day</td>
+    </tr>
+    </table>
 {#    <h4>Pick a locker</h4>#}
 {#    <div id="lockerPicture"></div>#}
 {% endblock %}
+
+
 
