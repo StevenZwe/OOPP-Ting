@@ -20,9 +20,9 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOADS_PATH'], filename)
 
 
-def allowed_files():
+def allowed_files(filename):
     return '.' in filename and \
-            filename.rsplit('.', 1) [1].lower() in ALLOWED_EXTENSIONS
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 class PhotoForm(Form):
@@ -160,7 +160,7 @@ def add_file():
         if file.filename == ' ':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
+        if file and allowed_files(file.filename):
             filename = secure_filename(file.filename)
             basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -220,7 +220,7 @@ def viewassignments():
         dateslist = db_read["users"]
     except:
         dateslist = {}
-    list=[]
+    list = []
     for i in dateslist:
         list.append(dateslist.get(i))
     print(list)
