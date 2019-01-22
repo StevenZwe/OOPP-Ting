@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 .selection{
-    size: 40px;
+    size: 60px;
 }
 </style>
     <script>
@@ -22,30 +22,32 @@
         })
     </script>
     <h1>Add an Assignment</h1>
-
-    <p>Course/Module</p>
-<form method="POST" action="">
-    <div class="selection" style="width:25%;">
+    <form method="POST" action="">
+    <div class="selection" style="width:25%;'">
             {{ render_field(form.selection, class="form-control") }}
     </div>
 
     <div class="selection" style="width:25%">
-            {{ render_field(form.choice,rows=6, multiple=True, class="form-control") }}
+            {{ render_field(form.choice, class="form-control") }}
     </div>
 
     <div class="selection">
-        <p>Due date (Double click for only one day):</p>
+        <p>Duration/due date (Double click for only one day):</p>
         <input id="dates" type="text" method="get" name="daterange" value={{ request.form.daterange }}/>
     </div>
-<br>
-<div id="description" style="float:none;" class="selection">
-            {{ render_field(form.des, class="form-control", rows="4", cols="50") }}
-</div>
 
-<div>
-    <input type="submit" value="Submit" class="btn btn-info"/>
-    <a href="/home" id="cancel" class="btn btn-primary">Cancel</a>
-</div>
+    <div id="marks" class="selection" style="width:25%;">
+        {{ render_field(form.marks, class="form-control" ,type='number') }}
+    </div>
+
+        <div id="description" style="float:none; width:25%;" class="selection">
+            {{ render_field(form.des, class="form-control", rows="4", cols="50") }}
+        </div>
+
+    <div>
+        <input type="submit" value="Submit" class="btn btn-info"/>
+        <a href="/home" id="cancel" class="btn btn-primary">Cancel</a>
+    </div>
 
 </form>
 

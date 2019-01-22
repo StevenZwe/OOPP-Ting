@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session, send_from_directory
 from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField, FileField,\
-    SelectMultipleField
+    SelectMultipleField, FloatField,widgets
 from werkzeug.utils import secure_filename
 import shelve
 import os
@@ -45,11 +45,12 @@ def planner():
 
 
 class TeacherSide:
-    def __init__(self, course, group, date, des):
+    def __init__(self, course, group, date, des, marks):
         self.__course = course
         self.__group = group
         self.__date = date
         self.__des = des
+        self.__marks = marks
         self.__id = ''
 
     def get_course(self):
@@ -67,6 +68,9 @@ class TeacherSide:
     def get_id(self):
         return self.__id
 
+    def get_marks(self):
+        return self.__marks
+
     def set_course(self, course):
         self.__course = course
 
@@ -82,6 +86,31 @@ class TeacherSide:
     def set_des(self, des):
         self.__des = des
 
+    def set_marks(self, marks):
+        self.__marks = marks
+
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+
+class CourseOrModule(Form):
+    selection = SelectField('Course/Module', [validators.DataRequired()],
+                            choices=[('Course/Module1', 'Course/Module1'),('Course/Module2', 'Course/Module2'),
+                                     ('Course/Module3', 'Course/Module3'), ('Course/Module4', 'Course/Module4'),
+                                     ('Course/Module5', 'Course/Module5')],
+                            )
+
+    choice = MultiCheckboxField('Group', [validators.DataRequired()],
+                                choices=[('Group1', 'Group1'), ('Group2', 'Group2'), ('Group3', 'Group3'),
+                                         ('Group4', 'Group4'), ('Group5', 'Group5')],
+                                )
+
+    des = TextAreaField('Describe the Task', [validators.DataRequired()])
+
+    marks = StringField('Enter the max marks students can get', [validators.DataRequired])
+
 
 @app.route('/assignments_teacher', methods=['GET', 'POST'])
 def assignt():
@@ -91,14 +120,15 @@ def assignt():
         dateslist = db_read["users"]
     except:
         dateslist = {}
-    print(dateslist)
+        print(dateslist)
     if request.method == 'POST':
         print('day')
         selection = request.form['selection']
-        choice = request.form['choice']
+        choice = form.choice.data
         date = request.form['daterange']
         des = request.form['des']
-        overall = TeacherSide(selection, choice, date, des)
+        marks = request.form['marks']
+        overall = TeacherSide(selection, choice, date, des, marks)
         print(overall)
         id = len(dateslist) + 1
         overall.set_id(id)
@@ -113,28 +143,6 @@ def assignt():
     return render_template('AssignmentsPgTeacher.html', form=form)
 
 
-class CourseOrModule(Form):
-    selection = SelectField('Category', [validators.DataRequired()],
-                            choices=[('', 'Select'), ('Course/Module1', 'Course/Module1'),
-                                     ('Course/Module2', 'Course/Module2'), ('Course/Module3', 'Course/Module3'),
-                                     ('Course/Module4', 'Course/Module4'), ('Course/Module5', 'Course/Module5')],
-                            default='')
-
-    choice = SelectMultipleField('Category', [validators.DataRequired()],
-                                 choices=[('', 'Select'), ('Class1', 'Class1'), ('Class2', 'Class2'),
-                                          ('Class3', 'Class3'), ('Class4', 'Class4'), ('Class5', 'Class5')],
-                                 default='')
-
-    des = TextAreaField('Describe the Task', [validators.DataRequired()])
-
-
-#class wtforms.fields.BooleanField(default field arguments):
-#    Choice = SelectField('Category', [validators.DataRequired()],
-#                         choices=[('', 'Select'), ('CM1', 'Course/Module1'), ('CM2', 'Course/Module2'),
-#                                  ('CM3', 'Course/Module3'), ('CM4', 'Course/Module4'), ('CM5', 'Course/Module5')],
-#                         default='')
-
-
 class FileUp:
     def __init__(self, file):
         self.__file = file
@@ -142,8 +150,8 @@ class FileUp:
     def get_file(self):
         return self.__file
 
-    def set_file(self, newfile):
-        self.__file = newfile
+    def set_file(self, file):
+        self.__file = file
 
 
 @app.route('/assignments_student', methods=['GET', 'POST'])
@@ -225,6 +233,41 @@ def viewassignments():
         list.append(dateslist.get(i))
     print(list)
     return render_template("ViewAssignments.html", dateslist=list)
+
+
+class StudentMarks:
+    def __init__(self, smarks):
+        self.__smarks = smarks
+
+    def get_smarks(self):
+        return self.__smarks
+
+    def set_marks(self, smarks):
+        self.__smarks = smarks
+
+
+@app.route('/marks')
+def teachersmarking():
+    form = StudentMarks(request.form)
+    db_read = shelve.open("marks.db")
+    try:
+        markslist = db_read["users"]
+    except:
+        markslist = {}
+        print(markslist)
+    if request.method == 'POST':
+        print('mark')
+        studentmark = request.form['studentmark']
+        overall = StudentMarks(studentmark)
+        print(overall)
+        db_read["users"] = markslist
+        db_read.close()
+        print(overall)
+
+        flash("You have updated the student's marks.", 'success')
+        return redirect(url_for('allassignments'))
+
+    return render_template('TeacherMarking.html', form=form)
 
 
 if __name__ == '__main__':
