@@ -1,40 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/templates/Register_teacher.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/includes/paypal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/paypalbig.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/paypalmedium.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/paypalsmall.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/test1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/testview.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/view_all_bookings_teacher.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/view_confirm_bookings.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/untitled1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/untitled1.iml" afterDir="false" />
+    <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app(erin).py" beforeDir="false" afterPath="$PROJECT_DIR$/app(erin).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apphelloworld.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.db.bak" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/slideshow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.db.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.db.dir" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/register.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Login2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Login2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Timetable.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Timetable.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/booking.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/booking.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/_message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/_navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/_navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/locker.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/locker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/view_avaliable_room.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/view_avaliable_room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test4.py" beforeDir="false" afterPath="$PROJECT_DIR$/test4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.dir" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +17,7 @@
     <SUITE FILE_PATH="coverage/Organizer_Ting$untitled1.coverage" NAME="untitled1 Coverage Results" MODIFIED="1544528335921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__planner_py_.coverage" NAME="Flask (planner.py) Coverage Results" MODIFIED="1544271905133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__1_.coverage" NAME="Flask (1) Coverage Results" MODIFIED="1544576045660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1548088093633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1548121574765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Organizer_Ting$Flask__flask_test4_py_.coverage" NAME="Flask (flask_test4.py) Coverage Results" MODIFIED="1544494181021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="FileEditorManager">
@@ -55,11 +25,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10031">
-              <caret line="621" lean-forward="true" selection-start-line="621" selection-end-line="621" />
+            <state relative-caret-position="295">
+              <caret line="619" selection-start-line="619" selection-end-line="619" />
               <folding>
                 <element signature="e#0#84#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/Login2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="37" column="67" lean-forward="true" selection-start-line="37" selection-start-column="67" selection-end-line="37" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -76,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-199">
+            <state relative-caret-position="19">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
@@ -96,17 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="73" column="2" selection-start-line="73" selection-start-column="2" selection-end-line="73" selection-end-column="2" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="328">
+              <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -114,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/slideshow.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
+            <state relative-caret-position="1767">
               <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
             </state>
           </provider>
@@ -131,9 +104,7 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/calender.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-997" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -187,20 +158,20 @@
         <option value="$PROJECT_DIR$/templates/Planner.html" />
         <option value="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" />
         <option value="$PROJECT_DIR$/templates/Layout.html" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/templates/includes/_navbar.html" />
         <option value="$PROJECT_DIR$/templates/Timetable.html" />
         <option value="$PROJECT_DIR$/templates/view_avaliable_room.html" />
         <option value="$PROJECT_DIR$/static/css/slideshow.css" />
         <option value="$PROJECT_DIR$/templates/home.html" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-13" />
-    <option name="y" value="-13" />
-    <option name="width" value="1388" />
-    <option name="height" value="748" />
+    <option name="x" value="-14" />
+    <option name="y" value="-14" />
+    <option name="width" value="1389" />
+    <option name="height" value="749" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -223,19 +194,7 @@
             <path>
               <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
               <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -382,7 +341,8 @@
       <workItem from="1544511414624" duration="1298000" />
       <workItem from="1547540624176" duration="1025000" />
       <workItem from="1547992676602" duration="2216000" />
-      <workItem from="1548082173330" duration="5607000" />
+      <workItem from="1548082173330" duration="5949000" />
+      <workItem from="1548120546018" duration="1173000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1543811175505</created>
@@ -538,22 +498,29 @@
       <option name="project" value="LOCAL" />
       <updated>1547541581172</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="update 22Jan_yn">
+      <created>1548088360481</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1548088360481</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22708000" />
+    <option name="totallyTimeSpent" value="24223000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49425286" visible="true" weight="0.24362417" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49425286" visible="true" weight="0.2409396" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24504249" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24504249" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -629,7 +596,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="added home.html" />
     <MESSAGE value="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="update 22Jan_yn" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 22Jan_yn" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/js/bootstrap.js" />
@@ -741,42 +709,38 @@
     <entry file="file://$PROJECT_DIR$/templates/planneredit.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Login2.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/apphelloworld.py" />
     <entry file="file://$PROJECT_DIR$/validate.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/includes/_formhelper.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/calender.css">
+    <entry file="file://$PROJECT_DIR$/templates/view_avaliable_room.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-997" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10031">
-          <caret line="621" lean-forward="true" selection-start-line="621" selection-end-line="621" />
-          <folding>
-            <element signature="e#0#84#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
+        <state relative-caret-position="19">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/includes/_formhelper.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/includes/_navbar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/slideshow.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1767">
+          <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -787,30 +751,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/view_avaliable_room.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/slideshow.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="93" selection-end-column="1" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/static/css/calender.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="73" column="2" selection-start-line="73" selection-start-column="2" selection-end-line="73" selection-end-column="2" />
+        <state relative-caret-position="328">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="619" selection-start-line="619" selection-end-line="619" />
           <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#0#84#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Login2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="37" column="67" lean-forward="true" selection-start-line="37" selection-start-column="67" selection-end-line="37" selection-end-column="67" />
         </state>
       </provider>
     </entry>

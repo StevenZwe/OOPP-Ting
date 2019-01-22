@@ -616,6 +616,8 @@ class Login_teacherForm(Form):
                          choices=[('', 'Select'),('SIT', 'SIT'),('SCL', 'SCL'),('SBM', 'SBM'),
                                  ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
                                 ], default=' ' )
+
+
 if __name__ == '__main__':
     app.run()
 
