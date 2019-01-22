@@ -623,3 +623,4 @@ class Login_teacherForm(Form):
 if __name__ == '__main__':
     app.run()
 
+

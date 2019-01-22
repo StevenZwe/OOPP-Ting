@@ -143,6 +143,28 @@ def assignt():
     return render_template('AssignmentsPgTeacher.html', form=form)
 
 
+class CourseOrModule(Form):
+    selection = SelectField('Category', [validators.DataRequired()],
+                            choices=[('', 'Select'), ('Course/Module1', 'Course/Module1'),
+                                     ('Course/Module2', 'Course/Module2'), ('Course/Module3', 'Course/Module3'),
+                                     ('Course/Module4', 'Course/Module4'), ('Course/Module5', 'Course/Module5')],
+                            default='')
+
+    choice = SelectMultipleField('Category', [validators.DataRequired()],
+                                 choices=[('', 'Select'), ('Class1', 'Class1'), ('Class2', 'Class2'),
+                                          ('Class3', 'Class3'), ('Class4', 'Class4'), ('Class5', 'Class5')],
+                                 default='')
+
+    des = TextAreaField('Describe the Task', [validators.DataRequired()])
+
+
+#class wtforms.fields.BooleanField(default field arguments):
+#    Choice = SelectField('Category', [validators.DataRequired()],
+#                         choices=[('', 'Select'), ('CM1', 'Course/Module1'), ('CM2', 'Course/Module2'),
+#                                  ('CM3', 'Course/Module3'), ('CM4', 'Course/Module4'), ('CM5', 'Course/Module5')],
+#                         default='')
+
+
 class FileUp:
     def __init__(self, file):
         self.__file = file
@@ -168,7 +190,7 @@ def add_file():
         if file.filename == ' ':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_files(file.filename):
+        if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             basedir = os.path.abspath(os.path.dirname(__file__))
 
