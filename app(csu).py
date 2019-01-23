@@ -97,9 +97,16 @@ class MultiCheckboxField(SelectMultipleField):
 
 class CourseOrModule(Form):
     selection = SelectField('Course/Module', [validators.DataRequired()],
-                            choices=[('Course/Module1', 'Course/Module1'),('Course/Module2', 'Course/Module2'),
-                                     ('Course/Module3', 'Course/Module3'), ('Course/Module4', 'Course/Module4'),
-                                     ('Course/Module5', 'Course/Module5')],
+                            choices=[('Information Technology/Programming Essentials',
+                                      'Information Technology/Programming Essentials'),
+                                     ('Information Technology/Object-Oriented Programming and Project',
+                                      'Information Technology/Object-Oriented Programming and Project'),
+                                     ('Information Technology/Digital Media Interactive Design',
+                                      'Information Technology/Digital Media Interactive Design'),
+                                     ('Information Technology/Communication Skills',
+                                      'Information Technology/Communication Skills'),
+                                     ('Info-Comm and Security/Data Communication and Networking',
+                                      'Info-Comm and Security/Data Communication and Networking')]
                             )
 
     choice = MultiCheckboxField('Group', [validators.DataRequired()],
@@ -107,9 +114,9 @@ class CourseOrModule(Form):
                                          ('Group4', 'Group4'), ('Group5', 'Group5')],
                                 )
 
-    des = TextAreaField('Describe the Task', [validators.DataRequired()])
+    des = TextAreaField('Describe Task', [validators.DataRequired()])
 
-    marks = StringField('Enter the max marks students can get', [validators.DataRequired])
+    marks = StringField('Max mark for students', [validators.DataRequired])
 
 
 @app.route('/assignments_teacher', methods=['GET', 'POST'])
