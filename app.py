@@ -68,6 +68,7 @@ def login_required(view):
 @app.route('/get-cookie/')
 def get_cookie():
     id = request.cookies.get('admin_no')
+    name=request.cookies.get('name')
 
 
 @app.route('/home')
@@ -250,7 +251,7 @@ def roombooking():
         date = form.date.data
         time = form.time.data
         room_no = form.room_no.data
-        room = Roombooking(block, room_no, date, time)
+        room = Roombooking(block, room_no, date, time,request.cookies.get('admin_no'))
         id = len(roomlist) + 1
 
         room.set_room_id(id)
@@ -275,7 +276,13 @@ class room_booking(Form):
     block = SelectField('Block', choices=[('', 'Select'),('SBM', 'Blk B'),("SIDM","Blk M"),
                                            ('SIT', 'Blk L')], default=' ')
     room_no = SelectField('Room:  ', [validators.DataRequired()],
-                           choices=[('', 'Select'), ('Level 6', '604'), ('Level 5', '532'),
+                           choices=[('', 'Select'),('Level 6', '601'), ('Level 6', '602'),('Level 6', '603'),('Level 6', '604'),('Level 6', '605'),
+                                    ('Level 6', '606'),
+                                    ('Level 6', '607'),
+                                    ('Level 6', '608'),
+                                    ('Level 6', '609'),
+                                    ('Level 6', '610'),
+                                    ('Level 5', '532'),
                                     ('Level 5', '503'), ('Level 4', '432'), ('Level 4', '407')],
                            default='')
     date = SelectField('Date', choices=[(' ','Select'),('11/12/18','11/12/18'),
