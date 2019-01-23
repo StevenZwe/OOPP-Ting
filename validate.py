@@ -1,11 +1,12 @@
 
 class Roombooking:
-    def __init__(self, block, room_no, date, time):
+    def __init__(self, block, room_no, date,time,admin):
         self.__block = block
         self.__room_no = room_no
         self.__date = date
         self.__time = time
         self.__roomid = ''
+        self.__admin = admin
 
     def get_block(self):
         return self.__block
@@ -17,6 +18,8 @@ class Roombooking:
         return self.__time
     def get_roomid(self):
         return self.__roomid
+    def get_admin(self):
+        return self.__admin
 
     def set_block(self,block):
         self.__block = block
@@ -32,4 +35,9 @@ class Roombooking:
 
     def set_room_id(self,roomid):
         self.__roomid = roomid
+
+    def set_admin(self,admin):
+        self.__admin = admin
+
+
 
