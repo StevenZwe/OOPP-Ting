@@ -3,20 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.db.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.db.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.db.dir" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Login2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Register_teacher.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/booking.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/_formhelper.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/_formhelper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/test1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/testview.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/view_all_bookings.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/view_all_bookings_teacher.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/view_confirm_bookings.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.db.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.db.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.db.dir" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,45 +33,40 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="9" />
+          <entry key="css" value="2" />
+          <entry key="html" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="9" />
+          <entry key="CSS" value="2" />
+          <entry key="HTML" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="7" />
+          <entry key="css" value="1" />
+          <entry key="html" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="7" />
+          <entry key="CSS" value="1" />
+          <entry key="HTML" value="8" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1928">
-              <caret line="629" column="7" selection-start-line="629" selection-start-column="7" selection-end-line="629" selection-end-column="7" />
+            <state relative-caret-position="670">
+              <caret line="209" selection-start-line="209" selection-end-line="209" />
               <folding>
                 <element signature="e#0#84#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app(csu).py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -137,12 +122,14 @@
         <option value="$PROJECT_DIR$/templates/Planner.html" />
         <option value="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" />
         <option value="$PROJECT_DIR$/templates/includes/_navbar.html" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/templates/Layout.html" />
         <option value="$PROJECT_DIR$/app(csu).py" />
         <option value="$PROJECT_DIR$/templates/view_all_bookings_teacher.html" />
         <option value="$PROJECT_DIR$/templates/view_all_bookings.html" />
         <option value="$PROJECT_DIR$/templates/includes/_formhelper.html" />
+        <option value="$PROJECT_DIR$/static/css/Login.css" />
+        <option value="$PROJECT_DIR$/templates/Timetable.html" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -153,10 +140,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="1386" />
-    <option name="height" value="747" />
+    <option name="x" value="-11" />
+    <option name="width" value="980" />
+    <option name="height" value="1031" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -202,7 +188,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Self_Integrated/app.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Self_Integrated" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -536,7 +522,14 @@
       <option name="project" value="LOCAL" />
       <updated>1548083019612</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1548477829961</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1548477829961</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -549,7 +542,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3275488" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3275488" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3268206" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -618,7 +611,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/planner.js" />
     <entry file="file://$PROJECT_DIR$/planner.css" />
     <entry file="file://$PROJECT_DIR$/success.html" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -643,9 +635,6 @@
           <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/Login.css">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/room.db.dir">
       <provider selected="true" editor-type-id="text-editor" />
@@ -688,9 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Timetable.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/planner.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -716,6 +702,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="298" selection-start-line="298" selection-end-line="298" />
+          <folding>
+            <element signature="e#0#99#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -769,20 +758,29 @@
     <entry file="file://$PROJECT_DIR$/templates/includes/_message.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1928">
-          <caret line="629" column="7" selection-start-line="629" selection-start-column="7" selection-end-line="629" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#84#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/static/css/Login.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/half-slider.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app(csu).py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
           <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Timetable.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="209" selection-start-line="209" selection-end-line="209" />
+          <folding>
+            <element signature="e#0#84#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
