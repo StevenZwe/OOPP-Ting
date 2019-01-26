@@ -3,242 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2-py2.py3-none-any.whl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/AUTHORS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/CHANGES.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Flask.egg-info/PKG-INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Flask.egg-info/SOURCES.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Flask.egg-info/dependency_links.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Flask.egg-info/entry_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Flask.egg-info/not-zip-safe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Flask.egg-info/requires.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Flask.egg-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/MANIFEST.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/PKG-INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/README.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/artwork/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/artwork/logo-full.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/artwork/logo-lineart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/debugger.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/flask-favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/flask.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/logo-full.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/no.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/pycharm-runconfig.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/_static/yes.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/advanced_foreword.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/api.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/appcontext.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/becomingbig.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/blueprints.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/changelog.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/cli.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/config.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/contents.rst.inc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/contributing.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/deploying/cgi.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/deploying/fastcgi.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/deploying/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/deploying/mod_wsgi.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/deploying/uwsgi.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/deploying/wsgi-standalone.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/design.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/errorhandling.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/extensiondev.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/extensions.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/flaskstyle.sty" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/foreword.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/htmlfaq.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/installation.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/latexindex.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/license.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/logging.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/logo.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/make.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/apierrors.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/appdispatch.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/appfactories.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/caching.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/celery.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/deferredcallbacks.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/distribute.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/errorpages.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/fabric.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/favicon.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/fileuploads.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/flashing.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/jquery.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/lazyloading.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/methodoverrides.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/mongokit.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/packages.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/requestchecksum.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/sqlalchemy.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/sqlite3.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/streaming.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/subclassing.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/templateinheritance.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/urlprocessors.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/viewdecorators.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/patterns/wtforms.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/quickstart.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/reqcontext.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/security.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/server.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/shell.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/signals.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/styleguide.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/templating.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/testing.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/blog.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/database.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/deploy.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/factory.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/flaskr_edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/flaskr_index.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/flaskr_login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/install.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/layout.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/next.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/static.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/templates.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/tests.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/tutorial/views.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/unicode.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/upgrading.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/docs/views.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/MANIFEST.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/README.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/js_example/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/js_example/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/js_example/templates/fetch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/js_example/templates/jquery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/js_example/templates/plain.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/js_example/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/setup.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/tests/conftest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/javascript/tests/test_js_example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/MANIFEST.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/README.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/auth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/blog.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/db.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/schema.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/static/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/templates/auth/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/templates/auth/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/templates/blog/create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/templates/blog/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/flaskr/templates/blog/update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/setup.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/tests/conftest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/tests/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/tests/test_auth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/tests/test_blog.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/tests/test_db.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/examples/tutorial/tests/test_factory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/__main__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/_compat.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/blueprints.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/cli.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/ctx.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/debughelpers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/globals.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/helpers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/json/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/json/tag.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/logging.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/sessions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/signals.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/templating.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/testing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/flask/wrappers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/setup.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/conftest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/static/config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/static/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/_macro.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/context_template.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/escaping_template.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/mail.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/nested/nested.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/non_escaping_template.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/simple_template.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/template_filter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/templates/template_test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_appctx.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/.flaskenv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/apps/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/apps/admin/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/apps/admin/static/css/test.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/apps/admin/static/test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/apps/admin/templates/admin/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/apps/frontend/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/blueprintapp/apps/frontend/templates/frontend/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/factory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/importerrorapp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/inner1/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/inner1/inner2/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/inner1/inner2/flask.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/message.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/cliapp/multiapp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/helloworld/hello.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/helloworld/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/subdomaintestmodule/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_apps/subdomaintestmodule/static/hello.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_basic.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_blueprints.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_cli.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_helpers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_instance_config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_json_tag.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_logging.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_regression.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_reqctx.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_signals.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_subclassing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_templating.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_testing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_user_error_handler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tests/test_views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-1.0.2/tox.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dates.db.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dates.db.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dates.db.dir" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plans.db.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plans.db.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plans.db.dir" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/room.db.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/room.db.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/room.db.dir" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/student_submission.db.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/student_submission.db.dat" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -257,10 +21,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1077">
+            <state relative-caret-position="3230">
               <caret line="190" column="4" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="4" />
               <folding>
                 <element signature="e#0#99#0" expanded="true" />
@@ -270,46 +34,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app(erin).py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/jquery/jquery.slim.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app(csu).py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1836">
+            <state relative-caret-position="709">
               <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/includes/_navbar.html">
+        <entry file="file://$PROJECT_DIR$/static/css/Login.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
-            </state>
+            <state relative-caret-position="-969" />
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="92" />
+            <state relative-caret-position="425">
+              <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -317,9 +61,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/AssignmentsPgTeacher.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
+            <state relative-caret-position="204">
+              <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+              <folding>
+                <element signature="e#1037#1056#0#HTML" expanded="true" />
+                <element signature="e#1166#1184#0#HTML" expanded="true" />
+                <element signature="e#1514#1532#0#HTML" expanded="true" />
+                <element signature="e#1652#1682#0#HTML" expanded="true" />
+              </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/half-slider.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/locker.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-255" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/calender.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-742" />
           </provider>
         </entry>
       </file>
@@ -330,6 +99,11 @@
               <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -381,7 +155,6 @@
         <option value="$PROJECT_DIR$/validate.py" />
         <option value="$PROJECT_DIR$/templates/roombooking.js" />
         <option value="$PROJECT_DIR$/templates/Planner.html" />
-        <option value="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" />
         <option value="$PROJECT_DIR$/app(csu).py" />
         <option value="$PROJECT_DIR$/templates/view_all_bookings_teacher.html" />
         <option value="$PROJECT_DIR$/templates/view_all_bookings.html" />
@@ -391,6 +164,7 @@
         <option value="$PROJECT_DIR$/templates/Layout.html" />
         <option value="$PROJECT_DIR$/templates/includes/_navbar.html" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" />
       </list>
     </option>
   </component>
@@ -416,12 +190,6 @@
               <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
               <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="jquery" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
@@ -608,7 +376,7 @@
       <workItem from="1547540624176" duration="1195000" />
       <workItem from="1547542322803" duration="314000" />
       <workItem from="1548082627589" duration="2964000" />
-      <workItem from="1548487447556" duration="625000" />
+      <workItem from="1548487447556" duration="1907000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1543811175505</created>
@@ -806,11 +574,25 @@
       <option name="project" value="LOCAL" />
       <updated>1548479262393</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1548488163931</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1548488163932</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Deleted CSS.css file">
+      <created>1548488821443</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1548488821443</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18958000" />
+    <option name="totallyTimeSpent" value="20240000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -827,7 +609,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49932885" weight="0.3264642" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49932885" weight="0.32552084" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.3285968" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32724902" />
@@ -897,35 +679,10 @@
     <MESSAGE value="test" />
     <MESSAGE value="added home.html" />
     <MESSAGE value="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Deleted CSS.css file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted CSS.css file" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Planner.html" />
-    <entry file="file://$PROJECT_DIR$/templates/Login.html" />
-    <entry file="file://$PROJECT_DIR$/LoginFlask.py" />
-    <entry file="file://$PROJECT_DIR$/flask_test4.py" />
-    <entry file="file://$PROJECT_DIR$/../Project_test_2/test 2.py" />
-    <entry file="file://$PROJECT_DIR$/../Project_test_2/LoginFlask.py" />
-    <entry file="file://$PROJECT_DIR$/templates/Room_Booking.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/register.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/room.db.dir">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/view_room.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -956,9 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/planner.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Planner.py" />
     <entry file="file://$PROJECT_DIR$/templates/planneredit.html" />
     <entry file="file://$PROJECT_DIR$/templates/Login2.html">
@@ -986,13 +740,6 @@
     <entry file="file://$PROJECT_DIR$/templates/testview.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/booking.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/paypalmedium.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1007,12 +754,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/includes/_message.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/Login.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/half-slider.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Timetable.html" />
@@ -1035,34 +776,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/AssignmentsPgTeacher.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app(csu).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app(erin).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153" />
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
+    <entry file="file://$PROJECT_DIR$/templates/checkAvailability.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/create_teacher_timetable.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/AsssignmentsPgStudents.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/booking.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1077">
-          <caret line="190" column="4" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#99#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/teacher_timetable.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/Teacher.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/Student.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/slideshow.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/planner.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1524" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/Login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-969" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/half-slider.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/locker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/calender.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-742" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1073,8 +842,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="92" />
+        <state relative-caret-position="425">
+          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/AssignmentsPgTeacher.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <element signature="e#1037#1056#0#HTML" expanded="true" />
+            <element signature="e#1166#1184#0#HTML" expanded="true" />
+            <element signature="e#1514#1532#0#HTML" expanded="true" />
+            <element signature="e#1652#1682#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app(csu).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3230">
+          <caret line="190" column="4" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#99#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
