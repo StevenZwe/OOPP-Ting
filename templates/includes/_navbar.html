@@ -28,15 +28,15 @@
       <li class="nav-item">
         <a class="nav-link" href="/Contact"> Contact us</a>
       </li>
-          <li class="nav-item">
-        <a class="nav-link" href="/teacher_timetable/<string:name>/<int:user_id>"> Test</a>
-      </li>
-              {% if  session.get('identity')== 'teacher'%}
+    
+  {% if  session.get('identity')== 'teacher'%}
               <li class="nav-item">
-        <a class="nav-link" href="/"> Confirm Booking</a>
+        <a class="nav-link" href="/teacherbooking"> Confirm Booking</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/teacher_timetable"> My Timetable</a>
       </li>
       {% endif %}
-
     </ul>
 
 
