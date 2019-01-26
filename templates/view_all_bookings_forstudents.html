@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% from "includes/_formhelper.html" import render_field %}
+            <script>
+        $(document).ready(function () {
+            $('#confirm').hide();
+            $('#reject').hide();
+            $('#pending').show();
+
+            $('.field').change(function () {
+                if ($(this).children("option:selected").val() == 'confirm') {
+                    $('#confirm').show();
+                    $('#reject').hide();
+                    $('#pending').hide();
+                }
+                else if ($(this).children("option:selected").val() == 'reject') {
+                    $('#reject').show();
+                    $('#pending').hide();
+                    $('#confirm').hide();
+                }
+                else if ($(this).children("option:selected").val() == 'pending') {
+                    $('#pending').show();
+                    $('#reject').hide();
+                    $('#confirm').hide();
+                }
+            });
+        });
+    </script>
+
+        <form method="POST" action="">
+            <div class="form-row">
+                {{ render_field(form.pubtype,class_="field") }}
+            </div>
+        </form>
+    <h1>View All Bookings</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Lecturer</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+
+
+           <tbody id="confirm">
+        {% if confirm != '' %}
+            {% for confirm in booking %}
+                <tr>
+                {% if confirm.get_status() == 'Accepted' %}
+                    <td>{{ confirm.get_name() }}</td>
+                    <td>{{ confirm.get_date() }}</td>
+                    <td>{{ confirm.get_time()}}</td>
+
+                    <td>{{ confirm.get_status() }}</td>
+                {% endif %}
+
+
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+        </tbody>
+
+           <tbody id="reject">
+        {% if rejected != '' %}
+            {% for rejected in booking %}
+                <tr>
+                {% if rejected.get_status() == 'Rejected' %}
+                    <td>{{ rejected.get_name() }}</td>
+                    <td>{{ rejected.get_date() }}</td>
+                    <td>{{ rejected.get_time()}}</td>
+                    <td>{{ rejected.get_status() }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+        </tbody>
+
+        <tbody id="pending">
+        {% if pending != '' %}
+            {% for booking in booking %}
+                <tr>
+                {% if booking.get_status() == 'Pending' %}
+                    <td>{{ booking.get_name() }}</td>
+                    <td>{{ booking.get_date() }}</td>
+                    <td>{{ booking.get_time()}}</td>
+                    <td>{{ booking.get_status() }}</td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+
+
+        </tbody>
+
+    </table>
+
+{% endblock %}

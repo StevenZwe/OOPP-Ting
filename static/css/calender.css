@@ -71,3 +71,10 @@ body {font-family: Verdana, sans-serif;}
   background: #1abc9c;
   color: white !important
 }
+
+#jumbotron
+{
+  width:1000px;
+
+}
+

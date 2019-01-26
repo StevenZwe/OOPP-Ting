@@ -2,16 +2,67 @@
 
 {% block body %}
     <link rel='stylesheet' href="{{ url_for('static', filename='css/calender.css') }}">
-<div class="jumbotron">
-  <h1 class="display-3">Welcome To EduCite</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
+     <link rel='stylesheet' href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 
-</div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/half-slider.css' )}} ">
+    <!-- Custom styles for this template -->
+
+    <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url('https://www.edgehill.ac.uk/news/files/2013/04/ProspDay4_0017.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>First Slide</h3>
+              <p>This is a description for the first slide.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('https://carleton.ca/studentaccounts/wp-content/uploads/studentaccountsban.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Second Slide</h3>
+              <p>This is a description for the second slide.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://www.eng.nus.edu.sg/slo/wp-content/uploads/2017/03/nus_eng_home_masthead_2.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Third Slide</h3>
+              <p>This is a description for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="py-5">
+      <div class="container">
+        <h1>Welcome to EduCite</h1>
+        <p>Better Job Prospects for Fresh Poly Grads Last Year. Latest survey revealed that fresh poly grads landed on jobs faster and commanded higher starting salaries.
+          <code>Discover your future with us</code>
+          </p>
+      </div>
+    </section>
+
+<link rel="script" href="{{ url_for('static', filename="jquery/jquery.min.js") }}">
+    <link rel="script" href="{{ url_for("static", filename="javascript/bootstrap.bundle.min.js") }}">
+
+
+
+  <!-- Full-width images with number and caption text -->
 
 <div class="alert alert-dismissible alert-success">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -20,13 +71,46 @@
 <table class="table table-hover">
   <thead>
     <tr>
-        <th scope="col"><a href = "#">View Appointments</a></th>
-        <th scope="col">><a href = "#">Study Plan</a></th>
+        <th scope="col"><a href = "/viewbookings">View Appointments</a>
+<br><br>
+            <table>
+                <tr>
+                    <td>
+                         <strong>Your booking appointment is successful.
+<br>
+                             Monday 20 Jan 2019 Room 456 Lecturer: Mr Lee Chit Boon</strong>
+                    </td>
+                      <td>
+                         <strong>Your booking appointment is successful.
+<br>
+                             Monday 20 Jan 2019 Room 456 Lecturer: Mr Lee Chit Boon</strong>
+                    </td>
+                </tr>
+                <tr>
+                      <td>
+                         <strong>Your booking appointment is successful.
+<br>
+                             Monday 20 Jan 2019 Room 456 Lecturer: Mr Lee Chit Boon</strong>
+                    </td>
+                      <td>
+                         <strong>Your booking appointment is successful.
+<br>
+                             Monday 20 Jan 2019 Room 456 Lecturer: Mr Lee Chit Boon</strong>
+                    </td>
+                </tr>
+            </table>
+
+
+        </th>
+        <th scope="col">><a href = "/viewplans">Study Plan</a></th>
+
+
+
       <th scope="col"><div class="month">
   <ul>
     <li class="prev">&#10094;</li>
     <li class="next">&#10095;</li>
-    <li>Dec<br><span style="font-size:18px">2018</span></li>
+    <li>Jan<br><span style="font-size:18px">2019</span></li>
   </ul>
 </div>
 
@@ -73,9 +157,6 @@
   <li>30</li>
   <li>31</li>
 </ul></th>
-
-    </tr>
-  </thead>
 
 </table>
 

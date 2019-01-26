@@ -28,7 +28,11 @@
                     {{ render_field(form.time, class_="form-control") }}
                 </div>
                 <div class="form-group col-md-4">
-                    {{ render_field(form.date, class_="form-control") }}
+                    {{ render_field(form.date,placeholder="YYYY-MM-DD", class_="form-control") }}
+                </div>
+                <div class="form-group col-md-4"    >
+                    {{ render_field(form.info,placeholder="Put Course name and objective of consultation"
+                    , class_="form-control") }}
                 </div>
 
             </div>

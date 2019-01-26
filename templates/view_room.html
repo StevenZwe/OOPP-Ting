@@ -16,12 +16,14 @@
         {% if rooms != '' %}
             {% for room in rooms %}
                 <tr>
+                {% if request.cookies.get('admin_no')==room.get_admin() %}
 
                     <td>{{ room.get_block() }}</td>
 
 {#            "#}
                     <td>{{ room.get_room_no () }}</td>
                     <td>{{ room.get_time()}}</td>
+                {% endif %}
 
             </tr>
             {% endfor %}
