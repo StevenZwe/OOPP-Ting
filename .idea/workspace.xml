@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="" />
+    <list default="true" id="d8ae0e75-74ac-4349-aa31-3fdd1f7e240e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,48 +31,52 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
-          <entry key="html" value="11" />
+          <entry key="html" value="12" />
+          <entry key="py" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="HTML" value="11" />
+          <entry key="HTML" value="12" />
+          <entry key="Python" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="1" />
-          <entry key="html" value="8" />
+          <entry key="html" value="9" />
+          <entry key="py" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="HTML" value="8" />
+          <entry key="HTML" value="9" />
+          <entry key="Python" value="7" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
-              <caret line="209" selection-start-line="209" selection-end-line="209" />
+            <state relative-caret-position="1411">
+              <caret line="212" column="56" selection-start-line="212" selection-start-column="56" selection-end-line="212" selection-end-column="56" />
               <folding>
-                <element signature="e#0#84#0" expanded="true" />
+                <element signature="e#0#99#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/Layout.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/includes/_navbar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+            <state relative-caret-position="510">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -124,15 +131,15 @@
         <option value="$PROJECT_DIR$/templates/roombooking.js" />
         <option value="$PROJECT_DIR$/templates/Planner.html" />
         <option value="$PROJECT_DIR$/templates/AssignmentsPgTeacher.html" />
-        <option value="$PROJECT_DIR$/templates/includes/_navbar.html" />
         <option value="$PROJECT_DIR$/app(csu).py" />
         <option value="$PROJECT_DIR$/templates/view_all_bookings_teacher.html" />
         <option value="$PROJECT_DIR$/templates/view_all_bookings.html" />
         <option value="$PROJECT_DIR$/templates/includes/_formhelper.html" />
         <option value="$PROJECT_DIR$/static/css/Login.css" />
         <option value="$PROJECT_DIR$/templates/Timetable.html" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/templates/Layout.html" />
+        <option value="$PROJECT_DIR$/templates/includes/_navbar.html" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -181,6 +188,12 @@
               <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
               <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Organizer-Ting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Organizer-Ting" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -546,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1548479056396</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1548479262392</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1548479262393</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -556,7 +576,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49425286" visible="true" weight="0.25266525" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49425286" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -629,7 +649,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/StevenZwe/Organizer-Ting&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/planner.css" />
     <entry file="file://$PROJECT_DIR$/success.html" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -705,9 +724,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apphelloworld.py" />
     <entry file="file://$PROJECT_DIR$/validate.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/includes/_navbar.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/test4.py">
@@ -789,20 +805,30 @@
     <entry file="file://$PROJECT_DIR$/templates/Timetable.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="209" selection-start-line="209" selection-end-line="209" />
-          <folding>
-            <element signature="e#0#84#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bookingteachers.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/includes/_navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="212" column="56" selection-start-line="212" selection-start-column="56" selection-end-line="212" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#99#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

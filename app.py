@@ -212,15 +212,6 @@ def viewroom():
 
     return render_template('view_room.html', rooms=list)
 
-@app.route('/get-cookie/')
-def get_cookie():
-    id = request.cookies.get('admin_no')
-    name=request.cookies.get('name')
-
-@app.route('/home')
-def home():
-    return render_template('home.html')
-
 
 @app.route('/',  methods=('GET', 'POST'))
 def login():
