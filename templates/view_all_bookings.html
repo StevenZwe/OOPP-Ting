@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>View All Bookings</h1>
+
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if bookings != '' %}
+            {% for booking in bookings %}
+                <tr>
+
+                    <td>{{ booking.get_name() }}</td>
+
+{#            "#}
+                    <td>{{ booking.get_date() }}</td>
+                    <td>{{ booking.get_time()}}</td>
+                    <td>{{ booking.get_status() }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+
+
+        </tbody>
+    </table>
+
+{% endblock %}
