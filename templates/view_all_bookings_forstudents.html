@@ -41,6 +41,7 @@
             <th>Date</th>
             <th>Time</th>
             <th>Status</th>
+            <th>Description</th>
         </tr>
 
 
@@ -49,13 +50,14 @@
             {% for confirm in booking %}
                 <tr>
                 {% if confirm.get_status() == 'Accepted' %}
+                    {% if confirm.get_student_name()==request.cookies.get('admin_no') %}
                     <td>{{ confirm.get_name() }}</td>
                     <td>{{ confirm.get_date() }}</td>
                     <td>{{ confirm.get_time()}}</td>
-
                     <td>{{ confirm.get_status() }}</td>
+                    <td>{{ confirm.get_info() }}</td>
                 {% endif %}
-
+                {% endif %}
 
             </tr>
             {% endfor %}
@@ -74,10 +76,13 @@
             {% for rejected in booking %}
                 <tr>
                 {% if rejected.get_status() == 'Rejected' %}
+                        {% if rejected.get_student_name()==request.cookies.get('admin_no') %}
                     <td>{{ rejected.get_name() }}</td>
                     <td>{{ rejected.get_date() }}</td>
                     <td>{{ rejected.get_time()}}</td>
                     <td>{{ rejected.get_status() }}</td>
+                    <td>{{ rejected.get_info() }}</td>
+                {% endif %}
                 {% endif %}
             </tr>
             {% endfor %}
@@ -96,10 +101,13 @@
             {% for booking in booking %}
                 <tr>
                 {% if booking.get_status() == 'Pending' %}
+                        {% if booking.get_student_name()==request.cookies.get('admin_no') %}
                     <td>{{ booking.get_name() }}</td>
                     <td>{{ booking.get_date() }}</td>
                     <td>{{ booking.get_time()}}</td>
                     <td>{{ booking.get_status() }}</td>
+                    <td>{{ booking.get_info() }}</td>
+                {% endif %}
                 {% endif %}
 
             </tr>
