@@ -722,7 +722,7 @@ def viewtest2():
 
 
 class BookingStatusForm(Form):
-    pubtype = SelectField('Booking Status', choices=[('confirm', 'confirm'), ('reject', 'reject'),('pending','pending')], default='pending')
+    pubtype = SelectField('Booking Status:', choices=[('confirm', 'confirm'), ('reject', 'reject'),('pending','pending')], default='pending')
 
 
 @app.route('/teacher_timetable',methods=('GET', 'POST'))
@@ -860,6 +860,37 @@ class Teacher_timetableForm(Form):
     lesson_type = SelectField('Lesson Type',
                      choices=[('Lecture', 'Lecture'), ('Practical', 'Practical'),('Tutorial','Tutorial')], default='Tutorial')
 
+@app.route('/view_all_teacher_timetable',methods=('GET', 'POST'))
+def view_all_teacher_timetable():
+    db_read = shelve.open("teacher_timetable.db")
+    list = []
+    for id in db_read:
+        print(id)
+        try:
+            timetablelist = db_read[id]
+        except:
+            timetablelist = {}
+        print(timetablelist)
+        list.append(id)
+    print('===')
+    print(list)
+    return render_template('view_timetable.html',list=list)
+
+@app.route('/view_teacher_timetable/<teacherid>', methods=('GET', 'POST'))
+def view_teacher_timetable(teacherid):
+    db_read = shelve.open("teacher_timetable.db")
+    print(teacherid)
+    try:
+        timetablelist = db_read[teacherid]
+    except:
+        timetablelist = {}
+
+    print(timetablelist)
+    list = []
+    for cell in timetablelist:
+        list.append(timetablelist.get(cell))
+    print(teacherid)
+    return render_template('view_indivdual_timetable.html',list=list, teacher=teacherid)
 
 @app.route('/checkAvailability', methods=['GET', 'POST'])
 def checkAvail():
@@ -1121,9 +1152,6 @@ def paymentbig():
     lockerno = session.get('lockerno', None)
     return render_template('paypalbig.html', adminno=adminno, date=date, lockerno=lockerno)
 
-
-
-
 @app.route('/lockeradmin')
 def lockeradmin():
     db_read = shelve.open("storage.db", "r")
@@ -1133,7 +1161,6 @@ def lockeradmin():
         list.append(lockers.get(id))
     db_read.close()
     return render_template('lockerAdmin.html', lockers=list)
-
 
 if __name__ == '__main__':
     app.run()
