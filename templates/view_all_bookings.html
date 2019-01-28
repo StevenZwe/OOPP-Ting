@@ -10,6 +10,7 @@
             <th>Name</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -22,7 +23,7 @@
 {#            "#}
                     <td>{{ booking.get_date() }}</td>
                     <td>{{ booking.get_time()}}</td>
-
+                    <td>{{ booking.get_status() }}</td>
             </tr>
             {% endfor %}
         {% else %}
@@ -35,28 +36,6 @@
         {% endif %}
 
 
-
-
-        {#        <tr>#}
-        {#            <th scope="row">1</th>#}
-        {#            <td>Harry Potter and the Deathly Hallows</td>#}
-        {#            <td>Book</td>#}
-        {#            <td>For Borrowing</td>#}
-        {#            <td>Fantasy</td>#}
-        {#            <td><a href="#">View</a></td>#}
-        {#            <td><a href="/update">Update</a></td>#}
-        {#            <td><a href="#">Delete</a></td>#}
-        {#        </tr>#}
-        {#        <tr>#}
-        {#            <th scope="row">2</th>#}
-        {#            <td>Harry Potter and the Half-Blood Prince</td>#}
-        {#            <td>Book</td>#}
-        {#            <td>For Borrowing</td>#}
-        {#            <td>Fantasy</td>#}
-        {#            <td><a href="#">View</a></td>#}
-        {#            <td><a href="/update">Update</a></td>#}
-        {#            <td><a href="#">Delete</a></td>#}
-        {#        </tr>#}
         </tbody>
     </table>
 

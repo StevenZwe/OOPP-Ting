@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    {% from "includes/_formhelper.html" import render_field %}
+    <title>Marks (Teacher)</title>
+    <thead>
+
+    </thead>
+    <tbody>
+    <div id="maxMarks">
+            {{ render_field(form.marks, class="form-control") }}
+    </div>
+    </tbody>
+
+
+{% endblock %}

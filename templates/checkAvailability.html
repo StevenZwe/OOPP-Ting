@@ -5,17 +5,15 @@
     <link rel="stylesheet" href="static/css/locker.css">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
-        function myFunction() {
-            var table = document.getElementById("table");
-            var row = table.insertRow(-1);
-            var cell1 = row.insertCell(-1);
-            var i;
-            for (i = 0; i < finallist.length; i++) {
-                cell1.innerHTML = i;
-            }
+
+        var date=DateTime.Now.ToString("dd-MM-yyyy");
+        document.write(date);
+    </script>
+    <script>
+        function checkavlink(){
+
         }
     </script>
-
     <h1 style = "margin-top: 3%; margin-left: 70px">Check Locker Availability</h1>
     <form method="POST" action="" style="margin-top: 2%; margin-left:70px">
      <div class="form-group">
@@ -33,7 +31,7 @@
         <input type="submit" value="Submit" class="btn btn-success">
     </div>
     <div>
-        <table id="table" style="margin-top: 40px">
+        <table style="margin-top: 40px">
             <thead>
                 <tr>
                     <th>Lockers Available:</th>
@@ -41,10 +39,34 @@
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
+                    <td>
+                        <ul id="myItemList">
+                            {%  for i in finallist %}
+
+                                <li><a onclick="checkavlink()">{{ i }}</a></li>
+
+                            {% endfor %}
+                        </ul>
+                        <script>
+                            {#let items = sessionStorage.getItem('finallist');#}
+
+                            {#var li = document.createElement("p");#}
+                            {#var items = document.createTextNode("yes");#}
+                            {#li.appendChild(items);#}
+                            {#document.getElementById("myItemList").appendChild(li);#}
+
+                            {#items.forEach(function (item) {#}
+                            {#var li = document.createElement('li');#}
+                            {#ul.appendChild(li);#}
+                            {##}
+                            {#li.innerHTML += item;#}
+
+                        </script>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
     </form>
+
 {% endblock %}

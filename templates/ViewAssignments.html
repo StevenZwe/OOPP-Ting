@@ -1,29 +1,26 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-
     {% from "includes/_formhelper.html" import render_field %}
     <title>Assignments</title>
     <table>
-    <thead>
+        <thead>
         <tr>
-    <th>Course/Module</th>
-    <th>Due Dates</th>
-    <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-         <tr>
+            <th>Course/Module</th>
+            <th>Due Dates</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
             {% for lists in dateslist %}
                 <td>{{ lists.get_course() }}</td>
                 <td>{{ lists.get_date() }}</td>
                 <td>{{ lists.get_des()}}</td>
-
-            </tr>
+                </tr>
             {% endfor %}
-    </tbody>
+        </tbody>
 
     </table>
-
 
 {% endblock %}
