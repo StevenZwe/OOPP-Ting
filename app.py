@@ -266,7 +266,7 @@ def roombooking():
         db_read.close()
 
 
-        flash('Magazine Inserted Sucessfully.', 'success')
+        flash('Room Booking Sucessfully.', 'success')
 
         return redirect(url_for('viewroom'))
 
@@ -310,9 +310,36 @@ def viewroom():
 
         list.append(room.get(room_id))
 
+
+
+    try:
+        rooms = db_read["rooms"]
+    except:
+        roomList = {}
+
+    if request.method == 'POST':
+        date = room_booking.date.data
+        admin = Roombooking.admin.data
+        room_no = room_booking.room_no.data
+        if roomList == {}:
+            roomList[date] = []
+            roomList[date].append(admin)
+            db_read["rooms"] = rooms
+            db_read.close()
+        else:
+            if date in roomList:
+                if room_no in roomList:
+                    flash("Room already booked!", "warning")
+                else:
+                    roomList[date].append(admin)
+                    db_read["rooms"] = roomList
+                    db_read.close()
+            else:
+                roomList[date].append(admin)
+                db_read["rooms"] = roomList
+                db_read.close()
+
     return render_template('view_room.html', rooms=list)
-
-
 
 @app.route('/viewconfirm')
 def viewconfirm():
