@@ -268,8 +268,6 @@ def viewconfirm():
 def testview():
     return render_template('testview.html')
 
-
-
 @app.route('/',  methods=('GET', 'POST'))
 def login():
     db_read = shelve.open("user.db")
@@ -365,7 +363,7 @@ def register():
             error = 'Course name is required.'
 
         else:
-            userz = User(admin_no,password,email,name,school,course_name,pem_class,'student')
+            userz = User(admin_no,password,email,name,school,'student',course_name,pem_class)
             if userlist != {}:
                 db_read2 = shelve.open("user.db", "r")
                 user = db_read2["users"]
@@ -375,11 +373,12 @@ def register():
                     user_storage_admin_no = user_storage.get_admin_no()
 
                     if admin_no == user_storage_admin_no:
-                        flash('You already have an  account', 'danger')
+                        flash('You already have an account', 'danger')
                         return redirect(url_for('register'))
                     else:
                         pass
             id = len(userlist) + 1
+
 
             userz.set_userid(id)
 
@@ -413,14 +412,14 @@ def register_teacher():
         elif not email:
             error = 'Email is required.'
         elif not name:
-
             error = 'Name is required.'
 
         elif not school:
             error = 'School is required.'
 
         else:
-            userz = User('', password, email, name, school, '', '','teacher')
+            #first name put in admin_no second as name
+            userz = Admin(name,password, email, name, school,'teacher')
             if userlist != {}:
                 db_read2 = shelve.open("user.db", "r")
                 user = db_read2["users"]
@@ -430,7 +429,7 @@ def register_teacher():
                     user_storage_name = user_storage.get_name()
 
                     if name ==user_storage_name:
-                        flash('You already have an  account', 'danger')
+                        flash('You already have an account', 'danger')
                         return redirect(url_for('register_teacher'))
                     else:
                         pass
@@ -470,6 +469,7 @@ class Login_teacherForm(Form):
                          choices=[('', 'Select'),('SIT', 'SIT'),('SCL', 'SCL'),('SBM', 'SBM'),
                                  ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
                                 ], default=' ' )
+
   ##REMEMBER TO PUT THE FOR LOOP OF SELECT FIELD INSDIE HERE
 class LoopTeachers(object):
     def __iter__(self):
