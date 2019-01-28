@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 import shelve
 import os
 from os.path import join, dirname, realpath
+import wget
 
 app = Flask(__name__)
 app.secret_key = 'secret123'
@@ -28,6 +29,7 @@ def allowed_files(filename):
 class PhotoForm(Form):
     photo = FileField(validators=[''])
 
+
 @app.route('/',  methods=('GET', 'POST'))
 def login():
     db_read = shelve.open("user.db")
@@ -45,7 +47,8 @@ def login():
         elif not password:
             error = 'Password is required.'
         else:
-            if userlist != {}: #to check if database is empty or not, if is empty return as flash
+            # to check if database is empty or not, if is empty return as flash
+            if userlist != {}:
                 db_read2 = shelve.open("user.db", "r")
                 user = db_read2["users"]
 
@@ -79,6 +82,7 @@ def login():
 
             flash('Wrong admin number or password', 'danger')
     return render_template('Login2.html')
+
 
 @app.route('/home')
 def home():
@@ -193,20 +197,17 @@ def assignt():
         dateslist = {}
         print(dateslist)
     if request.method == 'POST':
-        print('day')
         selection = request.form['selection']
         choice = form.choice.data
         date = request.form['daterange']
         des = request.form['des']
         maxmarks = request.form['marks']
         overall = CreateAssignments(selection, choice, date, des, maxmarks, '')
-        print(overall)
         id = len(dateslist) + 1
         overall.set_id(id)
         dateslist[id] = overall
         db_read["users"] = dateslist
         db_read.close()
-        print(overall)
 
         flash('You have uploaded the assignment.', 'success')
         return redirect(url_for('home'))
@@ -255,7 +256,7 @@ def add_file():
             file.save(os.path.join(app.config['UPLOADS_PATH'], file_name))
         except:
             file = None
-        fileup = FileUp(test,file_name)
+        fileup = FileUp(test, file_name)
         id1 = len(submissionsList) + 1
         fileup.set_id(id1)
         submissionsList[id1] = fileup
@@ -270,7 +271,7 @@ def add_file():
     return render_template('AsssignmentsPgStudents.html', form=form)
 
 
-@app.route('/allassignments', methods=('GET','POST'))
+@app.route('/allassignments', methods=('GET', 'POST'))
 def viewassignments():
     db_read = shelve.open('dates.db')
     list = []
@@ -295,30 +296,32 @@ def individualassignments(assignmentsid):
     try:
         assignmentsidList = db_read['users']
     except:
+
         assignmentsidList = []
 
     print(assignmentsid)
     if request.method == 'POST':
-        print('hi')
-        assignmentzz=assignmentsidList.get(assignmentsid)
-        selection =assignmentzz.get_course()
+        assignmentzz = assignmentsidList.get(assignmentsid)
+        selection = assignmentzz.get_course()
         choice = assignmentzz.get_group()
-        date =assignmentzz.get_date()
+        date = assignmentzz.get_date()
         des = assignmentzz.get_des()
         maxmarks = assignmentzz.get_maxmarks()
-        givenmarks=form.givenmarks.data
+        givenmarks = form.givenmarks.data
         overall = CreateAssignments(selection, choice, date, des, maxmarks, givenmarks)
         print(choice)
         print(date)
         overall.set_id(assignmentsid)
-        assignmentsidList[assignmentsid]=overall
-        db_read["users"]=assignmentsidList
+        assignmentsidList[assignmentsid] = overall
+        db_read["users"] = assignmentsidList
 
     list2 = []
     list2.append(assignmentsidList.get(assignmentsid))
-    print('zzzz')
-    print('gayaga')
 
+    if request.method == '':
+        url = 'http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg'
+        wget.download(url, '/Users/Courtney/Desktop/Organizer-Ting/static/Documents')
+        print('Beginning file download with wget module')
 
 
     return render_template('view_individual_assignments.html', form=form, list2=list2)

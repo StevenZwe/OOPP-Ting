@@ -18,7 +18,6 @@ from os.path import join, dirname, realpath
 from werkzeug.utils import secure_filename
 
 
-
 app = Flask(__name__)
 app.secret_key = 'secret123'
 
@@ -27,16 +26,18 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER1
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOADS_PATH'] = join(dirname(realpath(__file__)), 'static\\timetable\\')
 
+
 @app.route('/teacher_timetable/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOADS_PATH'], filename)
+
 
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-class RequiredIf(object):
 
+class RequiredIf(object):
     def __init__(self, *args, **kwargs):
         self.conditions = kwargs
 
@@ -50,6 +51,7 @@ class RequiredIf(object):
                     validators.DataRequired().__call__(form, field)
                 else:
                     validators.Optional().__call__(form, field)
+
 
 class editPlanner(Form):
     task = StringField('Name of Task', [validators.DataRequired()])
@@ -104,10 +106,10 @@ def home():
 def avaliable_room():
     return render_template('view_avaliable_room.html')
 
+
 @app.route('/timetable')
 def timetable():
     return render_template('Timetable.html')
-
 
 
 @app.route('/planner')
@@ -152,15 +154,11 @@ def Editplanner():
 
 @app.route('/viewplans')
 def viewplans():
-
-
     db_read = shelve.open("plans.db")
     try:
         plan = db_read["plan"]
     except:
         plan = {}
-
-
     print(plan)
 
     list = []
@@ -220,6 +218,7 @@ def roombooking():
 
     return render_template('Room_Booking.html', form=form)
 
+
 class room_booking(Form):
     time = SelectField('Time slot:  ', [validators.DataRequired()],
                            choices=[('', 'Select'), ('9am', '9am'), ('10am', '10am'),
@@ -240,17 +239,14 @@ class room_booking(Form):
                                         ('12/12/18', '12/12/18')], default=' ')
 
 
-
 @app.route('/viewroom')
 def viewroom():
-
 
     db_read = shelve.open("room.db")
     try:
         room = db_read["rooms"]
     except:
         room = {}
-
 
     print(room)
 
@@ -259,6 +255,7 @@ def viewroom():
     for room_id in room:
         list.append(room.get(room_id))
     return render_template('view_room.html',rooms=list)
+
 
 @app.route('/checkAvailability', methods=['GET', 'POST'])
 def checkAvail():
@@ -293,6 +290,7 @@ def checkAvail():
 
     return render_template("locker.html", cform=cform, form=form, finallist=finallist)
 
+
 @app.route('/lockers', methods=['GET', 'POST'])
 def func_locker():
     form = LockerForm(request.form)
@@ -314,7 +312,6 @@ def func_locker():
 
     print(checkList)
     print(lockerList)
-
 
     if request.method == 'POST' or form.validate():
         date = form.date.data
@@ -493,6 +490,7 @@ def func_locker():
 
     return render_template('locker.html', form=form, finallist=finallist, cform=cform)
 
+
 def lockerRedirect(lockerno):
     flash('Locker %s is already booked! Please enter another locker number.' % (lockerno),
           'warning')
@@ -507,6 +505,7 @@ def paymentsmall():
     flash('Please go to i@Central to collect your locker combination.', 'success')
     return render_template('paypalsmall.html', adminno=adminno, date=date, lockerno=lockerno)
 
+
 @app.route('/locker/payment/medium')
 def paymentmedium():
     adminno = session.get('adminno', None)
@@ -515,6 +514,7 @@ def paymentmedium():
     flash('Please go to i@Central to collect your locker combination.', 'success')
     return render_template('paypalmedium.html', adminno=adminno, date=date, lockerno=lockerno)
 
+
 @app.route('/locker/payment/big')
 def paymentbig():
     adminno = session.get('adminno', None)
@@ -522,8 +522,6 @@ def paymentbig():
     lockerno = session.get('lockerno', None)
     flash('Please go to i@Central to collect your locker combination.', 'success')
     return render_template('paypalbig.html', adminno=adminno, date=date, lockerno=lockerno)
-
-
 
 
 @app.route('/lockeradmin')
@@ -807,6 +805,7 @@ def lockeradmin():
 #     db_read.close()
 #     return render_template('lockerAdmin.html', lockers=list)
 
+
 @app.route('/',  methods=('GET', 'POST'))
 def login():
     db_read = shelve.open("user.db")
@@ -859,6 +858,7 @@ def login():
             flash('Wrong admin number or password', 'danger')
     return render_template('Login2.html')
 
+
 @app.route('/logout')
 def logout():
     global check_for_id
@@ -867,6 +867,7 @@ def logout():
     session.clear()
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -918,7 +919,6 @@ def register():
                         pass
             id = len(userlist) + 1
 
-
             userz.set_userid(id)
 
             userlist[id] = userz
@@ -929,6 +929,7 @@ def register():
             return redirect(url_for('login'))
         flash(error)
     return render_template('Register.html',form=form)
+
 
 @app.route('/register_teacher', methods=['GET', 'POST'])
 def register_teacher():
@@ -985,6 +986,8 @@ def register_teacher():
         flash(error)
     return render_template('Register_teacher.html',form=form)
   #WTForms for Register
+
+
 class LoginForm(Form):
     admin_no = StringField('Admin Number', [validators.DataRequired()])
     password = PasswordField('Password', [validators.DataRequired()])
@@ -1000,6 +1003,7 @@ class LoginForm(Form):
                                   ('DIT', 'Information Technology'), ('BI', 'Business Informatics'),
                                   ('FI', 'Financial Informatics')], default=' ' )
 
+
 class Login_teacherForm(Form):
     password = PasswordField('Password', [validators.DataRequired()])
     email=StringField('Email',[validators.DataRequired()])
@@ -1009,6 +1013,8 @@ class Login_teacherForm(Form):
                                  ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
                                 ], default=' ' )
   ##REMEMBER TO PUT THE FOR LOOP OF SELECT FIELD INSDIE HERE
+
+
 class LoopTeachers(object):
     def __iter__(self):
         db_read = shelve.open("user.db")
@@ -1025,7 +1031,6 @@ class LoopTeachers(object):
 
                 pair = (user_storage_name, user_storage_name)
                 yield pair
-
 
 
 class Booking_teachers_form(Form):
@@ -1225,6 +1230,7 @@ def create_booking_teacher():
 
     return render_template('booking.html', form=form)
 
+
 @app.route('/accept_booking/<int:id>', methods=['POST'])
 def accept_booking(id):
     db_read = shelve.open("booking.db")
@@ -1248,6 +1254,7 @@ def accept_booking(id):
         flash('Error in booking acception', 'danger')
         return redirect(url_for('teacherbooking'))
 
+
 @app.route('/reject_booking/<int:id>', methods=['POST'])
 def reject_booking(id):
     db_read = shelve.open("booking.db")
@@ -1268,6 +1275,7 @@ def reject_booking(id):
     except:
         flash('Error in booking rejection', 'danger')
         return redirect(url_for('teacherbooking'))
+
 
 @app.route('/teacherbooking')
 def teacherbooking():
@@ -1291,6 +1299,7 @@ def teacherbooking():
 
     return render_template('view_all_bookings_teacher.html', bookings=list)
 
+
 @app.route('/viewtest2')
 def viewtest2():
     form = BookingStatusForm(request.form)
@@ -1313,6 +1322,7 @@ def viewtest2():
 
 class BookingStatusForm(Form):
     pubtype = SelectField('Booking Status', choices=[('confirm', 'confirm'), ('reject', 'reject'),('pending','pending')], default='pending')
+
 
 @app.route('/teacher_timetable',methods=('GET', 'POST'))
 def teacher_timetable():
@@ -1471,7 +1481,7 @@ def teacher_timetable():
                     timetablelist[count] = timetablez
                     db_read[request.cookies.get('admin_no')] = timetablelist
                     count += 1
-                elif count<=60:
+                elif count <= 60:
                     timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
                                                    request.cookies.get('admin_no'), '1710-1800')
                     timetablez.set_id(count)
@@ -1561,8 +1571,9 @@ def teacher_timetable():
     list = []
     for id in timetablelist:
         list.append(timetablelist.get(id))
-    count=0
+    count = 0
     return render_template('teacher_timetable3.html',list=list)
+
 
 @app.route('/create_teacher_timetable/<int:id>', methods=('GET', 'POST'))
 def create_teacher_timetable(id):
@@ -1624,14 +1635,13 @@ def create_teacher_timetable(id):
 class Teacher_timetableForm(Form):
     module_name = StringField('Module Name')
     block = StringField('Block', [validators.DataRequired()])
-    room=StringField('Room',[validators.DataRequired()])
-    school = SelectField('School',[validators.DataRequired()],
-                         choices=[('', 'Select'),('SIT', 'SIT'),('SCL', 'SCL'),('SBM', 'SBM'),
-                                 ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
+    room=StringField('Room', [validators.DataRequired()])
+    school = SelectField('School', [validators.DataRequired()],
+                         ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
                                 ], default=' ' )
     lesson_type = SelectField('Lesson Type',
-                     choices=[('Lecture', 'Lecture'), ('Practical', 'Practical'),('Tutorial','Tutorial')], default='Tutorial')
-
+                              choices=[('Lecture', 'Lecture'), ('Practical', 'Practical'),('Tutorial','Tutorial')],
+                              default='Tutorial')
 
 
 @app.route('/view_all_teacher_timetable',methods=('GET', 'POST'))
@@ -1649,6 +1659,7 @@ def view_all_teacher_timetable():
     print('===')
     print(list)
     return render_template('view_timetable.html',list=list)
+
 
 @app.route('/view_teacher_timetable/<teacherid>', methods=('GET', 'POST'))
 def view_teacher_timetable(teacherid):
