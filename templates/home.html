@@ -71,8 +71,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-        <th scope="col"><a href = "/viewbookings">View Appointments</a>
-<br><br>
+        <th scope="col"><a href = "/viewtest2">View Appointments</a>
+
              {% if confirm != '' %}
             {% for confirm in booking %}
                 <tr>
@@ -81,26 +81,21 @@
                     <td>{{ confirm.get_name() }}</td>
                     <td>{{ confirm.get_date() }}</td>
                     <td>{{ confirm.get_time()}}</td>
-                    <td>{{ confirm.get_status() }}</td>
-                    <td>{{ confirm.get_info() }}</td>
+                        </tr></thead>
                 {% endif %}
                 {% endif %}
 
             </tr>
             {% endfor %}
         {% else %}
-            <tr>
-            <td></td>
-            <td></td>
-            <td></td>
 
-            </tr>
         {% endif %}
 
 
         </th>
-        <th scope="col"><a href = "/viewplans">Study Plan</a></th>
 
+        <th scope="col"><a href = "/viewplans">Study Plan</a></th>
+</table>
 
 
 
