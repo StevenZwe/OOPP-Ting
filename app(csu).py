@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session, send_from_directory
+from flask import Flask, render_template, request, flash, redirect, url_for, session, send_from_directory,make_response
 from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField, FileField,\
     SelectMultipleField, widgets
 from werkzeug.utils import secure_filename
@@ -15,7 +15,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOADS_PATH'] = join(dirname(realpath(__file__)), 'static\\Documents\\')
 
 
-@app.route('/uploads/<filename>')
+@app.route('/assignments_student/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOADS_PATH'], filename)
 
@@ -28,11 +28,57 @@ def allowed_files(filename):
 class PhotoForm(Form):
     photo = FileField(validators=[''])
 
+@app.route('/',  methods=('GET', 'POST'))
+def login():
+    db_read = shelve.open("user.db")
+    try:
+        userlist = db_read["users"]
+    except:
+        userlist = {}
+    if request.method == 'POST':
+        admin_no = request.form['admin_no']
+        password = request.form['password']
+        error = None
 
-@app.route('/')
-def default():
-    return render_template('home.html')
+        if not admin_no:
+            error = 'Admin Number is required.'
+        elif not password:
+            error = 'Password is required.'
+        else:
+            if userlist != {}: #to check if database is empty or not, if is empty return as flash
+                db_read2 = shelve.open("user.db", "r")
+                user = db_read2["users"]
 
+                for checking in user:
+                    user_storage = (user.get(checking))
+                    user_storage_admin_no = user_storage.get_admin_no()
+                    user_storage_password=user_storage.get_password()
+                    user_storage_name = user_storage.get_name()
+                    user_storage_identity = user_storage.get_identity()
+                    user_storage_userid=user_storage.get_userid()
+                    if user_storage_admin_no != admin_no or user_storage_password != password:
+                        if user_storage_identity=='teacher' and user_storage_name==admin_no and user_storage_password==password:
+                                session['id'] = admin_no
+                                session['user_admin_No'] = admin_no
+                                session['logged_in'] = True
+                                session['identity']=user_storage_identity
+                                resp = make_response(redirect(url_for('home')))
+                                resp.set_cookie('admin_no',admin_no)  #key and value
+                                return resp
+                    else:
+                        session['id'] = user_storage_userid
+                        session['user_admin_No'] = user_storage_admin_no
+                        session['identity']=user_storage_identity
+                        session['logged_in'] = True
+                        resp = make_response(redirect(url_for('home')))
+                        resp.set_cookie('admin_no', admin_no)
+                        resp.set_cookie('name',user_storage_name)
+                        # key and value
+                        return resp
+                        return redirect(url_for('home'))
+
+            flash('Wrong admin number or password', 'danger')
+    return render_template('Login2.html')
 
 @app.route('/home')
 def home():
@@ -134,7 +180,7 @@ class FormStuff(Form):
                                 'DCS/Data Communication and Networking')]
                        )
 
-    givingmarks = StringField('', [validators.DataRequired])
+    givenmarks = StringField('', [validators.DataRequired])
 
 
 @app.route('/assignments_teacher', methods=['GET', 'POST'])
@@ -201,8 +247,7 @@ def add_file():
         submissionsList = db_read["submissions"]
     except:
         submissionsList = {}
-
-    if request.method == "POST" and form.validate():
+    if request.method == "POST":
         test = form.test.data
         try:
             file = request.files['file']
@@ -210,8 +255,7 @@ def add_file():
             file.save(os.path.join(app.config['UPLOADS_PATH'], file_name))
         except:
             file = None
-
-        fileup = FileUp(test, file_name)
+        fileup = FileUp(test,file_name)
         id1 = len(submissionsList) + 1
         fileup.set_id(id1)
         submissionsList[id1] = fileup
@@ -226,28 +270,8 @@ def add_file():
     return render_template('AsssignmentsPgStudents.html', form=form)
 
 
-@app.route('/allassignments')
+@app.route('/allassignments', methods=('GET','POST'))
 def viewassignments():
-    # form = CreateAssignments(request.form)
-    # db_read = shelve.open("dates.db")
-    # try:
-    #     dateslist = db_read["users"]
-    # except:
-    #     dateslist = {}
-    # list = []
-    # for i in dateslist:
-    #     list.append(dateslist.get(i))
-    # if request.method == "POST":
-    #     selection = request.form['selection']
-    #     choice = form.choice.data
-    #     date = request.form['daterange']
-    #     des = request.form['des']
-    #     maxmarks = request.form['marks']
-    #     givenmarks = request.form['givingmarks']
-    #     overall = CreateAssignments(selection, choice, date, des, maxmarks, givenmarks)
-    #     print(overall)
-    # print(list)
-
     db_read = shelve.open('dates.db')
     list = []
 
@@ -273,7 +297,31 @@ def individualassignments(assignmentsid):
     except:
         assignmentsidList = []
 
-    return render_template('view_individual_assignments.html', form=form)
+    print(assignmentsid)
+    if request.method == 'POST':
+        print('hi')
+        assignmentzz=assignmentsidList.get(assignmentsid)
+        selection =assignmentzz.get_course()
+        choice = assignmentzz.get_group()
+        date =assignmentzz.get_date()
+        des = assignmentzz.get_des()
+        maxmarks = assignmentzz.get_maxmarks()
+        givenmarks=form.givenmarks.data
+        overall = CreateAssignments(selection, choice, date, des, maxmarks, givenmarks)
+        print(choice)
+        print(date)
+        overall.set_id(assignmentsid)
+        assignmentsidList[assignmentsid]=overall
+        db_read["users"]=assignmentsidList
+
+    list2 = []
+    list2.append(assignmentsidList.get(assignmentsid))
+    print('zzzz')
+    print('gayaga')
+
+
+
+    return render_template('view_individual_assignments.html', form=form, list2=list2)
 
 
 if __name__ == '__main__':

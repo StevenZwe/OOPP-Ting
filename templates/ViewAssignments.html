@@ -3,35 +3,17 @@
 {% block body %}
     {% from "includes/_formhelper.html" import render_field %}
     <title>Assignments</title>
-    <table>
-        <thead>
-        <tr>
-            <th>Course/Module</th>
-            <th>Due Dates</th>
-            <th>Description</th>
-            <th>Marks</th>
-        </tr>
-        </thead>
         <tbody>
-        <tr>
-{#            {% for lists in list %}#}
-{#                <td>{{ lists.get_course() }}</td>#}
-{#                <td>{{ lists.get_date() }}</td>#}
-{#                <td>{{ lists.get_des()}}</td>#}
-{#                <td><form method="POST">{{ render_field(form.givingmarks, class_="form-control") }} / {{ lists.get_maxmarks() }} <input type="submit" value="Confirm"> </form></td>#}
-{#                </tr>#}
-{#            {% endfor %}#}
         <div >
     {% for listz in list %}
         <div>
           <h3 >{{ listz.get_course() }} </h3>
-          <form  action="{{url_for('individualassignments', assignmentsid=listz.get_id())}}" method="post" >
+          <form  action="{{url_for('individualassignments', assignmentsid=listz.get_id())}}" >
         <input type="submit" value="View Here" class="btn btn-info" >
           </form>
         </div>
+        </div>
             {% endfor %}
         </tbody>
-
-    </table>
 
 {% endblock %}
