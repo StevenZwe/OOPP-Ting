@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block body %}
 <h1 style="text-align: center; margin-top:20px;">Payment Checkout</h1>
-<link rel="stylesheet" href="static/css/locker.css">
+<link rel="stylesheet" href="/static/css/locker.css">
 {#details of payment and locker info#}
 <table style="margin-left:auto; margin-right:auto;">
 <tr>
@@ -19,7 +19,7 @@
 </table>
 
 
-<div style="margin-left: 45%; margin-top: 50px;" id="paypal-button"></div>
+<div style="margin-left: auto; margin-right:auto; margin-top: 50px; width:350px;" id="paypal-button"></div>
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <script>
   paypal.Button.render({
@@ -32,9 +32,10 @@
     // Customize button (optional)
     locale: 'en_US',
     style: {
-      size: 'small',
+      size: 'responsive',
       color: 'gold',
       shape: 'pill',
+      label: 'pay',
     },
 
     // Enable Pay Now checkout flow (optional)
@@ -60,7 +61,7 @@
       return actions.payment.execute().then(function() {
         // Show a confirmation message to the buyer
         window.alert('Thank you for your purchase!');
-        sctions.redirect()
+        actions.redirect()
       });
     }
   }, '#paypal-button');

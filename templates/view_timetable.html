@@ -1,0 +1,38 @@
+<!-- Page Content -->
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+<style>
+#corner1 {
+  border-radius: 25px;
+  background: #d7dbe2;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+    text-align:center;
+
+    </style>
+  <!-- Introduction Row -->
+
+  <h1 class="my-4">View Lecturer's timetable</h1>
+<input type="submit" value="Book your Lecturers " class="btn btn-primary" onclick="window.location.href='/create_booking_teacher'">
+<input type="submit" value="View your appointments " class="btn btn-primary" onclick="window.location.href='/viewtest2'">
+
+        <div class="row pt-5" >
+    {% for teachers in list %}
+        <div class="pr-lg-4" id="corner1">
+          <h3 >{{ teachers }} </h3>
+          <form  action="{{url_for('view_teacher_timetable', teacherid=teachers)}}" method="post" >
+        <input type="submit" value="View Here" class="btn btn-info" >
+          </form>
+        </div>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endfor %}
+        </div>
+
+        </div>
+</div>
+
+{% endblock %}
