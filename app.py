@@ -260,10 +260,10 @@ def viewroom():
         list.append(room.get(room_id))
     return render_template('view_room.html',rooms=list)
 
-
 @app.route('/checkAvailability', methods=['GET', 'POST'])
 def checkAvail():
-    form = CheckAvailForm(request.form)
+    form = LockerForm(request.form)
+    cform = CheckAvailForm(request.form)
     db_readcheck = shelve.open("check.db")
     lockertuple = ("L01", "L02", "L03", "L04", "N01", "N02", "N03", "N04", "B01", "B02", "B03", "B04")
 
@@ -272,28 +272,31 @@ def checkAvail():
     except:
         checkList = {}
 
-    if request.method == 'POST' or form.validate():
-        date = form.dateav.data
-        if date in checkList:
+    finallist = []
+
+    if request.method == 'POST' and cform.validate():
+        dateav = cform.dateav.data
+        if dateav in checkList:
             #convert tuple to list
             lockerlist = list(lockertuple)
-
             #list of dates from database
-            checkListList = checkList[date]
+            checkListList = checkList[dateav]
             finallist = [x for x in lockerlist if x not in checkListList]
+            session['finallist'] = finallist
             print(finallist)
-            return render_template("checkAvailability.html", form=form, finallist=finallist)
+            db_readcheck.close()
         else:
             finallist = lockertuple
+            session['finallist'] = finallist
             print(finallist)
-            return render_template("checkAvailability.html", form=form, finallist=finallist)
+            db_readcheck.close()
 
-
-    return render_template("checkAvailability.html", form=form)
+    return render_template("locker.html", cform=cform, form=form, finallist=finallist)
 
 @app.route('/lockers', methods=['GET', 'POST'])
 def func_locker():
     form = LockerForm(request.form)
+    cform = CheckAvailForm(request.form)
     db_read = shelve.open("storage.db")
     db_readcheck = shelve.open("check.db")
 
@@ -307,8 +310,11 @@ def func_locker():
     except:
         checkList = {}
 
+    finallist = []
+
     print(checkList)
     print(lockerList)
+
 
     if request.method == 'POST' or form.validate():
         date = form.date.data
@@ -325,50 +331,50 @@ def func_locker():
             id = len(lockerList) + 1
             lockers.set_id(id)
             lockerList[id] = lockers
-            db_read["locker"] = lockerList
-            db_read.close()
-            #
-            checkList[date] = []
-            checkList[date].append(lockerno)
-            db_readcheck["checklist"] = checkList
-            db_readcheck.close()
             #
             session['adminno'] = adminno
             session['date'] = date
             session['lockerno'] = lockerno
             #
-            window = Tk()
-            window.eval('tk::PlaceWindow %s center' % window.winfo_toplevel())
-            window.withdraw()
-            if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
-                                               "to payment?" % (lockerno, date), icon = 'info') == True:
-                if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
-                    window.deiconify()
-                    window.destroy()
-                    window.quit()
-                    return redirect(url_for('paymentmedium'))
-                elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
-                    window.deiconify()
-                    window.destroy()
-                    window.quit()
-                    return redirect(url_for('paymentbig'))
-                else:
-                    window.deiconify()
-                    window.destroy()
-                    window.quit()
-                    return redirect(url_for('paymentsmall'))
+            if lockerno == 'L03' or lockerno == 'N03' or lockerno == 'B03':
+                db_read["locker"] = lockerList
+                db_read.close()
+                #
+                checkList[date] = []
+                checkList[date].append(lockerno)
+                db_readcheck["checklist"] = checkList
+                db_readcheck.close()
+                #
+                session['adminno'] = adminno
+                session['date'] = date
+                session['lockerno'] = lockerno
+                return redirect(url_for('paymentmedium'))
+            elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                db_read["locker"] = lockerList
+                db_read.close()
+                #
+                checkList[date] = []
+                checkList[date].append(lockerno)
+                db_readcheck["checklist"] = checkList
+                db_readcheck.close()
+                #
+                session['adminno'] = adminno
+                session['date'] = date
+                session['lockerno'] = lockerno
+                return redirect(url_for('paymentbig'))
             else:
-                flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
-                window.decoinify()
-                window.destroy()
-                window.quit()
-                return redirect(url_for('func_locker'))
-
-            window.deiconify()
-            window.destroy()
-            window.quit()
-            # return redirect(url_for('func_locker'))
-            print(1)
+                db_read["locker"] = lockerList
+                db_read.close()
+                #
+                checkList[date] = []
+                checkList[date].append(lockerno)
+                db_readcheck["checklist"] = checkList
+                db_readcheck.close()
+                #
+                session['adminno'] = adminno
+                session['date'] = date
+                session['lockerno'] = lockerno
+                return redirect(url_for('paymentsmall'))
         else:
             #if this date has been booked
             if date in checkList:
@@ -390,50 +396,46 @@ def func_locker():
                     id = len(lockerList) + 1
                     lockers.set_id(id)
                     lockerList[id] = lockers
-                    db_read["locker"] = lockerList
-                    db_read.close()
                     #
-                    checkList[date].append(lockerno)
-                    db_readcheck["checklist"] = checkList
-                    db_readcheck.close()
-                    #
-                    session['adminno'] = adminno
-                    session['date'] = date
-                    session['lockerno'] = lockerno
-                    #
-                    window = Tk()
-                    window.eval('tk::PlaceWindow %s center' % window.winfo_toplevel())
-                    window.withdraw()
-                    if messagebox.askyesno('Question',
-                                           "You've made a reservation for %s on %s. Would you like to proceed "
-                                           "to payment?" % (lockerno, date), icon='info') == True:
-                        if lockerno == 'L03' or lockerno == 'N03' or lockerno == 'B03':
-                            window.deiconify()
-                            window.destroy()
-                            window.quit()
-                            return redirect(url_for('paymentmedium'))
-                        elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
-                            window.deiconify()
-                            window.destroy()
-                            window.quit()
-                            return redirect(url_for('paymentbig'))
-                        else:
-                            window.deiconify()
-                            window.destroy()
-                            window.quit()
-                            return redirect(url_for('paymentsmall'))
+                    if lockerno == 'L03' or lockerno == 'N03' or lockerno == 'B03':
+                        db_read["locker"] = lockerList
+                        db_read.close()
+                        #
+                        checkList[date].append(lockerno)
+                        db_readcheck["checklist"] = checkList
+                        db_readcheck.close()
+                        #
+                        session['adminno'] = adminno
+                        session['date'] = date
+                        session['lockerno'] = lockerno
+                        return redirect(url_for('paymentmedium'))
+                    elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                        db_read["locker"] = lockerList
+                        db_read.close()
+                        #
+                        checkList[date].append(lockerno)
+                        db_readcheck["checklist"] = checkList
+                        db_readcheck.close()
+                        #
+                        session['adminno'] = adminno
+                        session['date'] = date
+                        session['lockerno'] = lockerno
+                        return redirect(url_for('paymentbig'))
                     else:
-                        flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
-                        window.deiconify()
-                        window.destroy()
-                        window.quit()
-                        return redirect(url_for('func_locker'))
+                        db_read["locker"] = lockerList
+                        db_read.close()
+                        #
+                        checkList[date].append(lockerno)
+                        db_readcheck["checklist"] = checkList
+                        db_readcheck.close()
+                        #
+                        session['adminno'] = adminno
+                        session['date'] = date
+                        session['lockerno'] = lockerno
+                        return redirect(url_for('paymentsmall'))
+                print(2)
+            # return redirect(url_for('func_locker'))
 
-                    window.deiconify()
-                    window.destroy()
-                    window.quit()
-                    # return redirect(url_for('func_locker'))
-                    print(2)
             else:
                 flash('Locker form submitted successfully!', 'success')
                 adminno = form.adminno.data
@@ -445,66 +447,64 @@ def func_locker():
                 id = len(lockerList) + 1
                 lockers.set_id(id)
                 lockerList[id] = lockers
-                db_read["locker"] = lockerList
-                db_read.close()
                 #
-                checkList[date] = []
-                checkList[date].append(lockerno)
-                db_readcheck["checklist"] = checkList
-                db_readcheck.close()
-                #
-                session['adminno'] = adminno
-                session['date'] = date
-                session['lockerno'] = lockerno
-                #
-                window = Tk()
-                window.eval('tk::PlaceWindow %s center' % window.winfo_toplevel())
-                window.withdraw()
-                if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
-                                                   "to payment?" % (lockerno, date), icon='info') == True:
-                    if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
-                        window.deiconify()
-                        window.destroy()
-                        window.quit()
-                        return redirect(url_for('paymentmedium'))
-                    elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
-                        window.deiconify()
-                        window.destroy()
-                        window.quit()
-                        return redirect(url_for('paymentbig'))
-                    else:
-                        window.deiconify()
-                        window.destroy()
-                        window.quit()
-                        return redirect(url_for('paymentsmall'))
+                if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
+                    db_read["locker"] = lockerList
+                    db_read.close()
+                    #
+                    checkList[date] = []
+                    checkList[date].append(lockerno)
+                    db_readcheck["checklist"] = checkList
+                    db_readcheck.close()
+                    #
+                    session['adminno'] = adminno
+                    session['date'] = date
+                    session['lockerno'] = lockerno
+                    return redirect(url_for('paymentmedium'))
+                elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+                    db_read["locker"] = lockerList
+                    db_read.close()
+                    #
+                    checkList[date] = []
+                    checkList[date].append(lockerno)
+                    db_readcheck["checklist"] = checkList
+                    db_readcheck.close()
+                    #
+                    session['adminno'] = adminno
+                    session['date'] = date
+                    session['lockerno'] = lockerno
+                    return redirect(url_for('paymentbig'))
                 else:
-                    flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
-                    window.deiconify()
-                    window.destroy()
-                    window.quit()
-                    return redirect(url_for('func_locker'))
+                    db_read["locker"] = lockerList
+                    db_read.close()
+                    #
+                    checkList[date] = []
+                    checkList[date].append(lockerno)
+                    db_readcheck["checklist"] = checkList
+                    db_readcheck.close()
+                    #
+                    session['adminno'] = adminno
+                    session['date'] = date
+                    session['lockerno'] = lockerno
+                    return redirect(url_for('paymentsmall'))
 
-                window.deiconify()
-                window.destroy()
-                window.quit()
                 # return redirect(url_for('func_locker'))
                 print(3)
 
-    return render_template('locker.html', form=form)
+    return render_template('locker.html', form=form, finallist=finallist, cform=cform)
 
 def lockerRedirect(lockerno):
     flash('Locker %s is already booked! Please enter another locker number.' % (lockerno),
           'warning')
     return redirect(url_for('func_locker'))
 
-def checkalert():
-    messagebox.showerror("Error", "This slot is already booked!")
 
 @app.route('/locker/payment/small')
 def paymentsmall():
     adminno = session.get('adminno', None)
     date = session.get('date', None)
     lockerno = session.get('lockerno', None)
+    flash('Please go to i@Central to collect your locker combination.', 'success')
     return render_template('paypalsmall.html', adminno=adminno, date=date, lockerno=lockerno)
 
 @app.route('/locker/payment/medium')
@@ -512,6 +512,7 @@ def paymentmedium():
     adminno = session.get('adminno', None)
     date = session.get('date', None)
     lockerno = session.get('lockerno', None)
+    flash('Please go to i@Central to collect your locker combination.', 'success')
     return render_template('paypalmedium.html', adminno=adminno, date=date, lockerno=lockerno)
 
 @app.route('/locker/payment/big')
@@ -519,7 +520,11 @@ def paymentbig():
     adminno = session.get('adminno', None)
     date = session.get('date', None)
     lockerno = session.get('lockerno', None)
+    flash('Please go to i@Central to collect your locker combination.', 'success')
     return render_template('paypalbig.html', adminno=adminno, date=date, lockerno=lockerno)
+
+
+
 
 @app.route('/lockeradmin')
 def lockeradmin():
@@ -530,6 +535,277 @@ def lockeradmin():
         list.append(lockers.get(id))
     db_read.close()
     return render_template('lockerAdmin.html', lockers=list)
+
+#
+# @app.route('/checkAvailability', methods=['GET', 'POST'])
+# def checkAvail():
+#     form = CheckAvailForm(request.form)
+#     db_readcheck = shelve.open("check.db")
+#     lockertuple = ("L01", "L02", "L03", "L04", "N01", "N02", "N03", "N04", "B01", "B02", "B03", "B04")
+#
+#     try:
+#         checkList = db_readcheck["checklist"]
+#     except:
+#         checkList = {}
+#
+#     if request.method == 'POST' or form.validate():
+#         date = form.dateav.data
+#         if date in checkList:
+#             #convert tuple to list
+#             lockerlist = list(lockertuple)
+#
+#             #list of dates from database
+#             checkListList = checkList[date]
+#             finallist = [x for x in lockerlist if x not in checkListList]
+#             print(finallist)
+#             return render_template("checkAvailability.html", form=form, finallist=finallist)
+#         else:
+#             finallist = lockertuple
+#             print(finallist)
+#             return render_template("checkAvailability.html", form=form, finallist=finallist)
+#
+#
+#     return render_template("checkAvailability.html", form=form)
+#
+# @app.route('/lockers', methods=['GET', 'POST'])
+# def func_locker():
+#     form = LockerForm(request.form)
+#     db_read = shelve.open("storage.db")
+#     db_readcheck = shelve.open("check.db")
+#
+#     try:
+#         lockerList = db_read["locker"]
+#     except:
+#         lockerList = {}
+#
+#     try:
+#         checkList = db_readcheck["checklist"]
+#     except:
+#         checkList = {}
+#
+#     print(checkList)
+#     print(lockerList)
+#
+#     if request.method == 'POST' or form.validate():
+#         date = form.date.data
+#         lockerno = request.form['lockernohtml']
+#         #if checklist is empty (no one booked anything)
+#         if checkList == {}:
+#             flash('Locker form submitted successfully!', 'success')
+#             adminno = form.adminno.data
+#             date = form.date.data
+#             location = request.form['locationhtml']
+#             size = request.form['sizehtml']
+#             lockerno = request.form['lockernohtml']
+#             lockers = Locker(adminno, date, location, size, lockerno)
+#             id = len(lockerList) + 1
+#             lockers.set_id(id)
+#             lockerList[id] = lockers
+#             db_read["locker"] = lockerList
+#             db_read.close()
+#             #
+#             checkList[date] = []
+#             checkList[date].append(lockerno)
+#             db_readcheck["checklist"] = checkList
+#             db_readcheck.close()
+#             #
+#             session['adminno'] = adminno
+#             session['date'] = date
+#             session['lockerno'] = lockerno
+#             #
+#             window = Tk()
+#             window.eval('tk::PlaceWindow %s center' % window.winfo_toplevel())
+#             window.withdraw()
+#             if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
+#                                                "to payment?" % (lockerno, date), icon = 'info') == True:
+#                 if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
+#                     window.deiconify()
+#                     window.destroy()
+#                     window.quit()
+#                     return redirect(url_for('paymentmedium'))
+#                 elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+#                     window.deiconify()
+#                     window.destroy()
+#                     window.quit()
+#                     return redirect(url_for('paymentbig'))
+#                 else:
+#                     window.deiconify()
+#                     window.destroy()
+#                     window.quit()
+#                     return redirect(url_for('paymentsmall'))
+#             else:
+#                 flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
+#                 window.decoinify()
+#                 window.destroy()
+#                 window.quit()
+#                 return redirect(url_for('func_locker'))
+#
+#             window.deiconify()
+#             window.destroy()
+#             window.quit()
+#             # return redirect(url_for('func_locker'))
+#             print(1)
+#         else:
+#             #if this date has been booked
+#             if date in checkList:
+#                 ##for every lockerno in the list
+#                 #if locker number is in list in that date then confirm booked
+#                 if lockerno in checkList[date]:
+#                         flash('Locker %s is already booked! Please enter another locker number.' % (lockerno),
+#                               'warning')
+#                         return redirect(url_for('func_locker'))
+#                 #if locker no is not in date then not booked but has list already
+#                 else:
+#                     flash('Locker form submitted successfully!', 'success')
+#                     adminno = form.adminno.data
+#                     date = form.date.data
+#                     location = request.form['locationhtml']
+#                     size = request.form['sizehtml']
+#                     lockerno = request.form['lockernohtml']
+#                     lockers = Locker(adminno, date, location, size, lockerno)
+#                     id = len(lockerList) + 1
+#                     lockers.set_id(id)
+#                     lockerList[id] = lockers
+#                     db_read["locker"] = lockerList
+#                     db_read.close()
+#                     #
+#                     checkList[date].append(lockerno)
+#                     db_readcheck["checklist"] = checkList
+#                     db_readcheck.close()
+#                     #
+#                     session['adminno'] = adminno
+#                     session['date'] = date
+#                     session['lockerno'] = lockerno
+#                     #
+#                     window = Tk()
+#                     window.eval('tk::PlaceWindow %s center' % window.winfo_toplevel())
+#                     window.withdraw()
+#                     if messagebox.askyesno('Question',
+#                                            "You've made a reservation for %s on %s. Would you like to proceed "
+#                                            "to payment?" % (lockerno, date), icon='info') == True:
+#                         if lockerno == 'L03' or lockerno == 'N03' or lockerno == 'B03':
+#                             window.deiconify()
+#                             window.destroy()
+#                             window.quit()
+#                             return redirect(url_for('paymentmedium'))
+#                         elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+#                             window.deiconify()
+#                             window.destroy()
+#                             window.quit()
+#                             return redirect(url_for('paymentbig'))
+#                         else:
+#                             window.deiconify()
+#                             window.destroy()
+#                             window.quit()
+#                             return redirect(url_for('paymentsmall'))
+#                     else:
+#                         flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
+#                         window.deiconify()
+#                         window.destroy()
+#                         window.quit()
+#                         return redirect(url_for('func_locker'))
+#
+#                     window.deiconify()
+#                     window.destroy()
+#                     window.quit()
+#                     # return redirect(url_for('func_locker'))
+#                     print(2)
+#             else:
+#                 flash('Locker form submitted successfully!', 'success')
+#                 adminno = form.adminno.data
+#                 date = form.date.data
+#                 location = request.form['locationhtml']
+#                 size = request.form['sizehtml']
+#                 lockerno = request.form['lockernohtml']
+#                 lockers = Locker(adminno, date, location, size, lockerno)
+#                 id = len(lockerList) + 1
+#                 lockers.set_id(id)
+#                 lockerList[id] = lockers
+#                 db_read["locker"] = lockerList
+#                 db_read.close()
+#                 #
+#                 checkList[date] = []
+#                 checkList[date].append(lockerno)
+#                 db_readcheck["checklist"] = checkList
+#                 db_readcheck.close()
+#                 #
+#                 session['adminno'] = adminno
+#                 session['date'] = date
+#                 session['lockerno'] = lockerno
+#                 #
+#                 window = Tk()
+#                 window.eval('tk::PlaceWindow %s center' % window.winfo_toplevel())
+#                 window.withdraw()
+#                 if messagebox.askyesno('Question', "You've made a reservation for %s on %s. Would you like to proceed "
+#                                                    "to payment?" % (lockerno, date), icon='info') == True:
+#                     if lockerno == 'L03' or lockerno =='N03' or lockerno == 'B03':
+#                         window.deiconify()
+#                         window.destroy()
+#                         window.quit()
+#                         return redirect(url_for('paymentmedium'))
+#                     elif lockerno == 'L04' or lockerno == 'N04' or lockerno == 'B04':
+#                         window.deiconify()
+#                         window.destroy()
+#                         window.quit()
+#                         return redirect(url_for('paymentbig'))
+#                     else:
+#                         window.deiconify()
+#                         window.destroy()
+#                         window.quit()
+#                         return redirect(url_for('paymentsmall'))
+#                 else:
+#                     flash("You decide not to pay. Transaction and booking has been cancelled.", 'warning')
+#                     window.deiconify()
+#                     window.destroy()
+#                     window.quit()
+#                     return redirect(url_for('func_locker'))
+#
+#                 window.deiconify()
+#                 window.destroy()
+#                 window.quit()
+#                 # return redirect(url_for('func_locker'))
+#                 print(3)
+#
+#     return render_template('locker.html', form=form)
+#
+# def lockerRedirect(lockerno):
+#     flash('Locker %s is already booked! Please enter another locker number.' % (lockerno),
+#           'warning')
+#     return redirect(url_for('func_locker'))
+#
+# def checkalert():
+#     messagebox.showerror("Error", "This slot is already booked!")
+#
+# @app.route('/locker/payment/small')
+# def paymentsmall():
+#     adminno = session.get('adminno', None)
+#     date = session.get('date', None)
+#     lockerno = session.get('lockerno', None)
+#     return render_template('paypalsmall.html', adminno=adminno, date=date, lockerno=lockerno)
+#
+# @app.route('/locker/payment/medium')
+# def paymentmedium():
+#     adminno = session.get('adminno', None)
+#     date = session.get('date', None)
+#     lockerno = session.get('lockerno', None)
+#     return render_template('paypalmedium.html', adminno=adminno, date=date, lockerno=lockerno)
+#
+# @app.route('/locker/payment/big')
+# def paymentbig():
+#     adminno = session.get('adminno', None)
+#     date = session.get('date', None)
+#     lockerno = session.get('lockerno', None)
+#     return render_template('paypalbig.html', adminno=adminno, date=date, lockerno=lockerno)
+#
+# @app.route('/lockeradmin')
+# def lockeradmin():
+#     db_read = shelve.open("storage.db", "r")
+#     lockers = db_read['locker']
+#     list = []
+#     for id in lockers:
+#         list.append(lockers.get(id))
+#     db_read.close()
+#     return render_template('lockerAdmin.html', lockers=list)
 
 @app.route('/',  methods=('GET', 'POST'))
 def login():

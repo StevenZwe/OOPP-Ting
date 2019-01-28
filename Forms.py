@@ -4,9 +4,6 @@ import shelve
 
 class CheckAvailForm(Form):
     dateav = DateField('Date Availability', format='%Y-%m-%d')
-    locationav = SelectField('Locker Location', choices=[("SIT", "School of Information Technology"),
-                                                       ("SBM", "School of Business Management"),
-                                                       ("SCL", "School of Chemical and Life Sciences")])
 
 
 class LockerForm(Form):
