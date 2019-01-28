@@ -9,9 +9,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 .selection{
-    size: 60px;
+    size: 100px;
 }
 </style>
+    <body>
     <script>
         $(function() {
             $('input[name="daterange"]').daterangepicker({
@@ -29,6 +30,10 @@
 
     <div class="selection" style="width:25%;">
             {{ render_field(form.choice, class="form-control1") }}
+    </div>
+
+    <div class="selection">
+        {{ render_field(form.name, class="form-control") }}
     </div>
 
     <div class="selection">
@@ -50,5 +55,5 @@
     </div>
 
 </form>
-
+    </body>
 {% endblock %}

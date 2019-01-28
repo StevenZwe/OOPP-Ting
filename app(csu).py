@@ -9,10 +9,10 @@ from os.path import join, dirname, realpath
 app = Flask(__name__)
 app.secret_key = 'secret123'
 
-UPLOAD_FOLDER = 'static\\documents\\'
+UPLOAD_FOLDER = '/static/Documents/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-
-app.config['UPLOAD_PATH'] = join(dirname(realpath(__file__)), 'static\\documents\\')
+app.config['UPLOADS_PATH'] = join(dirname(realpath(__file__)), 'static\\Documents\\')
 
 
 @app.route('/uploads/<filename>')
@@ -45,13 +45,14 @@ def planner():
 
 
 class CreateAssignments:
-    def __init__(self, course, group, date, des, maxmarks):
+    def __init__(self, course, group, date, des, maxmarks, givenmarks):
         self.__course = course
         self.__group = group
         self.__date = date
         self.__des = des
         self.__maxmarks = maxmarks
         self.__id = ''
+        self.__givenmarks = givenmarks
 
     def get_course(self):
         return self.__course
@@ -71,6 +72,9 @@ class CreateAssignments:
     def get_maxmarks(self):
         return self.__maxmarks
 
+    def get_givenmarks(self):
+        return self.__givenmarks
+
     def set_course(self, course):
         self.__course = course
 
@@ -89,24 +93,25 @@ class CreateAssignments:
     def set_maxmarks(self, maxmarks):
         self.__maxmarks = maxmarks
 
+    def get_givenmark(self, givenmarks):
+        self.__givenmarks = givenmarks
+
 
 class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
 
 
-class CourseOrModule(Form):
+class FormStuff(Form):
     selection = SelectField('Course/Module', [validators.DataRequired()],
-                            choices=[('Information Technology/Programming Essentials',
-                                      'Information Technology/Programming Essentials'),
-                                     ('Information Technology/Object-Oriented Programming and Project',
-                                      'Information Technology/Object-Oriented Programming and Project'),
-                                     ('Information Technology/Digital Media Interactive Design',
-                                      'Information Technology/Digital Media Interactive Design'),
-                                     ('Information Technology/Communication Skills',
-                                      'Information Technology/Communication Skills'),
-                                     ('Info-Comm and Security/Data Communication and Networking',
-                                      'Info-Comm and Security/Data Communication and Networking')]
+                            choices=[('DIT/Programming Essentials', 'DIT/Programming Essentials'),
+                                     ('DIT/Object-Oriented Programming and Project',
+                                      'DIT/Object-Oriented Programming and Project'),
+                                     ('DIT/Digital Media Interactive Design',
+                                      'DIT/Digital Media Interactive Design'),
+                                     ('DIT/Communication Skills', 'DIT/Communication Skills'),
+                                     ('DCS/Data Communication and Networking',
+                                      'DCS/Data Communication and Networking')]
                             )
 
     choice = MultiCheckboxField('Group', [validators.DataRequired()],
@@ -118,10 +123,23 @@ class CourseOrModule(Form):
 
     marks = StringField('Max mark for students', [validators.DataRequired])
 
+    test = SelectField('Course/Module', [validators.DataRequired()],
+                       choices=[('DIT/Programming Essentials', 'DIT/Programming Essentials'),
+                                ('DIT/Object-Oriented Programming and Project',
+                                'DIT/Object-Oriented Programming and Project'),
+                                ('DIT/Digital Media Interactive Design',
+                                'DIT/Digital Media Interactive Design'),
+                                ('DIT/Communication Skills', 'DIT/Communication Skills'),
+                                ('DCS/Data Communication and Networking',
+                                'DCS/Data Communication and Networking')]
+                       )
+
+    givingmarks = StringField('', [validators.DataRequired])
+
 
 @app.route('/assignments_teacher', methods=['GET', 'POST'])
 def assignt():
-    form = CourseOrModule(request.form)
+    form = FormStuff(request.form)
     db_read = shelve.open("dates.db")
     try:
         dateslist = db_read["users"]
@@ -135,7 +153,7 @@ def assignt():
         date = request.form['daterange']
         des = request.form['des']
         maxmarks = request.form['marks']
-        overall = CreateAssignments(selection, choice, date, des, maxmarks)
+        overall = CreateAssignments(selection, choice, date, des, maxmarks, '')
         print(overall)
         id = len(dateslist) + 1
         overall.set_id(id)
@@ -154,128 +172,108 @@ class FileUp:
     def __init__(self, scourse, file):
         self.__file = file
         self.__scourse = scourse
+        self.__id = ''
 
     def get_file(self):
         return self.__file
 
+    def get_scourse(self):
+        return self.__scourse
+
+    def get_id(self):
+        return self.__id
+
     def set_file(self, file):
         self.__file = file
+
+    def set_scourse(self, scourse):
+        self.__scourse = scourse
+
+    def set_id(self, id):
+        self.__id = id
 
 
 @app.route('/assignments_student', methods=['GET', 'POST'])
 def add_file():
-    form = AddItems(request.form)
+    form = FormStuff(request.form)
+    db_read = shelve.open("submissions.db", flag='c')
+    try:
+        submissionsList = db_read["submissions"]
+    except:
+        submissionsList = {}
 
     if request.method == "POST" and form.validate():
-        file_path = form.item_image.data
-        file = request.files['file']
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        if file.filename == ' ':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_files(file.filename):
-            filename = secure_filename(file.filename)
-            basedir = os.path.abspath(os.path.dirname(__file__))
-
-            print(app.config['UPLOADS_PATH'])
-            print(filename)
-            file.save(os.path.join(app.config['UPLOADS_PATH'], filename))
-            file_path = UPLOAD_FOLDER + filename
-            print(file_path)
-
-        sub = FileUp(scourse, file_path)
-
-        db_read = shelve.open("student_submission.db")
-
+        test = form.test.data
         try:
-            student = db_read["users"]
+            file = request.files['file']
+            file_name = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOADS_PATH'], file_name))
         except:
-            student = {}
-            print(student)
-        if request.method == 'POST':
-            print('')
-            scourse = request.form['course']
-            file = request.form['file']
-            overall = FileUp(file)
-            print(overall)
-            db_read["users"] = student
-            db_read.close()
-            print(overall)
-    return render_template('AsssignmentsPgStudents.html')
+            file = None
 
+        fileup = FileUp(test, file_name)
+        id1 = len(submissionsList) + 1
+        fileup.set_id(id1)
+        submissionsList[id1] = fileup
+        db_read["submissions"] = submissionsList
 
-class AddItems(Form):
-    file = FileField('Describe the Task', [validators.DataRequired()])
+        db_read.close()
 
+        flash('Submission uploaded', 'success')
 
-#course/module, due date
-# def upload(form):
-#     if form.validate_on_submit():
-#         f = form.photo.data
-#         filename = secure_filename(f.filename)
-#         f.save(os.path.join(
-#             app.instance_path, 'photos', filename
-#         ))
-#         return redirect(url_for('index'))
-#
-#     return render_template('upload.html', form=form)
-#
+        return redirect(url_for('home', filename=file_name))
 
-#dates = []
-
-#sorted(dates, key=lambda d: map(int, d.split('-')))
+    return render_template('AsssignmentsPgStudents.html', form=form)
 
 
 @app.route('/allassignments')
 def viewassignments():
-    db_read = shelve.open("dates.db")
-    try:
-        dateslist = db_read["users"]
-    except:
-        dateslist = {}
+    # form = CreateAssignments(request.form)
+    # db_read = shelve.open("dates.db")
+    # try:
+    #     dateslist = db_read["users"]
+    # except:
+    #     dateslist = {}
+    # list = []
+    # for i in dateslist:
+    #     list.append(dateslist.get(i))
+    # if request.method == "POST":
+    #     selection = request.form['selection']
+    #     choice = form.choice.data
+    #     date = request.form['daterange']
+    #     des = request.form['des']
+    #     maxmarks = request.form['marks']
+    #     givenmarks = request.form['givingmarks']
+    #     overall = CreateAssignments(selection, choice, date, des, maxmarks, givenmarks)
+    #     print(overall)
+    # print(list)
+
+    db_read = shelve.open('dates.db')
     list = []
-    for i in dateslist:
-        list.append(dateslist.get(i))
-    print(list)
-    return render_template("ViewAssignments.html", dateslist=list)
 
-
-class StudentMarks:
-    def __init__(self, smarks):
-        self.__smarks = smarks
-
-    def get_smarks(self):
-        return self.__smarks
-
-    def set_marks(self, smarks):
-        self.__smarks = smarks
-
-
-@app.route('/marks')
-def teachersmarking():
-    form = StudentMarks(request.form)
-    db_read = shelve.open("marks.db")
     try:
-        markslist = db_read["users"]
+        marksList = db_read['users']
     except:
-        markslist = {}
-        print(markslist)
-    if request.method == 'POST':
-        print('mark')
-        studentmark = request.form['studentmark']
-        overall = StudentMarks(studentmark)
-        print(overall)
-        db_read["users"] = markslist
-        db_read.close()
-        print(overall)
+        marksList = {}
+    print('--------')
+    print(list)
+    for id in marksList:
+        print(id)
+        list.append(marksList.get(id))
 
-        flash("You have updated the student's marks.", 'success')
-        return redirect(url_for('allassignments'))
+    return render_template("ViewAssignments.html", list=list)
 
-    return render_template('TeacherMarking.html', form=form)
+
+@app.route('/individualassignments/<int:assignmentsid>', methods=('GET','POST'))
+def individualassignments(assignmentsid):
+    form = FormStuff(request.form)
+    db_read = shelve.open('dates.db')
+    try:
+        assignmentsidList = db_read['users']
+    except:
+        assignmentsidList = []
+
+    return render_template('view_individual_assignments.html', form=form)
 
 
 if __name__ == '__main__':
