@@ -3,23 +3,35 @@
 
 {% block body %}
 <div class="container">
-
+<style>
+#corner1 {
+  border-radius: 25px;
+  background: #d7dbe2;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+    text-align:center;
+}
+    </style>
   <!-- Introduction Row -->
-  <h1 class="my-4">View Lecturer timetable</h1>
-<input type="submit" value="Booking" class="btn btn-primary" onclick="window.location.href='/createbooking'">
-  <p>Click on the picture to view the lecturer timetable</p>
+  <h1 class="my-4">View Lecturer's timetable</h1>
+<input type="submit" value="Book your teacher here!" class="btn btn-primary" onclick="window.location.href='/create_booking_teacher'">
 
-  <!-- Team Members Row -->
-  <div class="row">
-    <div class="col-lg-12">
-      <h2 class="my-4">Our Team</h2>
-    </div>
-    <div class="col-lg-4 col-sm-6 text-center mb-4">
-        <h3>John Smith</h3>
-    </div>
 
-  </div>
+        <div class="row pt-5" >
+    {% for teachers in list %}
+        <div class="pr-lg-4" id="corner1">
+          <h3 >{{ teachers }} </h3>
+          <form  action="{{url_for('view_teacher_timetable', teacherid=teachers)}}" method="post" >
+        <input type="submit" value="View Here" class="btn btn-info" >
+          </form>
+        </div>
 
-</div>
-<!-- /.container -->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endfor %}
+        </div>
+
+        </div>
+
+
 {% endblock %}
