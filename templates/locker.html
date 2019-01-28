@@ -2,8 +2,12 @@
 
 {% block body %}
     {% from "includes/_formhelper.html" import render_field %}
-    <link rel="stylesheet" href="static/css/locker.css">
+    <link rel="stylesheet" href="/static/css/locker.css">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/templates/checkAvailabilityjs.js"></script>
     <script>
 
         var SITlockers = ['L01', 'L02', 'L03', 'L04'],
@@ -12,6 +16,11 @@
             sit = "SIT",
             sbm = "SBM",
             scl = "SCL";
+
+        {#$( function() {#}
+        {#    $( "#datepicker" ).datepicker({#}
+        {#        dateFormat: 'yy-mm-dd'#}
+        {#    });#}
 
 
 
@@ -206,6 +215,16 @@
         });
     </script>
 
+{##}
+{#<script>#}
+{#    function retainform() {#}
+{#        document.getElementsByClassName("lockeridadminno").value = adminno;#}
+{#        document.getElementsByClassName("lockeriddate").value = date;#}
+{#        document.getElementsByClassName("lockeridlocation").value = location;#}
+{#        document.getElementsByClassName("lockeridsize").value = size;#}
+{#        document.getElementsByClassName("lockeridlockerno").value = lockerno;#}
+{#    }#}
+{#</script>#}
 
 
 
@@ -227,34 +246,108 @@
 
 
 
+<h1 style = "margin-top: 3%; text-align: center; font-size: 60px;">Daily Locker Booking</h1>
 
-
-
-
-
-
-    <h1 style = "margin-top: 3%; margin-left: 70px">Daily Locker Booking</h1>
-    <form method="POST" action="" style="margin-top: 2%; margin-left:70px">
+<h2 style = "margin-top: 3%; margin-left: 70px">Check Locker Availability</h2>
+    <form method="POST" action="http://127.0.0.1:5000/checkAvailability" style="margin-top: 2%; margin-left:70px">
      <div class="form-group">
-         <table wdith="500" height="280">
+         <table>
+            <tr>
+                <th>{{ cform.dateav.label }}</th>
+                <div>
+                    <td id="hoverdatecheck">{{ cform.dateav }} <span class="ast">*</span>
+                        <span class="tooltiptext">Date format is YYYY-MM-DD</span></td>
+                 </div>
+            </tr>
+         </table>
+     </div>
+    <div class="form-group col-md-1" style="margin-left: 170px">
+        <input type="submit" name="checkSubmit" value="Check Availability" class="btn btn-success">
+    </div>
+    <div>
+        <table style="margin-top: 40px">
+            <thead>
+                <tr>
+                    <th>Lockers Available:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul id="myItemList">
+                            {% for i in finallist %}
+
+                                <li><a style="color: #4fb1ea;" onclick="updatelockerno()" id="updatelockernoid">{{ i }}</a></li>
+
+                            {% endfor %}
+                        </ul>
+                        <script>
+                            {#let items = sessionStorage.getItem('finallist');#}
+
+                            {#var li = document.createElement("p");#}
+                            {#var items = document.createTextNode("yes");#}
+                            {#li.appendChild(items);#}
+                            {#document.getElementById("myItemList").appendChild(li);#}
+
+                            {#items.forEach(function (item) {#}
+                            {#var li = document.createElement('li');#}
+                            {#ul.appendChild(li);#}
+                            {##}
+                            {#li.innerHTML += item;#}
+
+                        </script>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 style = "margin-top: 3%; margin-left: 70px">Locker Booking Form</h2>
+    <form method="POST" action="http://127.0.0.1:5000/lockers" style="margin-top: 2%; margin-left:70px">
+     <div class="form-group">
+         <table width="500" height="280">
              <tr>
                  <th class="darkerTh">{{ form.adminno.label }}</th>
-                 <td>{{ form.adminno }} <span class="ast">*</span></td>
+                 <td class="lockeridadminno">{{ form.adminno }} <span class="ast">*</span></td>
              </tr>
              <tr>
                  <th>{{ form.date.label }}</th>
-                 <td>{{ form.date }} <span class="ast">*</span>
-                    <script>
-
-        </script>
-                 </td>
+                 <div>
+                 <td class="lockeriddate" id="hoverdate">{{ form.date }} <span class="ast">*</span>
+                     <span class="tooltiptext">Date format is YYYY-MM-DD</span>
+                 </div>
              </tr>
              <tr>
                  <th class="darkerTh">{{ form.location.label }}</th>
 {#                 change this to javascript#}
                  <td class="targetlocker">
 {#                     {{ form.location }} #}
-                     <select id="locationChange" name="locationhtml">
+                     <select class="lockeridlocation" id="locationChange" name="locationhtml">
                          <option></option>
                          <option value="SIT">School of Information Technology</option>
                          <option value="SBM">School of Business Management</option>
@@ -266,7 +359,7 @@
                  <th>{{ form.size.label }}</th>
                  <td class="targetlocker">
 {#                     {{ form.size }}#}
-                     <select id="sizeChange" name="sizehtml">
+                     <select class="lockeridsize" id="sizeChange" name="sizehtml">
                          <option></option>
                          <option value="small">Small</option>
                          <option value="medium">Medium</option>
@@ -278,7 +371,7 @@
                  <th class="darkerTh">{{ form.lockerno.label }}</th>
                  <td>
 {#                     {{ form.lockerno }} #}
-                     <select id="addOptions" name="lockernohtml">
+                     <select value="" class="lockeridlockerno" id="addOptions" name="lockernohtml">
 
                      </select>
                      <span class="ast">*</span>
@@ -290,30 +383,30 @@
 
          </table>
 
+
      </div>
-    <div class="form-group col-md-1" style="margin-left: 30px">
-        <input type="submit" value="Submit" class="btn btn-info">
+    <div class="form-group col-md-1" style="margin-left: 30px;">
+        <input type="submit" value="Submit" name="lockerSubmit" class="btn btn-info"/>
     </div>
     </form>
 
-    <div id ="buttoncheck">
-    <button style = "margin-top: 15px; margin-left: 110px" class="btn btn-success" onClick="location.href='/checkAvailability'">Check availability</button>
-    <span class="tooltiptext">Click here to check availability of lockers by date</span>
-    </div>
-
+{#    <div id ="buttoncheck">#}
+{#    <button style = "margin-top: 15px; margin-left: 110px" class="btn btn-success" onClick="location.href='/checkAvailability'">Check availability</button>#}
+{#    <span class="tooltiptext">Click here to check availability of lockers by date</span>#}
+{#    </div>#}
     <h3 style = "margin-top: 50px; margin-left: 70px">Locker Cost:</h3>
     <table style = "margin-left: 100px; margin-bottom: 100px">
     <tr>
         <th>Small</th>
-        <td>$2 per day</td>
+        <td>$0.30 per day</td>
     </tr>
     <tr>
         <th class="darkerTh">Medium</th>
-        <td>$5 per day</td>
+        <td>$0.50 per day</td>
     </tr>
     <tr>
         <th>Big</th>
-        <td>$10 per day</td>
+        <td>$0.70 per day</td>
     </tr>
     </table>
 {#    <h4>Pick a locker</h4>#}
