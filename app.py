@@ -83,7 +83,21 @@ def get_cookie():
 
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    db_read = shelve.open("booking.db")
+
+    try:
+        booking = db_read["bookings"]
+    except:
+        booking = {}
+
+    print(booking)
+    print('Hello')
+    list3 = []
+
+    for pubid in booking:
+        list3.append(booking.get(pubid))
+    print(list3)
+    return render_template('home.html', booking=list3)
 
 
 @app.route('/avaliable_room')
