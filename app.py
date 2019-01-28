@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session, make_response, session
+from flask import Flask, render_template, request, flash, redirect, \
+    url_for, send_from_directory, make_response, session
 from wtforms import Form, StringField, TextAreaField,\
     RadioField, SelectField, validators, PasswordField,DateField,DateTimeField,TimeField
 from register import User,Admin
@@ -12,6 +13,9 @@ from Locker import Locker
 from Forms import *
 from tkinter import *
 from tkinter import messagebox
+import os
+from os.path import join, dirname, realpath
+from werkzeug.utils import secure_filename
 
 
 
@@ -36,7 +40,15 @@ class RequiredIf(object):
                     validators.Optional().__call__(form, field)
 
 
-
+class Booking_teachers_form(Form):
+    name = SelectField('Teacher', choices=[('', 'Select'),('Lee Chit Boon', 'Lee Chit Boon'),
+                                           ('Zwe', 'Zwe')], default=' ')
+    time = SelectField('Time slot:  ', [validators.DataRequired()],
+                           choices=[('', 'Select'), ('9am', '9am'), ('10am', '10am'),
+                                    ('11am', '11am'), ('12pm', '12pm'), ('1pm', '1pm')],
+                           default='')
+    date = SelectField('Date', choices=[(' ','Select'),('11/12/18','11/12/18'),
+                                        ('12/12/18', '12/12/18')], default=' ')
 
 class editPlanner(Form):
     task = StringField('Name of Task', [validators.DataRequired()])
@@ -77,6 +89,9 @@ def home():
 def avaliable_room():
     return render_template('view_avaliable_room.html')
 
+@app.route('/timetable')
+def timetable():
+    return render_template('Timetable.html')
 
 
 
@@ -157,22 +172,38 @@ def roombooking():
         time = form.time.data
         room_no = form.room_no.data
         room = Roombooking(block, room_no, date, time,request.cookies.get('admin_no'))
-        id = len(roomlist) + 1
+        try:
+            rooms = db_read["rooms"]
+        except:
+            rooms = {}
 
-        room.set_room_id(id)
+        if request.method == 'POST':
+            if rooms != {}:
+                for checking in rooms:
+                    room_storage = (rooms.get(checking))
+                    room_storage_block = room_storage.get_block()
+                    room_storage_date = room_storage.get_date()
+                    room_storage_room_no =room_storage.get_room_no()
+                    room_storage_time= room_storage.get_time()
 
-        roomlist[id] = room
+                    if block == room_storage_block and room_no == room_storage_room_no and date == room_storage_date and time == room_storage_time:
+                        flash("Room has been booked, please book another room", "danger")
+                        return redirect(url_for('roombooking'))
 
-        db_read["rooms"] = roomlist
+                id = len(roomlist) + 1
 
-        db_read.close()
+                room.set_room_id(id)
 
-        flash('Magazine Inserted Sucessfully.', 'success')
+                roomlist[id] = room
 
-        return redirect(url_for('viewroom'))
+                db_read["rooms"] = roomlist
+
+                db_read.close()
+                print('hi')
+                flash('Room Booking Sucessfully', 'success')
+                return redirect(url_for('viewroom'))
 
     return render_template('Room_Booking.html', form=form)
-
 
 class room_booking(Form):
     time = SelectField('Time slot:  ', [validators.DataRequired()],
@@ -181,17 +212,18 @@ class room_booking(Form):
     block = SelectField('Block', choices=[('', 'Select'),('SBM', 'Blk B'),("SIDM","Blk M"),
                                            ('SIT', 'Blk L')], default=' ')
     room_no = SelectField('Room:  ', [validators.DataRequired()],
-                           choices=[('', 'Select'),('Level 6', '601'), ('Level 6', '602'),('Level 6', '603'),('Level 6', '604'),('Level 6', '605'),
-                                    ('Level 6', '606'),
-                                    ('Level 6', '607'),
-                                    ('Level 6', '608'),
-                                    ('Level 6', '609'),
-                                    ('Level 6', '610'),
-                                    ('Level 5', '532'),
-                                    ('Level 5', '503'), ('Level 4', '432'), ('Level 4', '407')],
+                           choices=[('', 'Select'),('Room 601', 'Room 601'), ('Room 602', 'Room 602'),('Room 603', 'Room 603'),('Room 604', 'Room 604'),('Room 605', 'Room 605'),
+                                    ('Room 606', 'Room 606'),
+                                    ('Room 607', 'Room 607'),
+                                    ('Room 608', 'Room 608'),
+                                    ('Room 609', 'Room 609'),
+                                    ('Room 610', 'Room 610'),
+                                    ('Room 532', 'Room 532'),
+                                    ('Room 503', 'Room 503'), ('Room 432', 'Room 432'), ('Room 407', 'Room 407')],
                            default='')
     date = SelectField('Date', choices=[(' ','Select'),('11/12/18','11/12/18'),
                                         ('12/12/18', '12/12/18')], default=' ')
+
 
 
 @app.route('/viewroom')
@@ -211,8 +243,31 @@ def viewroom():
 
     for room_id in room:
         list.append(room.get(room_id))
+    return render_template('view_room.html',rooms=list)
+@app.route('/viewconfirm')
+def viewconfirm():
 
-    return render_template('view_room.html', rooms=list)
+
+    db_read = shelve.open("confirm.db")
+    try:
+        confirm = db_read["confirms"]
+    except:
+        confirm = {}
+
+    print(confirm)
+
+    list = []
+
+    for newid in confirm:
+        list.append(confirm.get(newid))
+
+    return render_template('view_confirm_bookings.html', confirms=list)
+
+
+@app.route('/testview')
+def testview():
+    return render_template('testview.html')
+
 
 
 @app.route('/',  methods=('GET', 'POST'))
@@ -310,7 +365,7 @@ def register():
             error = 'Course name is required.'
 
         else:
-            userz = User(admin_no,password,email,name,school,'student',course_name,pem_class)
+            userz = User(admin_no,password,email,name,school,course_name,pem_class,'student')
             if userlist != {}:
                 db_read2 = shelve.open("user.db", "r")
                 user = db_read2["users"]
@@ -320,12 +375,11 @@ def register():
                     user_storage_admin_no = user_storage.get_admin_no()
 
                     if admin_no == user_storage_admin_no:
-                        flash('You already have an account', 'danger')
+                        flash('You already have an  account', 'danger')
                         return redirect(url_for('register'))
                     else:
                         pass
             id = len(userlist) + 1
-
 
             userz.set_userid(id)
 
@@ -359,14 +413,14 @@ def register_teacher():
         elif not email:
             error = 'Email is required.'
         elif not name:
+
             error = 'Name is required.'
 
         elif not school:
             error = 'School is required.'
 
         else:
-            #first name put in admin_no second as name
-            userz = Admin(name,password, email, name, school,'teacher')
+            userz = User('', password, email, name, school, '', '','teacher')
             if userlist != {}:
                 db_read2 = shelve.open("user.db", "r")
                 user = db_read2["users"]
@@ -376,7 +430,7 @@ def register_teacher():
                     user_storage_name = user_storage.get_name()
 
                     if name ==user_storage_name:
-                        flash('You already have an account', 'danger')
+                        flash('You already have an  account', 'danger')
                         return redirect(url_for('register_teacher'))
                     else:
                         pass
@@ -724,7 +778,6 @@ def viewtest2():
 class BookingStatusForm(Form):
     pubtype = SelectField('Booking Status:', choices=[('confirm', 'confirm'), ('reject', 'reject'),('pending','pending')], default='pending')
 
-
 @app.route('/teacher_timetable',methods=('GET', 'POST'))
 def teacher_timetable():
     db_read = shelve.open("teacher_timetable.db")
@@ -732,6 +785,13 @@ def teacher_timetable():
         timetablelist = db_read[request.cookies.get('admin_no')]
     except:
         timetablelist = {}
+
+    db_read2=shelve.open('timetable.db')
+    try:
+        database=db_read2['timetablez']
+    except:
+        database={}
+
     if timetablelist == {}:
         print(timetablelist)
         for game in range(1, 61):
@@ -786,12 +846,187 @@ def teacher_timetable():
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
 
+
+#---------------------------------- START
+#----------------------------------
+#----------------------------------
+
+    count = 1
+    if request.method == 'POST':
+        try:
+            print('hi')
+            file=request.files['file']
+            print(file)
+            print('test')
+            file_name = secure_filename(file.filename)
+            print(file_name)
+            file.save(os.path.join(app.config['UPLOADS_PATH'],file_name))
+        except:
+            print(app.config['UPLOADS_PATH'])
+            file = None
+        test_file = open(file_name, 'r')
+
+        for lines in test_file:
+            print(lines)
+            if lines=='':
+                print('knnccb')
+            linez = lines.split(',')
+            if lines[0] != '-':
+                if count <= 6:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '0810-0910')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count<=12:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '0900-0950')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 18:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1010-1100')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 24:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1110-1200')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count<=30:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1205-1255')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count<=36:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1300-1350')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count<=42:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1400-1450')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count<=48:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1510-1600')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count<=54:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1610-1700')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count<=60:
+                    timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
+                                                   request.cookies.get('admin_no'), '1710-1800')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+            else:
+                print('hi')
+                if count <= 6:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '0810-0910')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 12:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '0900-0950')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 18:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1010-1100')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 24:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1110-1200')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 30:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1205-1255')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 36:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1300-1350')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 42:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1400-1450')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 48:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1510-1600')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 54:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1610-1700')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+                elif count <= 60:
+                    timetablez = Teacher_timetable('', '', '', '', '',
+                                                   request.cookies.get('admin_no'), '1710-1800')
+                    timetablez.set_id(count)
+                    timetablelist[count] = timetablez
+                    db_read[request.cookies.get('admin_no')] = timetablelist
+                    count += 1
+        return redirect(url_for('teacher_timetable', filename=file_name))
+
+    print(count)
+#---------------------------- END
+#----------------------------
+#----------------------------
     print(timetablelist)
     list = []
     for id in timetablelist:
         list.append(timetablelist.get(id))
-
+    count=0
     return render_template('teacher_timetable3.html',list=list)
+
 
 @app.route('/create_teacher_timetable/<int:id>', methods=('GET', 'POST'))
 def create_teacher_timetable(id):

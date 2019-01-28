@@ -14,6 +14,11 @@
 
 <link rel='stylesheet' href="{{ url_for('static', filename='css/teacher_timetable.css') }}">
 <table class="table table-bordered" border="" id="display_table">
+
+    <form method="POST" action="/teacher_timetable" enctype = "multipart/form-data">
+    <input style="margin: auto;" type="file" name="file" id ="file">
+        <input type="submit" value="Submit" class="btn btn-info"/>
+</form>
     <thead>
     <tr>
     <th>
