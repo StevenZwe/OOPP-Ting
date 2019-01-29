@@ -881,9 +881,9 @@ def register():
     if request.method == 'POST' and form.validate():
         admin_no = request.form['admin_no']
         password = request.form['password']
-        email=request.form['email']
-        name=request.form['name']
-        school=request.form['school']
+        email = request.form['email']
+        name = request.form['name']
+        school = request.form['school']
         course_name = request.form['course_name']
         pem_class = request.form['pem_class']
         error = None
@@ -1346,7 +1346,7 @@ def teacher_timetable():
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
-            elif game<=12:
+            elif game <= 12:
                 timetablez = Teacher_timetable('', '', '', '', '', request.cookies.get('admin_no'),'0900-0950')
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
@@ -1361,32 +1361,32 @@ def teacher_timetable():
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
-            elif game<=30:
+            elif game <= 30:
                 timetablez = Teacher_timetable('', '', '', '', '', request.cookies.get('admin_no'), '1205-1255')
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
-            elif game<=36:
+            elif game <= 36:
                 timetablez = Teacher_timetable('', '', '', '', '', request.cookies.get('admin_no'), '1300-1350')
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
-            elif game<=42:
+            elif game <= 42:
                 timetablez = Teacher_timetable('', '', '', '', '', request.cookies.get('admin_no'), '1400-1450')
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
-            elif game<=48:
+            elif game <= 48:
                 timetablez = Teacher_timetable('', '', '', '', '', request.cookies.get('admin_no'), '1510-1600')
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
-            elif game<=54:
+            elif game <= 54:
                 timetablez = Teacher_timetable('', '', '', '', '', request.cookies.get('admin_no'), '1610-1700')
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
                 db_read[request.cookies.get('admin_no')] = timetablelist
-            elif game<=60:
+            elif game <= 60:
                 timetablez = Teacher_timetable('', '', '', '', '', request.cookies.get('admin_no'), '1710-1800')
                 timetablez.set_id(game)
                 timetablelist[game] = timetablez
@@ -1401,7 +1401,7 @@ def teacher_timetable():
     if request.method == 'POST':
         try:
             print('hi')
-            file=request.files['file']
+            file = request.files['file']
             print(file)
             print('test')
             file_name = secure_filename(file.filename)
@@ -1414,7 +1414,7 @@ def teacher_timetable():
 
         for lines in test_file:
             print(lines)
-            if lines=='':
+            if lines == '':
                 print('knnccb')
             linez = lines.split(',')
             if lines[0] != '-':
@@ -1425,7 +1425,7 @@ def teacher_timetable():
                     timetablelist[count] = timetablez
                     db_read[request.cookies.get('admin_no')] = timetablelist
                     count += 1
-                elif count<=12:
+                elif count <= 12:
                     timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
                                                    request.cookies.get('admin_no'), '0900-0950')
                     timetablez.set_id(count)
@@ -1446,35 +1446,35 @@ def teacher_timetable():
                     timetablelist[count] = timetablez
                     db_read[request.cookies.get('admin_no')] = timetablelist
                     count += 1
-                elif count<=30:
+                elif count <= 30:
                     timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
                                                    request.cookies.get('admin_no'), '1205-1255')
                     timetablez.set_id(count)
                     timetablelist[count] = timetablez
                     db_read[request.cookies.get('admin_no')] = timetablelist
                     count += 1
-                elif count<=36:
+                elif count <= 36:
                     timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
                                                    request.cookies.get('admin_no'), '1300-1350')
                     timetablez.set_id(count)
                     timetablelist[count] = timetablez
                     db_read[request.cookies.get('admin_no')] = timetablelist
                     count += 1
-                elif count<=42:
+                elif count <= 42:
                     timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
                                                    request.cookies.get('admin_no'), '1400-1450')
                     timetablez.set_id(count)
                     timetablelist[count] = timetablez
                     db_read[request.cookies.get('admin_no')] = timetablelist
                     count += 1
-                elif count<=48:
+                elif count <= 48:
                     timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
                                                    request.cookies.get('admin_no'), '1510-1600')
                     timetablez.set_id(count)
                     timetablelist[count] = timetablez
                     db_read[request.cookies.get('admin_no')] = timetablelist
                     count += 1
-                elif count<=54:
+                elif count <= 54:
                     timetablez = Teacher_timetable(linez[0], linez[1], linez[2], linez[3], linez[4],
                                                    request.cookies.get('admin_no'), '1610-1700')
                     timetablez.set_id(count)
@@ -1562,7 +1562,6 @@ def teacher_timetable():
                     count += 1
         return redirect(url_for('teacher_timetable', filename=file_name))
 
-
     print(count)
 #---------------------------- END
 #----------------------------
@@ -1586,12 +1585,12 @@ def create_teacher_timetable(id):
     if request.method == 'POST':
         module_name = form.module_name.data
         block = form.block.data
-        room=form.room.data
-        school=form.school.data
-        lesson_type=form.lesson_type.data
-        if id<=6:
-            timetablez=Teacher_timetable(module_name,block,room,school,lesson_type,
-                                         request.cookies.get('admin_no'),'0810-0910')
+        room = form.room.data
+        school = form.school.data
+        lesson_type = form.lesson_type.data
+        if id <= 6:
+            timetablez = Teacher_timetable(module_name, block, room, school, lesson_type,
+                                           request.cookies.get('admin_no'), '0810-0910')
         elif id <= 12:
             timetablez = Teacher_timetable(module_name, block, room, school, lesson_type,
                                            request.cookies.get('admin_no'), '0900-0950')
@@ -1635,16 +1634,16 @@ def create_teacher_timetable(id):
 class Teacher_timetableForm(Form):
     module_name = StringField('Module Name')
     block = StringField('Block', [validators.DataRequired()])
-    room=StringField('Room', [validators.DataRequired()])
-    school = SelectField('School',[validators.DataRequired()],
-                         choices=[('', 'Select'),('SIT', 'SIT'),('SCL', 'SCL'),('SBM', 'SBM'),
-                                 ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
-                                ], default=' ' )
+    room = StringField('Room', [validators.DataRequired()])
+    school = SelectField('School', [validators.DataRequired()],
+                         choices=[('', 'Select'), ('SIT', 'SIT'), ('SCL', 'SCL'), ('SBM', 'SBM'),
+                                  ('SIDM', 'SIDM'), ('SEG', 'SEG'), ('SHSS', 'SHSS'), ('SDM', 'SDM')
+                                  ], default=' ')
     lesson_type = SelectField('Lesson Type',
-                     choices=[('Lecture', 'Lecture'), ('Practical', 'Practical'),('Tutorial','Tutorial')], default='Tutorial')
+                              choices=[('Lecture', 'Lecture'), ('Practical', 'Practical'), ('Tutorial', 'Tutorial')], default='Tutorial')
 
 
-@app.route('/view_all_teacher_timetable',methods=('GET', 'POST'))
+@app.route('/view_all_teacher_timetable', methods=('GET', 'POST'))
 def view_all_teacher_timetable():
     db_read = shelve.open("teacher_timetable.db")
     list = []
@@ -1658,7 +1657,7 @@ def view_all_teacher_timetable():
         list.append(id)
     print('===')
     print(list)
-    return render_template('view_timetable.html',list=list)
+    return render_template('view_timetable.html', list=list)
 
 
 @app.route('/view_teacher_timetable/<teacherid>', methods=('GET', 'POST'))
@@ -1675,10 +1674,8 @@ def view_teacher_timetable(teacherid):
     for cell in timetablelist:
         list.append(timetablelist.get(cell))
     print(teacherid)
-    return render_template('view_indivdual_timetable.html',list=list, teacher=teacherid)
+    return render_template('view_indivdual_timetable.html', list=list, teacher=teacherid)
 
 
 if __name__ == '__main__':
     app.run()
-
-

@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session, send_from_directory,make_response
+from flask import Flask, render_template, request, flash, redirect, url_for, session, \
+    send_from_directory,make_response
 from wtforms import Form, StringField, TextAreaField, RadioField, SelectField, validators, PasswordField, FileField,\
     SelectMultipleField, widgets
 from werkzeug.utils import secure_filename
@@ -55,27 +56,27 @@ def login():
                 for checking in user:
                     user_storage = (user.get(checking))
                     user_storage_admin_no = user_storage.get_admin_no()
-                    user_storage_password=user_storage.get_password()
+                    user_storage_password = user_storage.get_password()
                     user_storage_name = user_storage.get_name()
                     user_storage_identity = user_storage.get_identity()
-                    user_storage_userid=user_storage.get_userid()
+                    user_storage_userid = user_storage.get_userid()
                     if user_storage_admin_no != admin_no or user_storage_password != password:
-                        if user_storage_identity=='teacher' and user_storage_name==admin_no and user_storage_password==password:
+                        if user_storage_identity == 'teacher' and user_storage_name==admin_no and user_storage_password==password:
                                 session['id'] = admin_no
                                 session['user_admin_No'] = admin_no
                                 session['logged_in'] = True
-                                session['identity']=user_storage_identity
+                                session['identity'] = user_storage_identity
                                 resp = make_response(redirect(url_for('home')))
-                                resp.set_cookie('admin_no',admin_no)  #key and value
+                                resp.set_cookie('admin_no', admin_no)  #key and value
                                 return resp
                     else:
                         session['id'] = user_storage_userid
                         session['user_admin_No'] = user_storage_admin_no
-                        session['identity']=user_storage_identity
+                        session['identity'] = user_storage_identity
                         session['logged_in'] = True
                         resp = make_response(redirect(url_for('home')))
                         resp.set_cookie('admin_no', admin_no)
-                        resp.set_cookie('name',user_storage_name)
+                        resp.set_cookie('name', user_storage_name)
                         # key and value
                         return resp
                         return redirect(url_for('home'))
@@ -165,24 +166,13 @@ class FormStuff(Form):
                             )
 
     choice = MultiCheckboxField('Group', [validators.DataRequired()],
-                                choices=[('Group1', 'Group1'), ('Group2', 'Group2'), ('Group3', 'Group3'),
-                                         ('Group4', 'Group4'), ('Group5', 'Group5')],
+                                choices=[('IT1801', 'IT1801'), ('IT1802', 'IT1802'), ('IT1803', 'IT1803'),
+                                         ('IT1804', 'IT1804'), ('IT1805', 'IT1805')],
                                 )
 
     des = TextAreaField('Describe Task', [validators.DataRequired()])
 
     marks = StringField('Max mark for students', [validators.DataRequired])
-
-    test = SelectField('Course/Module', [validators.DataRequired()],
-                       choices=[('DIT/Programming Essentials', 'DIT/Programming Essentials'),
-                                ('DIT/Object-Oriented Programming and Project',
-                                'DIT/Object-Oriented Programming and Project'),
-                                ('DIT/Digital Media Interactive Design',
-                                'DIT/Digital Media Interactive Design'),
-                                ('DIT/Communication Skills', 'DIT/Communication Skills'),
-                                ('DCS/Data Communication and Networking',
-                                'DCS/Data Communication and Networking')]
-                       )
 
     givenmarks = StringField('', [validators.DataRequired])
 
@@ -216,25 +206,18 @@ def assignt():
 
 
 class FileUp:
-    def __init__(self, scourse, file):
+    def __init__(self, file):
         self.__file = file
-        self.__scourse = scourse
         self.__id = ''
 
     def get_file(self):
         return self.__file
-
-    def get_scourse(self):
-        return self.__scourse
 
     def get_id(self):
         return self.__id
 
     def set_file(self, file):
         self.__file = file
-
-    def set_scourse(self, scourse):
-        self.__scourse = scourse
 
     def set_id(self, id):
         self.__id = id
@@ -249,14 +232,13 @@ def add_file():
     except:
         submissionsList = {}
     if request.method == "POST":
-        test = form.test.data
         try:
             file = request.files['file']
             file_name = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOADS_PATH'], file_name))
         except:
             file = None
-        fileup = FileUp(test, file_name)
+        fileup = FileUp(file_name)
         id1 = len(submissionsList) + 1
         fileup.set_id(id1)
         submissionsList[id1] = fileup
@@ -289,7 +271,25 @@ def viewassignments():
     return render_template("ViewAssignments.html", list=list)
 
 
-@app.route('/individualassignments/<int:assignmentsid>', methods=('GET','POST'))
+@app.route('/allassignmentsS', methods=('GET', 'POST'))
+def viewassignmentsS():
+    db_read = shelve.open('dates.db')
+    list = []
+
+    try:
+        marksList = db_read['users']
+    except:
+        marksList = {}
+    print('--------')
+    print(list)
+    for id in marksList:
+        print(id)
+        list.append(marksList.get(id))
+
+    return render_template("ViewAssignmentsS.html", list=list)
+
+
+@app.route('/individualassignments/<int:assignmentsid>', methods=('GET', 'POST'))
 def individualassignments(assignmentsid):
     form = FormStuff(request.form)
     db_read = shelve.open('dates.db')
@@ -322,7 +322,6 @@ def individualassignments(assignmentsid):
         url = 'http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg'
         wget.download(url, '/Users/Courtney/Desktop/Organizer-Ting/static/Documents')
         print('Beginning file download with wget module')
-
 
     return render_template('view_individual_assignments.html', form=form, list2=list2)
 
