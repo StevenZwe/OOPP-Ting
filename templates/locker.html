@@ -255,7 +255,7 @@
             <tr>
                 <th>{{ cform.dateav.label }}</th>
                 <div>
-                    <td id="hoverdatecheck">{{ cform.dateav }} <span class="ast">*</span>
+                    <td id="hoverdatecheck">{{ cform.dateav }}<span class="ast">*</span>
                         <span class="tooltiptext">Date format is YYYY-MM-DD</span></td>
                  </div>
             </tr>
@@ -313,7 +313,7 @@
 
 
 
-    <h2 style = "margin-top: 3%; margin-left: 50px">Locker Booking Form</h2>
+    <h2 style = "margin-top: 3%; margin-left: 70px">Locker Booking Form</h2>
     <form method="POST" action="http://127.0.0.1:5000/lockers" style="margin-top: 2%; margin-left:70px">
      <div class="form-group">
          <table width="500" height="280">
@@ -399,12 +399,14 @@
 {#    <div id="lockerPicture"></div>#}
     <script>
         function updatelockerno(i){
+            var dateav = document.getElementById("hoverdatecheck").innerHTML;
             var onclickopt = document.createElement('option');
             onclickopt.setAttribute("id", "lockeridlockerno");
             var addoptiononclick = document.getElementById("addOptions");
             addoptiononclick.appendChild(onclickopt);
             document.getElementById("lockeridlockerno").value = i;
             document.getElementById("lockeridlockerno").text = i;
+            document.getElementById("hoverdate").innerHTML = dateav;
         }
     </script>
 {% endblock %}
