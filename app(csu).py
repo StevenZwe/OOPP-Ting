@@ -8,7 +8,7 @@ import os
 from os.path import join, dirname, realpath
 import urllib2
 
-response = urllib2.urlopen('https://wordpress.org/plugins/about/readme.txt')
+response = urllib2.urlopen('assignments_student/<filename>')
 data = response.read()
 print(data)
 
@@ -45,7 +45,7 @@ def login():
     if request.method == 'POST':
         admin_no = request.form['admin_no']
         password = request.form['password']
-        error = None
+        error = NoneX
 
         if not admin_no:
             error = 'Admin Number is required.'
