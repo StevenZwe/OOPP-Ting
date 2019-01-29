@@ -6,11 +6,7 @@ from werkzeug.utils import secure_filename
 import shelve
 import os
 from os.path import join, dirname, realpath
-import urllib2
 
-response = urllib2.urlopen('assignments_student/<filename>')
-data = response.read()
-print(data)
 
 app = Flask(__name__)
 app.secret_key = 'secret123'
