@@ -1,9 +1,9 @@
 class Planner:
-    def __init__(self,task,date,time,desc,priority):
-        self.__task = task
+    def __init__(self, title, date, time, priority):
+        self.__task = title
         self.__date = date
         self.__time = time
-        self.__desc = desc
+        self.__desc = ''
         self.__priority = priority
 
     def get_task(self):
@@ -21,6 +21,9 @@ class Planner:
     def get_priority(self):
         return self.__priority
 
+    def get_id(self):
+        return self.__id
+
     def set_task(self,task):
         self.__task = task
 
@@ -31,13 +34,33 @@ class Planner:
         self.__time = time
 
     def set_desc(self,desc):
-        self.__desc= desc
+        self.__desc = desc
 
     def set_priority(self, priority):
         self.__priority = priority
 
-    def get_pubid(self):
-        return self.__pubid
+    def set_id(self, id):
+        self.__id = id
 
-    def set_pubid(self, pubid):
-        self.__pubid = pubid
+class Calendar():
+    def __init__(self):
+        self.title = ''
+        self.start = ''
+        self.allDay = ''
+        self.color = ''
+        self.id = ''
+
+    def set_id(self,id):
+        self.id = id
+
+    def set_title(self,task):
+        self.title = task
+
+    def set_start(self,date):
+        self.start = date
+
+    def set_allDay(self):
+        self.allDay = False
+
+    def set_color(self,color):
+        self.color = color

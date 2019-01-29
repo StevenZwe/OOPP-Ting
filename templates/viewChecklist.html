@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% from "includes/_formhelper.html" import render_field %}
+{% block body %}
+    <br>
+    <h1 align="center">Task Checklist</h1>
+    <br/>
+
+    <table class="table table-bordered" style="width: 80%; margin:auto;">
+
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Task</th>
+            <th>Duration</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Edit</th>
+            <th>Done?</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if plans != '' %}
+            {% for plan in plans %}
+                <tr>
+                    <td>{{ plan.get_date() }}</td>
+                    <td>{{ plan.get_task() }}</td>
+                    <td>{{ plan.get_time() }}</td>
+                    <td>{{ plan.get_desc() }}</td>
+                    <td>{{ plan.get_priority() }}</td>
+                    <td>
+                        <form action="{{ url_for('update_task', id=plan.get_id()) }}" >
+                            <input type="submit" value="Edit" class="btn btn-primary"></form>
+                    </td>
+                    <td>
+                        <form action="{{ url_for('delete_task', id=plan.get_id()) }}" method="post">
+                            <input type="submit" value="Done" class="btn btn-primary"
+                                   onclick="return confirm('Are you done with the Task?');"></form>
+                    </td>
+                   </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <br>
+    <a href="calendar" class="btn btn-primary" style="margin-left: 10%">View Calendar</a>
+<a href="quickList" class="btn btn-primary" style="margin-left: 50%">Quick Add</a>
+    <a href="checklist" class="btn btn-primary" style="margin: auto">Add Task</a>
+
+{% endblock %}
