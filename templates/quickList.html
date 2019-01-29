@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{%  block additionalscripts %}
+<script>
+$(function() {
+  $('input[name="Date"]').daterangepicker({
+    singleDatePicker: true,
+    timePicker: true,
+    startDate: moment().startOf('hour'),
+    locale: {
+      format: 'YYYY-MM-DDTHH:mm:ss.sssZ'
+    },
+    opens: "right",
+    drops: "down"
+  });
+});
+</script>
+
+{% endblock %}
+{% block body %}
+    {% from "includes/_formhelper.html" import render_field %}
+    <br>
+    <h1 align="center">Quick Add</h1>
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                        <li>{{ form[field_name].label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <form method="POST" action="">
+
+        <div class="form-group">
+
+            <div class="form-group" style="margin-left: 5px;">
+                <div class="form-row">
+                    <div class="form-group col-md-4" style="margin:auto">
+                        {{ render_field(form.Task, class_="form-control") }}
+                        {{ render_field(form.Duration, class_="form-control") }}
+                        Date <br>
+                        <input class="form-control" style="margin:auto; width: 100%" type="text" name="Date" value={{request.form.Date}}/>
+                        {{ render_field(form.Priority, class_="form-control") }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <a href="calendar" class="btn btn-primary" style="margin-left: 35%">Cancel</a>
+        <input type="submit" value="Add Task" class="btn btn-primary" style="margin-left:20%"/>
+    </form>
+
+
+
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+{%  block additionalscripts %}
+<script>
+$(function() {
+  $('input[name="Date"]').daterangepicker({
+    timePicker: true,
+    singleDatePicker: true,
+    startDate: moment().startOf('hour'),
+    locale: {
+      format: 'YYYY-MM-DDTHH:mm:ss.sssZ'
+    },
+    opens: "right",
+    drops: "down"
+  });
+});
+</script>
+
+{% endblock %}
+{% block body %}
+    {% from "includes/_formhelper.html" import render_field %}
+    {% if editing %}
+        <br>
+        <h1 align="center">Edit Checklist</h1>
+    {% else %}
+        <br>
+        <h1 align="center">Add to Checklist</h1>
+    {% endif %}
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                        <li>{{ form[field_name].label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% if editing %}
+          <form method="POST" action="">
+
+        <div class="form-group">
+
+            <div class="form-group" style="margin-left: 5px;">
+                <div class="form-row">
+                    <div class="form-group col-md-4" id="task" style="margin:auto">
+                        {{ render_field(form.Task, class_="form-control",value=plan1.get_task()) }}
+                        Date <br>
+                        <input class="form-control" style="margin:auto;" type="text" id="Date" name="Date" value={{plan1.get_date()}}/>
+                        {{ render_field(form.Duration, class_="form-control",value=plan1.get_time()) }}
+                        {{ render_field(form.Desc, class_="form-control",value=plan1.get_desc()) }}
+                        {{ render_field(form.Priority, class_="form-control",value=plan1.get_priority(),selected=plan1.get_priority()) }}
+                        Colour <br>
+                            <input class="form-button color" style="color: #C71C22; margin-left: 4%;" data-color="#C71C22" type="button"
+                               value="Red"/>
+                        <input class="form-button color" style="color: #53A93F" data-color="#53A93F" type="button"
+                               value="Green"/>
+                        <input class="form-button color" style="color: #2fa4e7" data-color="#2fa4e7" type="button"
+                               value="Blue"/>
+                        <input class="form-button color" style="color: #4D4D4D" data-color="#4D4D4D" type="button"
+                               value="Grey"/>
+                        <input class="form-button color" style="color: #9F6635" data-color="#9F6635" type="button"
+                               value="Brown"/>
+                        <input class="form-button color" style="color: #5D3F6A" data-color="#5D3F6A" type="button"
+                               value="Purple"/>
+                        <input class="form-button color" style="color: #F47983" data-color="#F47983" type="button"
+                               value="Pink"/>
+                        <input class="form-button color" style="color: #DD5600" data-color="#DD5600" type="button"
+                               value="Orange"/>
+                        <input class="form-control" type="color" style="margin: auto" value="" id="color_custom" />
+                        <input type="hidden" value="{{form.Color}}" name="color" id="color"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            <a href="../calendar" class="btn btn-primary" style="margin-left: 35%">Cancel</a>
+            <a href="../viewChecklist" class="btn btn-primary" style="margin-left: 10%">View Checklist</a>
+            <input type="submit" value="Edit Task" class="btn btn-primary"/>
+    </form>
+    {% else %}
+    <form method="POST" action="">
+
+        <div class="form-group" style="margin: auto;">
+
+            <div class="form-group" style="margin-left: 5px;">
+                <div class="form-row">
+                    <div class="form-group col-md-4" id="task" style="margin:auto">
+                        {{ render_field(form.Task, class_="form-control") }}
+                        Date <br>
+                        <input class="form-control" style="margin:auto;" type="text" id="Date" name="Date" value={{request.form.Date}}/>
+                        {{ render_field(form.Duration, class_="form-control") }}
+                        {{ render_field(form.Desc, class_="form-control") }}
+                        {{ render_field(form.Priority, class_="form-control") }}
+                        Colour <br>
+                            <input class="form-button color" style="color: #C71C22; margin-left: 4%;" data-color="#C71C22" type="button"
+                               value="Red"/>
+                        <input class="form-button color" style="color: #53A93F" data-color="#53A93F" type="button"
+                               value="Green"/>
+                        <input class="form-button color" style="color: #2fa4e7" data-color="#2fa4e7" type="button"
+                               value="Blue"/>
+                        <input class="form-button color" style="color: #4D4D4D" data-color="#4D4D4D" type="button"
+                               value="Grey"/>
+                        <input class="form-button color" style="color: #9F6635" data-color="#9F6635" type="button"
+                               value="Brown"/>
+                        <input class="form-button color" style="color: #5D3F6A" data-color="#5D3F6A" type="button"
+                               value="Purple"/>
+                        <input class="form-button color" style="color: #F47983" data-color="#F47983" type="button"
+                               value="Pink"/>
+                        <input class="form-button color" style="color: #DD5600" data-color="#DD5600" type="button"
+                               value="Orange"/>
+                        <input class="form-control" type="color" style="margin: auto" value="" id="color_custom" />
+                        <input type="hidden" value="{{form.Color}}" name="color" id="color"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            <a href="calendar" class="btn btn-primary" style="margin-left: 35%">Cancel</a>
+            <a href="viewChecklist" class="btn btn-primary" style="margin-left: 10%">View Checklist</a>
+            <input type="submit" value="Add Task" class="btn btn-primary"/>
+    </form>
+    {% endif %}
+<script>
+
+        document.getElementById("color_custom").onchange = function(eventData) {
+            document.getElementById("color").value = eventData.target.value;
+        };
+
+        document.getElementById("task").onclick = function(eventData) {
+            if (eventData.target.className === "form-button color") {
+                document.getElementById("color").value = eventData.target.getAttribute("data-color");
+                document.getElementById("color_custom").value = eventData.target.getAttribute("data-color");
+                return false;
+            }
+            else {
+
+            }
+        };
+
+
+</script>
+
+
+
+{% endblock %}

@@ -7,10 +7,12 @@ from Bookingteachers import Booking
 from Teacher_timetable import Teacher_timetable
 import functools
 import shelve
+import json
 import datetime
 from validate import Roombooking
 from Locker import Locker
 from Forms import *
+from Planner import *
 from tkinter import *
 from tkinter import messagebox
 import os
@@ -52,6 +54,13 @@ class RequiredIf(object):
                 else:
                     validators.Optional().__call__(form, field)
 
+class checklist(Form):
+    Task = StringField('Name of Task', [validators.DataRequired()])
+    Duration = SelectField("Duration", [validators.DataRequired()],
+                       choices=[('', 'Select'), ('5 mins', '5 mins'), ('10 mins', '10 mins'),
+                                ('15 mins', '15 mins'), ('30 mins', '30 mins'), ('45 mins', '45 mins'),
+                                ('1 hour', '1 hour'), ('2 hours', '2 hours'), ('3 hours', '3 hours'),
+                                ('4 hours', '4 hours'), ('Others', 'Others')], default='')
 
 class editPlanner(Form):
     task = StringField('Name of Task', [validators.DataRequired()])
@@ -62,10 +71,25 @@ class editPlanner(Form):
     date = SelectField("Date", choices=[(' ', 'Select'), ('11/12/18', '11/12/18'),
                                         ('12/12/18', '12/12/18')], default=' ')
 
-    desc = StringField("Description")
-    priority = SelectField("Importance", choices=[(' ', 'Select'), ('1 Star', '1 Star'),
-                                        ('2 Star', '2 Star'),('3 Star', '3 Star'),
-                                        ('4 Star', '4 Star'),('5 Star', '5 Star')], default='1 Star')
+    Desc = StringField("Description")
+    Priority = SelectField("Importance", choices=[(' ', 'Select (1 Star being least important, 5 being most)'),
+                                    ('1 Star', '1 Star'),('2 Star', '2 Star'), ('3 Star', '3 Star'),
+                                    ('4 Star', '4 Star'), ('5 Star', '5 Star')], default='')
+
+class quickAdd(Form):
+    Task = SelectField("Task", [validators.DataRequired()],
+                       choices=[('', 'Select'), ('Exercise', 'Exercise'), ('Go Out', 'Go Out'),
+                                ('Homework', 'Homework'), ('Revision', 'Revision'), ('Meeting', 'Meeting'),
+                                ('Groceries', 'Groceries'), ('Chores', 'Chores'), ('Work', 'Work'),
+                                ('Project', 'Project')], default='')
+    Duration = SelectField("Duration",
+                           choices=[('', 'Select'), ('5 mins', '5 mins'), ('10 mins', '10 mins'),
+                                    ('15 mins', '15 mins'), ('30 mins', '30 mins'), ('45 mins', '45 mins'),
+                                    ('1 hour', '1 hour'), ('2 hours', '2 hours'), ('3 hours', '3 hours'),
+                                    ('4 hours', '4 hours'), ('Others', 'Others')], default='')
+    Priority = SelectField("Importance", choices=[(' ', 'Select (1 Star being least important, 5 being most)'),
+                                    ('1 Star', '1 Star'),('2 Star', '2 Star'), ('3 Star', '3 Star'),
+                                    ('4 Star', '4 Star'), ('5 Star', '5 Star')], default='')
 
 
 def login_required(view):
@@ -115,59 +139,237 @@ def timetable():
 @app.route('/planner')
 def planner():
     return render_template('Planner.html')
+@app.route('/calendar')
+def calendar():
+    return render_template('calender.html')
 
+@app.route('/quickList', methods=['GET','POST'])
+def addQuick():
+    form = quickAdd(request.form)
 
-@app.route('/planneredit', methods=['GET','POST'])
-def Editplanner():
-    form = editPlanner(request.form)
-
-    db_read = shelve.open("plans.db")
+    db_read = shelve.open("plan.db")
     try:
-        planList = db_read["plan"]
+        planList = db_read["plans"]
     except:
         planList = {}
 
     if request.method == 'POST':
-        task = form.task.data
-        time = form.time.data
-        date = form.date.data
-        desc = form.desc.data
-        priority = form.priority.data
-        # plan = Planner(task, date, time, desc ,priority)
-
+        task = form.Task.data
+        time = form.Duration.data
+        date = request.form["Date"]
+        priority = form.Priority.data
+        plan = Planner(task, date, time, priority)
         id = len(planList) + 1
+        plan.set_id(id)
 
-        # plan.set_pubid(id)
-        #
-        # planList[id] = plan
+        cal = Calendar()
+        cal.set_id(id)
+        cal.set_title(task)
+        cal.set_start(date)
+        cal.set_allDay()
+        if priority == '1 Star':
+            cal.set_color('#708090')
+        if priority == '2 Star':
+            cal.set_color('#bdc9e1')
+        if priority == '3 Star':
+            cal.set_color('#74a9cf')
+        if priority == '4 Star':
+            cal.set_color('#2c7fb8')
+        if priority == '5 Star':
+            cal.set_color('#253494')
 
-        db_read["plan"] = planList
+        calTask = cal.__dict__
+        dataList1 = []
+
+        with open("events.json", "r") as input_data:
+            data = json.load(input_data)
+            for line in data:
+                dataList1.append(line)
+
+        with open("events.json", "w") as write_data:
+            dataList1.append(calTask)
+            json.dump(dataList1, write_data, indent=4)
+            write_data.close()
+
+        planList[id] = plan
+
+        db_read["plans"] = planList
 
         db_read.close()
 
-        flash('Sucess!', 'success')
+        flash('Success!', 'success')
 
-        return redirect(url_for('viewplans'))
+        return redirect(url_for('calendar'))
 
-    return render_template('planneredit.html', form=form)
-
+    return render_template('quickList.html', form=form)
 
 @app.route('/viewplans')
 def viewplans():
     db_read = shelve.open("plans.db")
+@app.route('/checklist', methods=['GET','POST'])
+def addChecklist():
+    form = checklist(request.form)
+
+    db_read = shelve.open("plan.db")
     try:
-        plan = db_read["plan"]
+        planList = db_read["plans"]
     except:
-        plan = {}
-    print(plan)
+        planList = {}
+
+    if request.method == 'POST':
+        task = form.Task.data
+        time = form.Duration.data
+        date = request.form["Date"]
+        desc = form.Desc.data
+        color = request.form["color"]
+        priority = form.Priority.data
+        plan = Planner(task, date, time, priority)
+
+        id = len(planList) + 1
+        plan.set_desc(desc)
+        plan.set_id(id)
+
+        cal = Calendar()
+        cal.set_id(id)
+        cal.set_title(task)
+        cal.set_start(date)
+        cal.set_color(color)
+        cal.set_allDay()
+
+        planList[id] = plan
+        calTask = cal.__dict__
+        db_read["plans"] = planList
+
+        db_read.close()
+        dataList = []
+
+        if not dataList:
+            with open("events.json", "r") as input_data:
+                data = json.load(input_data)
+                for line in data:
+                    dataList.append(line)
+
+        with open("events.json", "w") as write_data:
+            dataList.append(calTask)
+            json.dump(dataList, write_data, indent=4)
+            write_data.close()
+
+        flash('Success!', 'success')
+
+        return redirect(url_for('calendar'))
+
+    return render_template('checklist.html', form=form, editing=False)
+
+@app.route('/viewChecklist')
+def viewChecklist():
+
+    db_read = shelve.open("plan.db")
+    try:
+        plans = db_read["plans"]
+    except:
+        plans = {}
 
     list = []
 
-    for id in plan:
-        list.append(plan.get(id))
+    for id in plans:
+        plan = plans.get(id)
+        dateTime = plan.get_date()
+        date = dateTime.split('T')
+        newDate = date[0]
+        plan.set_date(newDate)
+        list.append(plan)
+    return render_template('viewChecklist.html', plans=list)
 
-    return render_template('viewPlans.html', plan=list)
+@app.route('/edit_task/<int:id>', methods=['GET', 'POST'])
+def update_task(id):
+    form = checklist(request.form)
+    db_read = shelve.open("plan.db")
+    planList = db_read["plans"]
+    plan1 = planList.get(id)
+    try:
+        if request.method == 'POST':
+            task = form.Task.data
+            date = request.form["Date"]
+            time = form.Duration.data
+            desc = form.Desc.data
+            color = request.form["color"]
+            priority = form.Priority.data
+            plan = Planner(task, date, time, priority)
+            plan.set_desc(desc)
+            plan.set_id(id)
 
+            planList[id] = plan
+            db_read["plans"] = planList
+            db_read.close()
+
+            cal = Calendar()
+            cal.set_id(id)
+            cal.set_title(task)
+            cal.set_start(date)
+            cal.set_color(color)
+            cal.set_allDay()
+
+            dataList = []
+
+            with open("events.json", "r") as input_data:
+                data = json.load(input_data)
+                for line in data:
+                    dataList.append(line)
+
+            with open("events.json", "w") as write_data:
+                for event in dataList:
+                    if event['id'] == id:
+                        event["title"] = task
+                        event["start"] = date
+                        event["color"] = color
+                        json.dump(dataList, write_data, indent=4)
+                        write_data.close()
+                flash('Success!', 'success')
+                return redirect(url_for('calendar'))
+    except :
+            flash('HELP', 'danger')
+            return  redirect(url_for('calendar'))
+
+    return render_template('checklist.html', form=form, editing=True, plan1=plan1)
+
+
+@app.route('/delete_task/<int:id>', methods=['POST'])
+def delete_task(id):
+    db_read = shelve.open("plan.db")
+
+    try:
+        dataList = []
+        with open("events.json", "r") as input_data:
+            data = json.load(input_data)
+            for line in data:
+                dataList.append(line)
+
+        with open("events.json", "w") as edit_data:
+            dataList.pop(id-1)
+            json.dump(dataList, edit_data, indent=4)
+            edit_data.close()
+
+        planList = db_read["plans"]
+        print("id, ", id)
+        print("planList before: ", planList)
+
+        ##del pList[id]
+        planList.pop(id)
+        print(planList)
+        db_read["plans"] = planList
+        db_read.close()
+        flash('Done!', 'success')
+
+        return redirect(url_for('viewChecklist'))
+
+    except:
+        flash('Not Done :(', 'danger')
+        return redirect(url_for('viewChecklist'))
+
+@app.route('/data')
+def return_data():
+    with open("events.json", "r") as input_data:
+        return input_data.read()
 
 @app.route('/Room_Booking',  methods=('GET', 'POST'))
 def roombooking():
@@ -217,7 +419,6 @@ def roombooking():
                 return redirect(url_for('viewroom'))
 
     return render_template('Room_Booking.html', form=form)
-
 
 class room_booking(Form):
     time = SelectField('Time slot:  ', [validators.DataRequired()],
