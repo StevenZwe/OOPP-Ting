@@ -1636,12 +1636,12 @@ class Teacher_timetableForm(Form):
     module_name = StringField('Module Name')
     block = StringField('Block', [validators.DataRequired()])
     room=StringField('Room', [validators.DataRequired()])
-    school = SelectField('School', [validators.DataRequired()],
-                         ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
+    school = SelectField('School',[validators.DataRequired()],
+                         choices=[('', 'Select'),('SIT', 'SIT'),('SCL', 'SCL'),('SBM', 'SBM'),
+                                 ('SIDM', 'SIDM'),('SEG', 'SEG'),('SHSS', 'SHSS'), ('SDM', 'SDM')
                                 ], default=' ' )
     lesson_type = SelectField('Lesson Type',
-                              choices=[('Lecture', 'Lecture'), ('Practical', 'Practical'),('Tutorial','Tutorial')],
-                              default='Tutorial')
+                     choices=[('Lecture', 'Lecture'), ('Practical', 'Practical'),('Tutorial','Tutorial')], default='Tutorial')
 
 
 @app.route('/view_all_teacher_timetable',methods=('GET', 'POST'))
@@ -1676,8 +1676,6 @@ def view_teacher_timetable(teacherid):
         list.append(timetablelist.get(cell))
     print(teacherid)
     return render_template('view_indivdual_timetable.html',list=list, teacher=teacherid)
-
-
 
 
 if __name__ == '__main__':
