@@ -6,7 +6,11 @@ from werkzeug.utils import secure_filename
 import shelve
 import os
 from os.path import join, dirname, realpath
-import wget
+import urllib2
+
+response = urllib2.urlopen('https://wordpress.org/plugins/about/readme.txt')
+data = response.read()
+print(data)
 
 app = Flask(__name__)
 app.secret_key = 'secret123'
