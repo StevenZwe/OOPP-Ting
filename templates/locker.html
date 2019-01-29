@@ -246,7 +246,7 @@
 
 
 
-<h1 style = "margin-top: 3%; text-align: center; font-size: 50px;">Daily Locker Booking</h1>
+<h1 style = "margin-top: 3%; text-align: center; font-size: 60px;">Daily Locker Booking</h1>
 
 <h2 style = "margin-top: 3%; margin-left: 70px">Check Locker Availability</h2>
     <form method="POST" action="http://127.0.0.1:5000/checkAvailability" style="margin-top: 2%; margin-left:70px">
@@ -276,26 +276,12 @@
                     <td>
                         <ul id="myItemList">
                             {% for i in finallist %}
-
-                                <li><a style="color: #4fb1ea;" onclick="updatelockerno()" id="updatelockernoid">{{ i }}</a></li>
+                                <li><a style="color: #4fb1ea;" onclick="updatelockerno(id)" id={{ i }}>{{ i }}</a></li>
 
                             {% endfor %}
                         </ul>
-                        <script>
-                            {#let items = sessionStorage.getItem('finallist');#}
 
-                            {#var li = document.createElement("p");#}
-                            {#var items = document.createTextNode("yes");#}
-                            {#li.appendChild(items);#}
-                            {#document.getElementById("myItemList").appendChild(li);#}
 
-                            {#items.forEach(function (item) {#}
-                            {#var li = document.createElement('li');#}
-                            {#ul.appendChild(li);#}
-                            {##}
-                            {#li.innerHTML += item;#}
-
-                        </script>
                     </td>
                 </tr>
             </tbody>
@@ -371,7 +357,7 @@
                  <th class="darkerTh">{{ form.lockerno.label }}</th>
                  <td>
 {#                     {{ form.lockerno }} #}
-                     <select value="" class="lockeridlockerno" id="addOptions" name="lockernohtml">
+                     <select id="addOptions" name="lockernohtml">
 
                      </select>
                      <span class="ast">*</span>
@@ -398,19 +384,29 @@
     <table style = "margin-left: 100px; margin-bottom: 100px">
     <tr>
         <th>Small</th>
-        <td>$0.30 per day</td>
+        <td>$2 per day</td>
     </tr>
     <tr>
         <th class="darkerTh">Medium</th>
-        <td>$0.50 per day</td>
+        <td>$5 per day</td>
     </tr>
     <tr>
         <th>Big</th>
-        <td>$0.70 per day</td>
+        <td>$10 per day</td>
     </tr>
     </table>
 {#    <h4>Pick a locker</h4>#}
 {#    <div id="lockerPicture"></div>#}
+    <script>
+        function updatelockerno(i){
+            var onclickopt = document.createElement('option');
+            onclickopt.setAttribute("id", "lockeridlockerno");
+            var addoptiononclick = document.getElementById("addOptions");
+            addoptiononclick.appendChild(onclickopt);
+            document.getElementById("lockeridlockerno").value = i;
+            document.getElementById("lockeridlockerno").text = i;
+        }
+    </script>
 {% endblock %}
 
 
