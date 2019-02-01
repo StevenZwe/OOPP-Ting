@@ -1,38 +1,320 @@
+{#  <td u   </td>#}
+<style>
+    #display_table {
+    text-align: center;
+    }
+</style>
+
+
 {% extends 'layout.html' %}
 
 {% block body %}
-    {% from "includes/_formhelper.html" import render_field %}
-    <title>Assignments</title>
-    <table>
-        <thead>
-        <tr>
-            <th>Course/Module</th>
-            <th>Due Dates</th>
-            <th>Description</th>
-            <th>Marks</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-{#            {% for lists in list %}#}
-{#                <td>{{ lists.get_course() }}</td>#}
-{#                <td>{{ lists.get_date() }}</td>#}
-{#                <td>{{ lists.get_des()}}</td>#}
-{#                <td><form method="POST">{{ render_field(form.givingmarks, class_="form-control") }} / {{ lists.get_maxmarks() }} <input type="submit" value="Confirm"> </form></td>#}
-{#                </tr>#}
-{#            {% endfor %}#}
-        <div >
-{#    {% for listz in list %}#}
-{#        <div>#}
-{#          <h3 >{{ listz.get_course() }} </h3>#}
-{#          <form  action="{{url_for('home', assignmentsid=listz.get_id())}}" method="post" >#}
-{#        <input type="submit" value="View Here" class="btn btn-info" >#}
-{#          </form>#}
-{#        </div>#}
-{#            {% endfor %}#}
-        </div>
-        </tbody>
+    <h1>Viewing {{ teacher }} Timetable</h1>
+    <input type="submit" value="Book your teacher here!" class="btn btn-primary" onclick="window.location.href='/create_booking_teacher'">
+    <br>
+    <br>
+<link rel='stylesheet' href="{{ url_for('static', filename='css/teacher_timetable.css') }}">
+<table class="table table-bordered" border="" id="display_table">
+    <thead>
+    <tr>
+    <th>
+  </th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    </tr>
+    </thead>
 
-    </table>
+{# ID OF CELL IS FIXED #}
+    <tbody>
+    {% for row in range(10) %}  {# TO LOOP THROUGH NUMBER OF ROWS #}
+        {% if row==0 %}
+            <tr>
+              <td>0810-0910</td>
+               {% for show in list[0:6] %}
+                   <td id="{{ show.get_id() }}">
+                        {% if teacher == show.get_username() %}
+                            {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                                No class
+                                <br>
+                            {% else %}
+                             {{ show.get_module_name() }}
+                                <br>
+                             Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                               <br>
+                            {{ show.get_school() }}
+                              <br>
+                             {{ show.get_lesson_type() }}
+                                <br>
+
+                                </td>
+                            {% endif %}
+                {% else %}
+                  No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+        {% elif row==1 %}
+            <tr>
+              <td>0900-0950</td>
+               {% for show in list[6:12] %}
+                   <td id="{{ show.get_id() }}">
+                    {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                        No class
+
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                     Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+
+                        </td>
+                    {% endif %}
+                {% else %}
+                   No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==2 %}
+            <tr>
+              <td>1010-1100</td>
+               {% for show in list[12:18] %}
+                   <td id="{{ show.get_id() }}">
+                 {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                         No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                    Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+
+                        </td>
+                    {% endif %}
+                {% else %}
+                  No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==3 %}
+            <tr>
+              <td>1110-1200</td>
+               {% for show in list[18:24] %}
+                   <td id="{{ show.get_id() }}">
+                {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                       No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                     Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+
+                        </td>
+                    {% endif %}
+                               {% else %}
+                  No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==4 %}
+            <tr>
+              <td>1205-1255</td>
+
+               {% for show in list[24:30] %}
+                   <td id="{{ show.get_id() }}">
+                           {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                        No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                    Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+
+                        </td>
+                    {% endif %}
+                             {% else %}
+                  No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==5 %}
+            <tr>
+              <td>1300-1350</td>
+               {% for show in list[30:36] %}
+                   <td id="{{ show.get_id() }}">
+                       {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                        No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                     Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+
+                        </td>
+                    {% endif %}
+                            {% else %}
+                  No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==6 %}
+            <tr>
+              <td>1400-1450</td>
+               {% for show in list[36:42] %}
+                   <td id="{{ show.get_id() }}">
+                       {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                        No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                     Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+
+                        </td>
+                    {% endif %}
+                           {% else %}
+                   No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==7 %}
+            <tr>
+              <td>1510-1600</td>
+               {% for show in list[42:48] %}
+                   <td id="{{ show.get_id() }}">
+                       {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                         No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                     Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+
+                        </td>
+                    {% endif %}
+                            {% else %}
+                 No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==8 %}
+            <tr>
+              <td>1610-1700</td>
+               {% for show in list[48:54] %}
+                   <td id="{{ show.get_id() }}">
+                           {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                       No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                    Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+                        </td>
+                    {% endif %}
+                          {% else %}
+                  No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+                 {% elif row==9 %}
+            <tr>
+              <td>1710-1800</td>
+               {% for show in list[54:60] %}
+                   <td id="{{ show.get_id() }}">
+                           {% if teacher == show.get_username() %}
+                    {% if show.get_module_name()=='' and show.get_block()=='' and show.get_room()=='' %}
+                        No class
+                    {% else %}
+                     {{ show.get_module_name() }}
+                        <br>
+                    Block {{ show.get_block() }}
+                               <br>
+                            Room {{  show.get_room()  }}
+                       <br>
+                    {{ show.get_school() }}
+                      <br>
+                     {{ show.get_lesson_type() }}
+                        <br>
+                        </td>
+                    {% endif %}
+                           {% else %}
+                  No class
+                   {% endif %}
+               {% endfor %}
+            </tr>
+
+        {% endif %}
+    {% endfor %}
+
+    </tbody>
+</table>
 
 {% endblock %}

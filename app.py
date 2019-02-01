@@ -24,10 +24,10 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = 'secret123'
 
-UPLOAD_FOLDER1 = '/static/timetable/'
+UPLOAD_FOLDER1 = '/static/Documents/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER1
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-app.config['UPLOADS_PATH'] = join(dirname(realpath(__file__)), 'static\\timetable\\')
+app.config['UPLOADS_PATH'] = join(dirname(realpath(__file__)), 'static\\Documents\\')
 
 @app.route('/teacher_timetable/<filename>')
 def uploaded_file(filename):
@@ -357,24 +357,29 @@ def return_data():
 def roombooking():
     form = room_booking(request.form)
     db_read = shelve.open("room.db")
-
+    print('hi')
     try:
         roomlist = db_read["rooms"]
     except:
         roomlist = {}
+    print('bye')
 
     if request.method == 'POST':
         block = form.block.data
         date = form.date.data
         time = form.time.data
         room_no = form.room_no.data
+        print('zzz')
+
         room = Roombooking(block, room_no, date, time,request.cookies.get('admin_no'))
         try:
             rooms = db_read["rooms"]
         except:
             rooms = {}
+        print('xzxzo')
 
         if request.method == 'POST':
+            print('hi')
             if rooms != {}:
                 for checking in rooms:
                     room_storage = (rooms.get(checking))
@@ -382,23 +387,25 @@ def roombooking():
                     room_storage_date = room_storage.get_date()
                     room_storage_room_no =room_storage.get_room_no()
                     room_storage_time= room_storage.get_time()
+                    print('knn')
 
                     if block == room_storage_block and room_no == room_storage_room_no and date == room_storage_date and time == room_storage_time:
                         flash("Room has been booked, please book another room", "danger")
                         return redirect(url_for('roombooking'))
+                print('xadasdas')
 
-                id = len(roomlist) + 1
+            id = len(roomlist) + 1
 
-                room.set_room_id(id)
+            room.set_room_id(id)
 
-                roomlist[id] = room
+            roomlist[id] = room
 
-                db_read["rooms"] = roomlist
+            db_read["rooms"] = roomlist
 
-                db_read.close()
-                print('hi')
-                flash('Room Booking Sucessfully', 'success')
-                return redirect(url_for('viewroom'))
+            db_read.close()
+            print('hi')
+            flash('Room Booking Sucessfully', 'success')
+            return redirect(url_for('viewroom'))
 
     return render_template('Room_Booking.html', form=form)
 
@@ -1577,6 +1584,245 @@ def view_teacher_timetable(teacherid):
     print(teacherid)
     return render_template('view_indivdual_timetable.html',list=list, teacher=teacherid)
 
+
+@app.route('/assignments_student/<filename>')
+def uploaded_filez(filename):
+    return send_from_directory(app.config['UPLOADS_PATH'], filename)
+
+
+def allowed_filesz(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+class PhotoForm(Form):
+    photo = FileField(validators=[''])
+
+
+class CreateAssignments:
+    def __init__(self, course, group, date, des, maxmarks, givenmarks):
+        self.__course = course
+        self.__group = group
+        self.__date = date
+        self.__des = des
+        self.__maxmarks = maxmarks
+        self.__id = ''
+        self.__givenmarks = givenmarks
+
+    def get_course(self):
+        return self.__course
+
+    def get_group(self):
+        return self.__group
+
+    def get_date(self):
+        return self.__date
+
+    def get_des(self):
+        return self.__des
+
+    def get_id(self):
+        return self.__id
+
+    def get_maxmarks(self):
+        return self.__maxmarks
+
+    def get_givenmarks(self):
+        return self.__givenmarks
+
+    def set_course(self, course):
+        self.__course = course
+
+    def set_group(self, group):
+        self.__group = group
+
+    def set_date(self, date):
+        self.__date = date
+
+    def set_id(self, id):
+        self.__id = id
+
+    def set_des(self, des):
+        self.__des = des
+
+    def set_maxmarks(self, maxmarks):
+        self.__maxmarks = maxmarks
+
+    def get_givenmark(self, givenmarks):
+        self.__givenmarks = givenmarks
+
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+
+class FormStuff(Form):
+    selection = SelectField('Course/Module', [validators.DataRequired()],
+                            choices=[('DIT/Programming Essentials', 'DIT/Programming Essentials'),
+                                     ('DIT/Object-Oriented Programming and Project',
+                                      'DIT/Object-Oriented Programming and Project'),
+                                     ('DIT/Digital Media Interactive Design',
+                                      'DIT/Digital Media Interactive Design'),
+                                     ('DIT/Communication Skills', 'DIT/Communication Skills'),
+                                     ('DCS/Data Communication and Networking',
+                                      'DCS/Data Communication and Networking')]
+                            )
+
+    choice = MultiCheckboxField('Group', [validators.DataRequired()],
+                                choices=[('IT1801', 'IT1801'), ('IT1802', 'IT1802'), ('IT1803', 'IT1803'),
+                                         ('IT1804', 'IT1804'), ('IT1805', 'IT1805')],
+                                )
+
+    des = TextAreaField('Describe Task', [validators.DataRequired()])
+
+    marks = StringField('Max mark for students', [validators.DataRequired])
+
+    givenmarks = StringField('', [validators.DataRequired])
+
+
+@app.route('/assignments_teacher', methods=['GET', 'POST'])
+def assignt():
+    form = FormStuff(request.form)
+    db_read = shelve.open("dates.db")
+    try:
+        dateslist = db_read["users"]
+    except:
+        dateslist = {}
+        print(dateslist)
+    if request.method == 'POST':
+        selection = request.form['selection']
+        choice = form.choice.data
+        date = request.form['daterange']
+        des = request.form['des']
+        maxmarks = request.form['marks']
+        overall = CreateAssignments(selection, choice, date, des, maxmarks, '')
+        id = len(dateslist) + 1
+        overall.set_id(id)
+        dateslist[id] = overall
+        db_read["users"] = dateslist
+        db_read.close()
+
+        flash('You have uploaded the assignment.', 'success')
+        return redirect(url_for('viewassignments'))
+
+    return render_template('AssignmentsPgTeacher.html', form=form)
+
+
+class FileUp:
+    def __init__(self, file):
+        self.__file = file
+        self.__id = ''
+
+    def get_file(self):
+        return self.__file
+
+    def get_id(self):
+        return self.__id
+
+    def set_file(self, file):
+        self.__file = file
+
+    def set_id(self, id):
+        self.__id = id
+
+
+@app.route('/assignments_student', methods=['GET', 'POST'])
+def add_file():
+    form = FormStuff(request.form)
+    db_read = shelve.open("submissions.db", flag='c')
+    try:
+        submissionsList = db_read["submissions"]
+    except:
+        submissionsList = {}
+    if request.method == "POST":
+        try:
+            file = request.files['file']
+            file_name = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOADS_PATH'], file_name))
+        except:
+            file = None
+        fileup = FileUp(file_name)
+        id1 = len(submissionsList) + 1
+        fileup.set_id(id1)
+        submissionsList[id1] = fileup
+        db_read["submissions"] = submissionsList
+
+        db_read.close()
+
+        flash('Submission uploaded', 'success')
+
+        return redirect(url_for('viewassignmentsS', filename=file_name))
+
+    return render_template('AsssignmentsPgStudents.html', form=form)
+
+
+@app.route('/allassignments', methods=('GET', 'POST'))
+def viewassignments():
+    db_read = shelve.open('dates.db')
+    list = []
+
+    try:
+        marksList = db_read['users']
+    except:
+        marksList = {}
+    print('--------')
+    print(list)
+    for id in marksList:
+        print(id)
+        list.append(marksList.get(id))
+
+    return render_template("ViewAssignments.html", list=list)
+
+
+@app.route('/allassignmentsS', methods=('GET', 'POST'))
+def viewassignmentsS():
+    db_read = shelve.open('dates.db')
+    list = []
+
+    try:
+        marksList = db_read['users']
+    except:
+        marksList = {}
+    print('--------')
+    print(list)
+    for id in marksList:
+        print(id)
+        list.append(marksList.get(id))
+
+    return render_template("ViewAssignmentsS.html", list=list)
+
+
+@app.route('/individualassignments/<int:assignmentsid>', methods=('GET', 'POST'))
+def individualassignments(assignmentsid):
+    form = FormStuff(request.form)
+    db_read = shelve.open('dates.db')
+    try:
+        assignmentsidList = db_read['users']
+    except:
+
+        assignmentsidList = []
+
+    print(assignmentsid)
+    if request.method == 'POST':
+        assignmentzz = assignmentsidList.get(assignmentsid)
+        selection = assignmentzz.get_course()
+        choice = assignmentzz.get_group()
+        date = assignmentzz.get_date()
+        des = assignmentzz.get_des()
+        maxmarks = assignmentzz.get_maxmarks()
+        givenmarks = form.givenmarks.data
+        overall = CreateAssignments(selection, choice, date, des, maxmarks, givenmarks)
+        print(choice)
+        print(date)
+        overall.set_id(assignmentsid)
+        assignmentsidList[assignmentsid] = overall
+        db_read["users"] = assignmentsidList
+
+    list2 = []
+    list2.append(assignmentsidList.get(assignmentsid))
+
+    return render_template('view_individual_assignments.html', form=form, list2=list2)
 
 
 

@@ -50,7 +50,7 @@
             {% for confirm in booking %}
                 <tr>
                 {% if confirm.get_status() == 'Accepted' %}
-                    {% if confirm.get_student_name()==request.cookies.get('admin_no') %}
+                    {% if confirm.get_student_name()==request.cookies.get('name') %}
                     <td>{{ confirm.get_name() }}</td>
                     <td>{{ confirm.get_date() }}</td>
                     <td>{{ confirm.get_time()}}</td>
@@ -76,7 +76,7 @@
             {% for rejected in booking %}
                 <tr>
                 {% if rejected.get_status() == 'Rejected' %}
-                        {% if rejected.get_student_name()==request.cookies.get('admin_no') %}
+                        {% if rejected.get_student_name()==request.cookies.get('name') %}
                     <td>{{ rejected.get_name() }}</td>
                     <td>{{ rejected.get_date() }}</td>
                     <td>{{ rejected.get_time()}}</td>
@@ -101,7 +101,7 @@
             {% for booking in booking %}
                 <tr>
                 {% if booking.get_status() == 'Pending' %}
-                        {% if booking.get_student_name()==request.cookies.get('admin_no') %}
+                        {% if booking.get_student_name()==request.cookies.get('name') %}
                     <td>{{ booking.get_name() }}</td>
                     <td>{{ booking.get_date() }}</td>
                     <td>{{ booking.get_time()}}</td>

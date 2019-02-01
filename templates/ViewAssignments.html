@@ -3,6 +3,13 @@
 {% block body %}
     {% from "includes/_formhelper.html" import render_field %}
     <title>Assignments</title>
+    <h1>Assignments</h1>
+    <div>
+    <form action="{{url_for('assignt')}}">
+                    <input type="submit" value="Create assignment here" class="btn btn-info" >
+
+    </form>
+    </div>
     <tbody>
     <div>
         {% for listz in list %}

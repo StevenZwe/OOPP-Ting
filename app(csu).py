@@ -11,24 +11,7 @@ from os.path import join, dirname, realpath
 app = Flask(__name__)
 app.secret_key = 'secret123'
 
-UPLOAD_FOLDER = '/static/Documents/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-app.config['UPLOADS_PATH'] = join(dirname(realpath(__file__)), 'static\\Documents\\')
 
-
-@app.route('/assignments_student/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOADS_PATH'], filename)
-
-
-def allowed_files(filename):
-    return '.' in filename and \
-            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-class PhotoForm(Form):
-    photo = FileField(validators=[''])
 
 
 @app.route('/',  methods=('GET', 'POST'))
@@ -94,6 +77,28 @@ def home():
 def planner():
     return render_template('planner.html')
 
+
+  #=================================================
+
+
+UPLOAD_FOLDER = '/static/Documents/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+app.config['UPLOADS_PATH'] = join(dirname(realpath(__file__)), 'static\\Documents\\')
+
+
+@app.route('/assignments_student/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOADS_PATH'], filename)
+
+
+def allowed_files(filename):
+    return '.' in filename and \
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+class PhotoForm(Form):
+    photo = FileField(validators=[''])
 
 class CreateAssignments:
     def __init__(self, course, group, date, des, maxmarks, givenmarks):
